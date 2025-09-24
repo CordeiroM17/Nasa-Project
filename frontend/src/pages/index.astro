@@ -3,14 +3,10 @@ import TitleSection from '../components/TitleSection.astro';
 import MainLayout from '../layouts/MainLayout.astro';
 import "../styles/global.css";
 
-const titleSectionPromps = {
-	title: "Asteroid Simulation",
-	paragraph: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, vitae dolorum mollitia ad velit ipsa atque similique placeat magni ipsam! Deleniti error nesciunt vitae id! Inventore quibusdam omnis eligendi fuga?"
-}
 ---
 
 <MainLayout title="Home">
 	
-	<TitleSection title={titleSectionPromps.title} paragraph={titleSectionPromps.paragraph} />
+	<TitleSection id="home"/>
 
 </MainLayout>

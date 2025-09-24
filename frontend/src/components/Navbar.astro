@@ -1,25 +1,110 @@
 ---
 let currentPath = Astro.url.pathname;
-
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/challenge", label: "Challenge" },
-  { href: "/team", label: "Team" },
-  { href: "/languague", label: "Language" }
-];
-
-/* bg-[#172130] */
 ---
 
-<header class="h-20 w-full flex justify-between items-center gap-8 px-8 bg-[#172130]">
-  <h2 class="text-[#C5D5DC]">UPC TEAM</h2>
-  <nav class="h-full">
-    <ul class="flex items-center gap-12 h-full">
-      {links.map(link => (
-        <a href={link.href} class={`px-2 py-2 h-12 w-24 flex justify-center items-center rounded-2xl ${currentPath === link.href ? "bg-[#0C1421]" : "hover:bg-[#1E2939]"}`}>
-          <li transition:name={`title-${link.label}`} class="text-[#C5D5DC]">{link.label}</li>
+<header id="navbar" class="h-20 w-full flex justify-center bg-[#F7F4ED] border-b border-black">
+  <div class="max-w-6xl h-full w-full flex justify-between items-center gap-8 px-8">
+    <h2 class="text-[#242424] font-bold text-2xl">UPC TEAM</h2>
+    <nav class="h-full text-md">
+      <ul class="flex items-center gap-8 h-full">
+        <a href=`/` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/` ? "border-b-2" : "hover:border-b-2"}`}>
+          <li class="text-[#242424]" data-section="navbar" data-value="home">Home</li>
         </a>
-      ))}
-    </ul>
-  </nav>
+        <a href=`/challenge}` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/challenge` ? "border-b-2" : "hover:border-b-2"}`}>
+          <li class="text-[#242424]" data-section="navbar" data-value="challenge">Challenge</li>
+        </a>
+        <a href=/team` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/team` ? "border-b-2" : "hover:border-b-2"}`}>
+          <li class="text-[#242424]" data-section="navbar" data-value="team">Team</li>
+        </a>
+        <div class="relative w-30 border rounded-lg hover:bg-gray-300">
+          <select id="language" class="hidden">
+            <option value="en" data-section="navbar" data-value="language-en">English</option>
+            <option value="es" data-section="navbar" data-value="language-es">Spanish</option>
+            <option value="ru" data-section="navbar" data-value="language-ru">Russian</option>
+          </select>
+
+          <div id="custom-select" class="rounded-lg p-2 flex items-center justify-center gap-2 cursor-pointer">
+            <img id="selected-flag" src="https://flagsapi.com/US/flat/24.png" alt="flag">
+            <span id="selected-text" data-section="navbar" data-value="language-en">English</span>
+          </div>
+
+          <div id="options" class="absolute left-0 mt-1 w-full border rounded-lg bg-white shadow-lg hidden">
+            <button class="option w-full flex items-center justify-center rounded-t-lg gap-2 p-2 hover:bg-gray-300 cursor-pointer" data-value="en" data-language="en">
+              <img src="https://flagsapi.com/US/flat/24.png" alt="English Flag"> 
+              <span data-section="navbar" data-value="language-en">English</span>
+            </button>
+            <button class="option w-full flex items-center justify-center gap-2 p-2 hover:bg-gray-300 cursor-pointer" data-value="es" data-language="es">
+              <img src="https://flagsapi.com/ES/flat/24.png" alt="Spanish Flag"> 
+              <span data-section="navbar" data-value="language-es">Spanish</span>
+            </button>
+            <button class="option w-full flex items-center justify-center rounded-b-lg gap-2 p-2 hover:bg-gray-300 cursor-pointer" data-value="ru" data-language="ru">
+              <img src="https://flagsapi.com/RU/flat/24.png" alt="Russian Flag"> 
+              <span data-section="navbar" data-value="language-ru">Russian</span>
+            </button>
+          </div>
+        </div>
+      </ul>
+    </nav>
+  </div>
 </header>
+
+<script type="module">
+  import { applyTranslation } from '../src/utils/languages.js';
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const customSelect = document.getElementById("custom-select");
+    const options = document.getElementById("options");
+    const realSelect = document.getElementById("language");
+    const selectedFlag = document.getElementById("selected-flag");
+    const selectedText = document.getElementById("selected-text");
+
+    if (!customSelect || !options || !realSelect || !selectedFlag || !selectedText) return;
+
+    // Abrir/cerrar dropdown
+    customSelect.addEventListener("click", () => {
+      options.classList.toggle("hidden");
+    });
+
+    // Seleccionar opción
+    document.querySelectorAll("#options .option").forEach(opt => {
+      opt.addEventListener("click", () => {
+        const value = opt.dataset.value;
+        const span = opt.querySelector("span");
+        const flag = opt.querySelector("img").src;
+
+        // actualizar bandera y atributos del selected-text
+        selectedFlag.src = flag;
+        selectedText.dataset.section = span.dataset.section;
+        selectedText.dataset.value = span.dataset.value;
+
+        // actualizar select real para formularios
+        realSelect.value = value;
+
+        // cerrar dropdown
+        options.classList.add("hidden");
+
+        // guardar en localStorage
+        localStorage.setItem('selectedLanguage', value);
+
+        // aplicar traducción
+        applyTranslation(value);
+      });
+    });
+
+    // Restaurar idioma al cargar la página
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    const option = document.querySelector(`#options .option[data-value="${savedLang}"]`);
+
+    if(option) {
+      const span = option.querySelector("span");
+      const flag = option.querySelector("img").src;
+
+      selectedFlag.src = flag;
+      selectedText.dataset.section = span.dataset.section;
+      selectedText.dataset.value = span.dataset.value;
+      realSelect.value = savedLang;
+
+      applyTranslation(savedLang);
+    }
+  });
+</script>

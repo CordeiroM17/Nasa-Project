@@ -1,0 +1,15 @@
+{
+    "navbar": {
+        "home": "Inicio",
+        "challenge": "Reto",
+        "team": "Equipo",
+        "language-es": "Español",
+        "language-en": "Ingles",
+        "language-ru": "Ruso"
+    },
+    "home": {
+        "title": "Simulación de Asteroides",
+        "paragraph": "Explora la fascinante dinámica de los asteroides con nuestro simulador interactivo.",
+        "play-btn": "Comenzar la simulacion"
+    }
+}
