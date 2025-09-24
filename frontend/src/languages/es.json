@@ -11,5 +11,14 @@
         "title": "Simulación de Asteroides",
         "paragraph": "Explora la fascinante dinámica de los asteroides con nuestro simulador interactivo.",
         "play-btn": "Comenzar la simulacion"
+    },
+    "footer": {
+        "help": "Ayuda",
+        "status": "Estado",
+        "about": "Acerca de",
+        "blog": "Blog",
+        "privacity": "Privacidad",
+        "rules": "Reglas",
+        "terms": "Terminos"
     }
 }

@@ -11,5 +11,14 @@
         "title": "Asteroid Simulation",
         "paragraph": "Explore the fascinating dynamics of asteroids with our interactive simulator.",
         "play-btn": "Start Simulation"
+    },
+    "footer": {
+        "help": "Help",
+        "status": "Status",
+        "about": "About",
+        "blog": "Blog",
+        "privacity": "Privacity",
+        "rules": "Rules",
+        "terms": "Terms"
     }
 }
