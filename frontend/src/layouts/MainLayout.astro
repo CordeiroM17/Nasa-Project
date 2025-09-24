@@ -15,10 +15,10 @@ const { title } = Astro.props;
 		<title>{title}</title>
 		<ClientRouter />
 	</head>
-	<body class="flex justify-center bg-[#172130]">
-		<div class="mx-auto px-4 py-8 w-full flex flex-col justify-center">
+	<body class="flex justify-center h-screen">
+		<div class="mx-auto px-4 py-8 w-full h-full flex flex-col justify-center">
 			<Navbar />
-			<main>
+			<main class="bg-[#F7F4ED] h-screen flex flex-col items-center">
 				<slot/>
 			</main>
 			<Footer />
