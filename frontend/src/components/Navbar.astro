@@ -1,0 +1,25 @@
+---
+let currentPath = Astro.url.pathname;
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/challenge", label: "Challenge" },
+  { href: "/team", label: "Team" },
+  { href: "/languague", label: "Language" }
+];
+
+/* bg-[#172130] */
+---
+
+<header class="h-20 w-full flex justify-between items-center gap-8 px-8 bg-[#172130]">
+  <h2 class="text-[#C5D5DC]">UPC TEAM</h2>
+  <nav class="h-full">
+    <ul class="flex items-center gap-12 h-full">
+      {links.map(link => (
+        <a href={link.href} class={`px-2 py-2 h-12 w-24 flex justify-center items-center rounded-2xl ${currentPath === link.href ? "bg-[#0C1421]" : "hover:bg-[#1E2939]"}`}>
+          <li transition:name={`title-${link.label}`} class="text-[#C5D5DC]">{link.label}</li>
+        </a>
+      ))}
+    </ul>
+  </nav>
+</header>
