@@ -10,11 +10,30 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{title}</title>
-		<ClientRouter />
+			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width" />
+			<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+			<title>{title}</title>
+			<ClientRouter />
+			<script>
+				const lang = localStorage.getItem('selectedLanguage') || 'en';
+				// Oculta el body hasta que se aplique la traducción
+				document.documentElement.style.visibility = 'hidden';
+				fetch(`/languages/${lang}.json`).then(res => res.json()).then(data => {
+					document.querySelectorAll('[data-section]').forEach(element => {
+						const el = element instanceof HTMLElement ? element : null;
+						if (!el) return;
+						const section = el.dataset.section;
+						const value = el.dataset.value;
+						if (section && value && data[section] && data[section][value]) {
+							el.innerHTML = data[section][value];
+						}
+					});
+					document.documentElement.style.visibility = '';
+				}).catch(() => {
+					document.documentElement.style.visibility = '';
+				});
+			</script>
 	</head>
 	<body class="flex justify-center h-screen">
 		<div class="bg-[#F7F4ED] mx-auto px-4 py-8 w-full h-full flex flex-col justify-center">

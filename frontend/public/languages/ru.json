@@ -9,8 +9,16 @@
     },
     "home": {
         "title": "Симуляция астероидов",
-        "paragraph": "Исследуйте увлекательную динамику астероидов с нашим интерактивным симулятором.",
+        "paragraph": "RUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSO",
         "play-btn": "Начать симуляцию"
+    },
+    "challenge": {
+        "title": "NASA Space Apps Challenge",
+        "paragraph": "RUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSO"
+    },
+    "team": {
+        "title": "Команда UPC",
+        "paragraph": "RUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSORUSO"
     },
     "footer": {
         "help": "Справка",
