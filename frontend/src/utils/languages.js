@@ -2,9 +2,9 @@ const langButtons = document.querySelectorAll('[data-language]');
 const textsToChange = document.querySelectorAll('[data-section]');
 
 export const applyTranslation = (lang) => {
-  if (!lang) return;
+  if (!lang) return Promise.resolve();
 
-  fetch(`src/languages/${lang}.json`)
+  fetch(`/languages/${lang}.json`)
     .then((res) => res.json())
     .then((data) => {
       textsToChange.forEach((element) => {
@@ -17,17 +17,29 @@ export const applyTranslation = (lang) => {
     });
 };
 
+export const getSavedLanguage = () => {
+  return localStorage.getItem('selectedLanguage') || 'en';
+};
+
 langButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    applyTranslation(button.dataset.language);
+    const selectedLang = button.dataset.language;
+    localStorage.setItem('selectedLanguage', selectedLang);
+    applyTranslation(selectedLang);
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const savedLang = localStorage.getItem('selectedLanguage') || 'en'; // 'en' default
+// se ejecuta en la primera carga
+/* document.addEventListener('DOMContentLoaded', () => {
+  restoreLanguage();
+}); */
 
-  const langButton = document.querySelector(`[data-language="${savedLang}"]`);
-  if (langButton) {
-    langButton.click();
-  }
-});
+// se ejecuta cada vez que Astro cambia de página
+/* document.addEventListener('astro:after-swap', () => {
+  restoreLanguage();
+}); */
+
+export function restoreLanguage() {
+  const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+  applyTranslation(savedLang);
+}

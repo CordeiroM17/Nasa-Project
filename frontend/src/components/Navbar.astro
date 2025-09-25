@@ -10,10 +10,10 @@ let currentPath = Astro.url.pathname;
         <a href=`/` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/` ? "border-b-2" : "hover:border-b-2"}`}>
           <li class="text-[#242424]" data-section="navbar" data-value="home">Home</li>
         </a>
-        <a href=`/challenge}` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/challenge` ? "border-b-2" : "hover:border-b-2"}`}>
+        <a href=`/challenge` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/challenge` ? "border-b-2" : "hover:border-b-2"}`}>
           <li class="text-[#242424]" data-section="navbar" data-value="challenge">Challenge</li>
         </a>
-        <a href=/team` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/team` ? "border-b-2" : "hover:border-b-2"}`}>
+        <a href="/team" class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/team` ? "border-b-2" : "hover:border-b-2"}`}>
           <li class="text-[#242424]" data-section="navbar" data-value="team">Team</li>
         </a>
         <div class="relative w-30 border rounded-lg hover:bg-gray-300">
@@ -49,7 +49,11 @@ let currentPath = Astro.url.pathname;
 </header>
 
 <script type="module">
-  import { applyTranslation } from '../src/utils/languages.js';
+  import { applyTranslation, getSavedLanguage } from '../src/utils/languages.js';
+
+  const savedLanguage = getSavedLanguage();
+    
+  applyTranslation(savedLanguage);
 
   document.addEventListener("DOMContentLoaded", () => {
     const customSelect = document.getElementById("custom-select");
@@ -58,13 +62,47 @@ let currentPath = Astro.url.pathname;
     const selectedFlag = document.getElementById("selected-flag");
     const selectedText = document.getElementById("selected-text");
 
+    
     if (!customSelect || !options || !realSelect || !selectedFlag || !selectedText) return;
 
-    // Abrir/cerrar dropdown
+    // Restaurar bandera e idioma del select
+    const savedOption = document.querySelector(`#options .option[data-value="${savedLanguage}"]`);
+
+    if (savedOption) {
+      const span = savedOption.querySelector("span");
+      const flag = savedOption.querySelector("img").src;
+
+      selectedFlag.src = flag;
+      selectedText.dataset.section = span.dataset.section;
+      selectedText.dataset.value = span.dataset.value;
+      realSelect.value = savedLanguage;
+    }
+
+    // Open/close dropdown
     customSelect.addEventListener("click", () => {
       options.classList.toggle("hidden");
     });
+    
+    // Selección de idioma
+    document.querySelectorAll("#options .option").forEach(opt => {
+      opt.addEventListener("click", () => {
+        const lang = opt.dataset.value;
+        const span = opt.querySelector("span");
+        const flag = opt.querySelector("img").src;
 
+        selectedFlag.src = flag;
+        selectedText.dataset.section = span.dataset.section;
+        selectedText.dataset.value = span.dataset.value;
+        realSelect.value = lang;
+
+        options.classList.add("hidden");
+
+        localStorage.setItem('selectedLanguage', lang);
+        applyTranslation(lang);
+      });
+    });
+
+    
     // Seleccionar opción
     document.querySelectorAll("#options .option").forEach(opt => {
       opt.addEventListener("click", () => {
@@ -90,21 +128,6 @@ let currentPath = Astro.url.pathname;
         applyTranslation(value);
       });
     });
-
-    // Restaurar idioma al cargar la página
-    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
-    const option = document.querySelector(`#options .option[data-value="${savedLang}"]`);
-
-    if(option) {
-      const span = option.querySelector("span");
-      const flag = option.querySelector("img").src;
-
-      selectedFlag.src = flag;
-      selectedText.dataset.section = span.dataset.section;
-      selectedText.dataset.value = span.dataset.value;
-      realSelect.value = savedLang;
-
-      applyTranslation(savedLang);
-    }
   });
+
 </script>

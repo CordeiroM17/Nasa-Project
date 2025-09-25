@@ -1,16 +1,18 @@
 ---
-import TitleSection from '../components/TitleSection.astro';
 import MainLayout from '../layouts/MainLayout.astro';
-import "../styles/global.css";
 
-const titleSectionPromps = {
-	title: "Team",
-	paragraph: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, vitae dolorum mollitia ad velit ipsa atque similique placeat magni ipsam! Deleniti error nesciunt vitae id! Inventore quibusdam omnis eligendi fuga?"
-}
 ---
 
 <MainLayout title="Team">
 	
-	<TitleSection title={titleSectionPromps.title} paragraph={titleSectionPromps.paragraph} />
+	<section id="team" class="max-w-6xl w-full h-full flex justify-end items-center">
+		<div class="max-w-2xl max-h-80 h-full flex flex-col text-end justify-start gap-8 pt-8 px-8" transition:name="title-h1-section">
+			<h1 class="font-bold text-[#172130] text-6xl" data-section="team" data-value="title" >Team UPC</h1>
+			<p class="text-[#172130] text-xl" data-section="team" data-value="paragraph">We are the team who create the interactive simulator etc etc etc etc estc estc estsgr</p>
+			<button class="text-white px-2 py-2 w-56 h-12 self-end text-center rounded-2xl bg-[#0C1421] hover:bg-[#1E2939] cursor-pointer" data-section="team" data-value="play-btn">Start Simulation</button>
+		</div>
+	</section>
+
+	
 
 </MainLayout>
