@@ -1,0 +1,52 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Map from '../components/Map.astro';
+---
+
+<MainLayout title="Asteroid Simulation">
+    <section id="simulation" class="w-full h-full flex justify-between items-start">
+        <div class="max-w-xs w-full h-full flex flex-col justify-between text-center gap-8 py-8 px-8 border-r border-black bg-[#F7F4ED]">
+            <!-- Asteroid select -->
+            <!-- AGREGAR SELECT DE ASTEROIDES -->
+            <div class="rounded-lg border border-black">
+                <h1>AGREGAR SELECT DE ASTEROIDES</h1>
+            </div>
+            
+            <!-- Title section -->
+            <div class="rounded-lg border border-black flex flex-col gap-2 text-start p-2">
+                <h1 class="font-bold text-lg">Simulation Parameters</h1>
+                <p class="text-sm text-[#75818B] font-bold">Adjust the parameters below to customize the asteroid simulation.</p>
+            </div>
+
+            <!-- Asteroid parameters -->
+            <div class="rounded-lg border border-black h-full font-bold">
+                <div class="flex flex-col gap-2 text-start p-2">
+                    <label for="asteroid-size">Asteroid Size</label>
+                    <input type="range" id="asteroid-size" min="1" max="100" value="50" />
+                </div>
+
+                <div class="flex flex-col gap-2 text-start p-2">
+                    <label for="asteroid-speed">Asteroid Speed</label>
+                    <input type="range" id="asteroid-speed" min="1" max="100" value="50" />
+                </div>
+
+                <div class="flex flex-col gap-2 text-start p-2">
+                    <label for="asteroid-impact-angle">Asteroid Impact Angle</label>
+                    <input type="range" id="asteroid-impact-angle" min="0" max="90" value="45" />
+                </div>
+            </div>
+
+            <!-- Title section -->
+            <div class="flex flex-col gap-2">
+                <button class="w-full rounded-lg border border-black">Start Simulation</button>
+                <button class="w-full rounded-lg border border-black">Reset</button>
+            </div>
+        </div>
+
+            
+        <div class="w-full h-full">
+            <Map/>
+        </div>
+    </section>
+
+</MainLayout>

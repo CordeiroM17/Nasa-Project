@@ -14,13 +14,3 @@ import MainLayout from '../layouts/MainLayout.astro';
 	</section>
 
 </MainLayout>
-
-<script type="module">
-  	import { applyTranslation, getSavedLanguage } from '../src/utils/languages.js';
-	
-	let languageSaved = getSavedLanguage();
-
-	console.log(languageSaved);
-
-	applyTranslation(languageSaved);
-</script>
