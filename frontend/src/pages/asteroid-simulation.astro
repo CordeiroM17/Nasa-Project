@@ -5,19 +5,14 @@ import Map from '../components/Map.astro';
 import { API_URL } from 'astro:env/server';
 
 const res = await fetch(`${API_URL}/meteors`);
-const meteors = await res.json();
-
+const meteors = JSON.stringify(await res.json());
+console.log(meteors);
 ---
 
 <MainLayout title="Asteroid Simulation">
     <section id="simulation" class="w-full h-full flex justify-between items-start">
         <div class="max-w-xs w-full h-full flex flex-col justify-between text-center gap-8 py-8 px-8 border-r border-black bg-[#F7F4ED]">
             <!-- Asteroid select -->
-            {meteors.map(meteor => (
-                <div class="rounded-lg border border-black" key={meteor.id ?? meteor.name}>
-                    <h1>{meteor.name}</h1>
-                </div>
-            ))}
             <!-- AGREGAR SELECT DE ASTEROIDES -->
             <div class="rounded-lg border border-black">
                 <h1>AGREGAR SELECT DE ASTEROIDES</h1>
