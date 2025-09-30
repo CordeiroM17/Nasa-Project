@@ -2,22 +2,21 @@
 let currentPath = Astro.url.pathname;
 ---
 
-<header id="navbar" class="h-20 w-full flex justify-center bg-[#F7F4ED] border-b border-black">
+<header id="navbar" class="h-20 w-full flex justify-center bg-primary-100 border-b border-borders-100">
   <div class="max-w-6xl h-full w-full flex justify-between items-center gap-8 px-8">
-    <!-- <h2 class="text-[#242424] font-bold text-2xl">UPC TEAM</h2> -->
      <img src="logo.png" class="h-full" />
     <nav class="h-full text-md">
       <ul class="flex items-center gap-8 h-full">
-        <a href=`/` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/` ? "border-b-2" : "hover:border-b-2"}`}>
-          <li class="text-[#242424]" data-section="navbar" data-value="home">Home</li>
+        <a href=`/` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-borders-100 ${currentPath === `/` ? "border-b-2" : "hover:border-b-2"}`}>
+          <li class="text-primarytext-100" data-section="navbar" data-value="home">Home</li>
         </a>
-        <a href=`/challenge` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/challenge` ? "border-b-2" : "hover:border-b-2"}`}>
-          <li class="text-[#242424]" data-section="navbar" data-value="challenge">Challenge</li>
+        <a href=`/challenge` class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-borders-100 ${currentPath === `/challenge` ? "border-b-2" : "hover:border-b-2"}`}>
+          <li class="text-primarytext-100" data-section="navbar" data-value="challenge">Challenge</li>
         </a>
-        <a href="/team" class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-[#242424] ${currentPath === `/team` ? "border-b-2" : "hover:border-b-2"}`}>
-          <li class="text-[#242424]" data-section="navbar" data-value="team">Team</li>
+        <a href="/team" class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-borders-100 ${currentPath === `/team` ? "border-b-2" : "hover:border-b-2"}`}>
+          <li class="text-primarytext-100" data-section="navbar" data-value="team">Team</li>
         </a>
-        <div class="relative w-30 border rounded-lg hover:bg-gray-300">
+        <div class="relative w-30 border rounded-lg bg-primary-200 border-borders-100">
           <select id="language" class="hidden">
             <option value="en" data-section="navbar" data-value="language-en">English</option>
             <option value="es" data-section="navbar" data-value="language-es">Spanish</option>
@@ -29,16 +28,16 @@ let currentPath = Astro.url.pathname;
             <span id="selected-text" data-section="navbar" data-value="language-en">English</span>
           </div>
 
-          <div id="options" class="absolute left-0 mt-1 w-full border rounded-lg bg-white shadow-lg hidden">
-            <button class="option w-full flex items-center justify-center rounded-t-lg gap-2 p-2 hover:bg-gray-300 cursor-pointer" data-value="en" data-language="en">
+          <div id="options" class="absolute left-0 mt-1 w-full border rounded-lg bg-primary-200 shadow-lg hidden">
+            <button class="option w-full flex items-center justify-center rounded-t-lg gap-2 p-2 hover:bg-primary-300 cursor-pointer" data-value="en" data-language="en">
               <img src="https://flagsapi.com/US/flat/24.png" alt="English Flag"> 
               <span data-section="navbar" data-value="language-en">English</span>
             </button>
-            <button class="option w-full flex items-center justify-center gap-2 p-2 hover:bg-gray-300 cursor-pointer" data-value="es" data-language="es">
+            <button class="option w-full flex items-center justify-center gap-2 p-2 hover:bg-primary-300 cursor-pointer" data-value="es" data-language="es">
               <img src="https://flagsapi.com/ES/flat/24.png" alt="Spanish Flag"> 
               <span data-section="navbar" data-value="language-es">Spanish</span>
             </button>
-            <button class="option w-full flex items-center justify-center rounded-b-lg gap-2 p-2 hover:bg-gray-300 cursor-pointer" data-value="ru" data-language="ru">
+            <button class="option w-full flex items-center justify-center rounded-b-lg gap-2 p-2 hover:bg-primary-300 cursor-pointer" data-value="ru" data-language="ru">
               <img src="https://flagsapi.com/RU/flat/24.png" alt="Russian Flag"> 
               <span data-section="navbar" data-value="language-ru">Russian</span>
             </button>

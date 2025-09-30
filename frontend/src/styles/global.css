@@ -1,3 +1,14 @@
 @import 'tailwindcss';
 
 @import 'leaflet/dist/leaflet.css';
+
+@theme {
+  --color-primary-100: #2e313a; /* Kinda black */
+  --color-primary-200: #e2e3ff; /* Gray */
+  --color-primary-300: #d1d5dc; /* Gray */
+  --color-primary-400: #464aad; /* Blue */
+
+  --color-borders-100: #f7f4ed; /* White */
+  --color-primarytext-100: #e2e3ff; /* Gray */
+  --color-primarytext-200: #75818b; /* Gray */
+}
