@@ -1,4 +1,3 @@
-
 export const applyTranslation = (lang) => {
   if (!lang) return Promise.resolve();
   const textsToChange = document.querySelectorAll('[data-section]');

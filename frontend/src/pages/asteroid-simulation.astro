@@ -50,3 +50,16 @@ import Map from '../components/Map.astro';
     </section>
 
 </MainLayout>
+
+<script type="module">
+    import { API_URL } from '../utils/enviroments.js';
+
+    fetch(`${API_URL}/asteroids`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error fetching asteroid data:', error);
+        });
+</script>
