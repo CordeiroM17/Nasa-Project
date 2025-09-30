@@ -1,8 +1,15 @@
-from flask import Flask
-from src.controllers.meteors_controller import meteors_bp
+from flask import Flask 
+from flask_restful import Resource, Api
+from src.routes.meteors import MeteorsResource
+from src.services.meteors_service import fetch_meteors
+from src.models.meteors_model import format_response
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-app.register_blueprint(meteors_bp)
+api = Api(app)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost"}})
+
+api.add_resource(MeteorsResource, '/api/meteors')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
