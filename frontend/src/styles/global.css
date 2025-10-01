@@ -11,4 +11,6 @@
   --color-borders-100: #f7f4ed; /* White */
   --color-primarytext-100: #e2e3ff; /* Gray */
   --color-primarytext-200: #75818b; /* Gray */
+
+  --breakpoint-xs: 425px;
 }

@@ -6,17 +6,29 @@ import { API_URL } from 'astro:env/server';
 
 const res = await fetch(`${API_URL}/meteors`);
 const meteors = JSON.stringify(await res.json());
-console.log(meteors);
+
+console.log(meteors)
+/* const data = meteors.data; */
+
+function openAsteroidMenu() {
+    
+}
 ---
 
 <MainLayout title="Asteroid Simulation">
     <section id="simulation" class="w-full h-full flex justify-between items-start">
         <div class="max-w-xs w-full h-full flex flex-col justify-between text-center gap-8 py-8 px-8 border-r border-black bg-[#F7F4ED]">
-            <!-- Asteroid select -->
             <!-- AGREGAR SELECT DE ASTEROIDES -->
             <div class="rounded-lg border border-black">
-                <h1>AGREGAR SELECT DE ASTEROIDES</h1>
+                <button onclick={() => openAsteroidMenu()}>AGREGAR SELECT DE ASTEROIDES</button>
             </div>
+
+            {data.map((meteor) => (
+                <div key={meteor.id}>
+                    <h2>{meteor.name}</h2>
+                    <h2>{meteor.type}</h2>
+                </div>
+            ))}
             
             <!-- Title section -->
             <div class="rounded-lg border border-black flex flex-col gap-2 text-start p-2">
