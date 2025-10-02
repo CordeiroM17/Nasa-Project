@@ -46,8 +46,12 @@
         "paragraph": "NASA Space Apps Challenge is a chaslmrfelwvj rwerverjk nfwerknkjfd vbdfgkvehrkjgn dgkdhgk."
     },
     "team": {
-        "title": "Team JJBC",
-        "paragraph": "We are Team JJBC — a group of three creators passionate about building interactive tools and simulators that make complex ideas easy to explore and understand."
+        "title": "TEAM JJB",
+        "paragraph": "We are Team JJBC — a group of three creators passionate about building interactive tools and simulators that make complex ideas easy to explore and understand.",
+        "developer": "Developer",
+        "dev1": "Cordeiro Mariano",
+        "dev2": "Blanco Facundo",
+        "dev3": "Medina Gabriel"
     },
     "footer": {
         "help": "Help",
