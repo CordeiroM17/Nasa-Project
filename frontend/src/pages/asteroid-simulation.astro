@@ -1,14 +1,28 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import Map from '../components/Map.astro';
-
 import { API_URL } from 'astro:env/server';
 
-const res = await fetch(`${API_URL}/meteors`);
-const meteors = JSON.stringify(await res.json());
+let data;
 
-console.log(meteors)
-/* const data = meteors.data; */
+async function getAsteroids() {
+    try {
+        const res = await fetch(`${API_URL}/meteors`);
+        const asteroids = await res.json();
+        
+        if (res && asteroids.code === 200) {
+            data = asteroids.data;
+            console.log(asteroids.message)
+            console.log("Asteroid data Loaded")
+        } else {
+            throw new Error(asteroids.message);
+        }
+    } catch (error) {
+        console.error("Error fetching asteroid data:", error);
+    }
+}
+
+await getAsteroids();
 
 function openAsteroidMenu() {
     
@@ -19,7 +33,7 @@ function openAsteroidMenu() {
     <section id="simulation" class="w-full h-full flex justify-between items-start">
         <div class="max-w-xs w-full h-full flex flex-col justify-between text-center gap-8 py-8 px-8 border-r border-black bg-[#F7F4ED]">
             <!-- AGREGAR SELECT DE ASTEROIDES -->
-            <div class="rounded-lg border border-black">
+            <!-- <div class="rounded-lg border border-black">
                 <button onclick={() => openAsteroidMenu()}>AGREGAR SELECT DE ASTEROIDES</button>
             </div>
 
@@ -28,7 +42,7 @@ function openAsteroidMenu() {
                     <h2>{meteor.name}</h2>
                     <h2>{meteor.type}</h2>
                 </div>
-            ))}
+            ))} -->
             
             <!-- Title section -->
             <div class="rounded-lg border border-black flex flex-col gap-2 text-start p-2">

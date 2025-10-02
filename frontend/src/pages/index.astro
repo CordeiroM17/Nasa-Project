@@ -5,9 +5,9 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 <MainLayout title="Home">
 	
-	<section id="home" class="max-w-6xl w-full h-full flex flex-col justify-center items-center md:justify-between md:flex-row md:min-h-[90vh]">
-		<div class="text-primary-100 max-w-xl flex flex-col text-center justify-center gap-8 p-8 md:text-start md:justify-start" transition:name="title-h1-section">
-			<h1 class="font-bold text-4xl xs:text-5xl md:text-6xl" data-section="home" data-value="title">Asteroid Simulation</h1>
+	<section id="home" class="mt-16 max-w-6xl w-full h-full flex flex-col justify-center items-center md:justify-between md:flex-row md:min-h-[80vh]">
+		<div class="text-primary-100 max-w-xl flex flex-col text-center justify-center gap-8 pl-8 md:text-start md:justify-start" transition:name="title-h1-section">
+			<h1 class="font-bold text-4xl xs:text-5xl md:text-6xl" data-section="home" data-value="title">HACKATHON: NASA SPACE APP</h1>
 			<p class="text-md xs:text-lg" data-section="home" data-value="paragraph">Explore the fascinating dynamics of asteroids with our interactive simulator.</p>
 			<a href="/asteroid-simulation" class="text-primarytext-100 px-2 py-2 w-56 self-center text-center rounded-lg bg-primary-500 hover:bg-primary-600 cursor-pointer md:self-start" data-section="home" data-value="play-btn">Start Simulation</a>
 		</div>
@@ -29,39 +29,38 @@ import MainLayout from '../layouts/MainLayout.astro';
 		</div>
 	</section>
 
-	<section id="home-items" class="max-w-6xl w-full h-full flex flex-col justify-start items-center md:flex-row md:mt-16">
-		<div class="flex flex-col text-start justify-center gap-8 m-8 border-t h-full border-primary-100 md:border-t-0 md:border-l md:p-8 md:justify-start md:w-1/3">
+	<section id="home-items" class="max-w-6xl w-full h-full flex flex-col justify-start items-center md:flex-row md:mt-16 md:p-8">
+		<div class="flex flex-col text-start justify-center gap-8 border-t h-full m-8 border-primary-100 md:border-t-0 md:border-l md:m-0 md:px-8 md:justify-start md:w-1/3">
 			<h2 class="text-primary-100 font-bold text-xl pt-8 xs:text-2xl md:text-4xl md:pt-0" data-section="home-items" data-value="title-asteroid-types">Asteroid types</h2>
 			<span class="font-bold" data-section="home-items" data-value="span-asteroid-types">+170 Asteroids...</span>
 			<p class="text-md xs:text-lg" data-section="home-items" data-value="paragraph-asteroid-types">Asteroids like Carbonaceous, Stony, Metallic... Explore their diversity and impact magnitudes. View scenarios in 2D and 3D!</p>
 		</div>
 
-		<div class="flex flex-col text-start justify-center gap-8 m-8 border-t h-full border-primary-100 md:border-t-0 md:border-l md:p-8 md:justify-start md:w-1/3">
+		<div class="flex flex-col text-start justify-center gap-8 border-t h-full m-8 border-primary-100 md:border-t-0 md:border-l md:m-0 md:px-8 md:justify-start md:w-1/3">
 			<h2 class="text-primary-100 font-bold text-xl pt-8 xs:text-2xl md:text-4xl md:pt-0" data-section="home-items" data-value="title-public">Public</h2>
 			<span class="font-bold" data-section="home-items" data-value="span-public">From families to scientists</span>
 			<p class="text-md xs:text-lg" data-section="home-items" data-value="paragraph-public">Our app turns science into an engaging, interactive, and exciting experience. We want everyone to be able to join in and learn about space in a fun and easy way.</p>
 		</div>
-		<div class="flex flex-col text-start justify-center gap-8 m-8 border-t h-full border-primary-100 md:border-t-0 md:border-l md:p-8 md:justify-start md:w-1/3">
+		<div class="flex flex-col text-start justify-center gap-8 border-t h-full m-8 border-primary-100 md:border-t-0 md:border-l md:m-0 md:px-8 md:justify-start md:w-1/3">
 			<h2 class="text-primary-100 font-bold text-xl pt-8 xs:text-2xl md:text-4xl md:pt-0" data-section="home-items" data-value="title-api-nasa">API NASA</h2>
 			<span class="font-bold" data-section="home-items" data-value="span-api-nasa">NASA Oficial API</span>
-			<p class="text-md xs:text-lg" data-section="home-items" data-value="paragraph-api-nasa"></p>
+			<p class="text-md xs:text-lg" data-section="home-items" data-value="paragraph-api-nasa">It's a menu of services that an organization provides so you can use its information. NASA uses open APIs so anyone (scientists, students, developers, and just anyone interested) can create apps, visualizations, or simulations with real-world space data.</p>
 		</div>
 	</section>
 
-	<section id="home-challenge" class="max-w-6xl w-full h-full flex flex-col justify-center items-center gap-8 md:justify-between md:flex-row-reverse md:mt-16 md:px-8">
-		<img src="logo_nasa.png" alt="Asteroid" class="md:overflow-hidden md:max-w-[600px]"/>
-
-		<div class="text-primary-200 flex flex-col text-start justify-center gap-8 p-8 border-t bg-primary-100 md:border-t-0 md:border-l md:pl-8 md:rounded-lg">
-			<h2 class="font-bold text-xl xs:text-2xl md:text-4xl md:pt-0">Test yourself with this challenge</h2>
-			<p class="text-md xs:text-lg">For the desire to learn and improve your skills, We give you the website of the organization spaceappschallenge.org to research and find challenges to complete!</p>
+	<section id="home-challenge" class="max-w-6xl w-full h-full flex flex-col justify-center items-center gap-8 md:justify-between lg:flex-row md:mt-16 md:px-8">
+		<div class="text-primary-200 lg:max-w-xl flex flex-col text-start justify-center gap-8 p-8 border-t bg-primary-100 md:border-t-0 md:border-l md:pl-8 md:rounded-lg">
+			<h2 class="font-bold text-xl xs:text-2xl md:text-4xl md:pt-0" data-section="home-challenge" data-value="title">Test yourself with this challenge</h2>
+			<p class="text-md xs:text-lg" data-section="home-challenge" data-value="paragraph">For the desire to learn and improve your skills, We give you the website of the organization spaceappschallenge.org to research and find challenges to complete!</p>
 			<a href="/challenge" class="px-2 py-2 self-center text-center rounded-lg bg-primary-500 hover:bg-primary-600 cursor-pointer w-full md:self-start" data-section="home-challenge" data-value="btn">Learn more</a>
 		</div>
+		<img src="nasa_logo.png" alt="Asteroid" class="md:overflow-hidden max-w-[400px]"/>
 	</section>
 
 	<section id="home-banner-2" class="max-w-6xl w-full h-full flex justify-start items-center my-16">
 		<div class="text-primary-100 flex flex-col text-center justify-center gap-8 p-8">
-			<h2 class="font-bold text-xl xs:text-2xl md:text-4xl">Together with the team, we seek to take our audience to internalize the area of outer space and that great things are created from curiosity. </h2>
-			<p class="text-md xs:text-lg">Like the universe, our imagination has no limits!</p>
+			<h2 class="font-bold text-xl xs:text-2xl md:text-4xl" data-section="home-banner-2" data-value="title">Together with the team, we seek to take our audience to internalize the area of outer space and that great things are created from curiosity.</h2>
+			<p class="text-md xs:text-lg" data-section="home-banner-2" data-value="paragraph">Like the universe, our imagination has no limits!</p>
 		</div>
 	</section>
 

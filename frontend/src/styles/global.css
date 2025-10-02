@@ -3,16 +3,16 @@
 @import 'leaflet/dist/leaflet.css';
 
 @theme {
-  --color-primary-100: #276e90; /* Kinda black */
-  --color-primary-200: #efefef; /* Gray */
-  --color-primary-300: #cecfc9; /* Gray */
-  --color-primary-400: #0a3143; /* Blue */
-  --color-primary-500: #0c1421; /* Dark Blue */
+  --color-primary-100: #276e90;
+  --color-primary-200: #efefef;
+  --color-primary-300: #cecfc9;
+  --color-primary-400: #0a3143;
+  --color-primary-500: #0c1421;
   --color-primary-600: #1e2939;
 
-  --color-borders-100: #f7f4ed; /* White */
-  --color-primarytext-100: #e2e3ff; /* Gray */
-  --color-primarytext-200: #75818b; /* Gray */
+  --color-borders-100: #f7f4ed;
+  --color-primarytext-100: #e2e3ff;
+  --color-primarytext-200: #75818b;
 
   --breakpoint-xs: 425px;
 }

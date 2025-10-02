@@ -8,7 +8,7 @@
         "language-ru": "Russian"
     },
     "home": {
-        "title": "Asteroid Simulation",
+        "title": "HACKATHON: NASA SPACE APP",
         "paragraph": "Explore the fascinating dynamics of asteroids with our interactive simulator.",
         "play-btn": "Start Simulation"
     },
@@ -30,7 +30,16 @@
         "paragraph-public": "Our app turns science into an engaging, interactive, and exciting experience. We want everyone to be able to join in and learn about space in a fun and easy way.",
         "title-api-nasa": "API NASA",
         "span-api-nasa": "NASA Oficial API",
-        "paragraph-api-nasa": "a"
+        "paragraph-api-nasa": "It's a menu of services that an organization provides so you can use its information. NASA uses open APIs so anyone (scientists, students, developers, and just anyone interested) can create apps, visualizations, or simulations with real-world space data."
+    },
+    "home-challenge": {
+        "title": "Test yourself with this challenge",
+        "paragraph": "NASA shares their data and challenges with the world so teams or people like you can create creative solutions. Dare to put your skills to the test and be part of it. Let's combine science and technology to solve real-world problems. Now it's your turn to put your ingenuity to the test.",
+        "btn": "Learn more"
+    },
+    "home-banner-2": {
+        "title": "Together with the team, we seek to take our audience to internalize the area of outer space and that great things are created from curiosity.",
+        "paragraph": "Like the universe, our imagination has no limits!"
     },
     "challenge": {
         "title": "NASA Space Apps Challenge",
