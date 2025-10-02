@@ -9,8 +9,28 @@
     },
     "home": {
         "title": "Asteroid Simulation",
-        "paragraph": "Explore the fascinating dynamics of asteroids with our interactive simulator. Use your imagination to save the world or see what would happen in a catastrophic scenario. The choice is yours.",
+        "paragraph": "Explore the fascinating dynamics of asteroids with our interactive simulator.",
         "play-btn": "Start Simulation"
+    },
+    "home-banner": {
+        "title": "Save the world or see what would happen in a catastrophic scenario",
+        "paragraph": "Like the universe, our imagination has no limits!",
+        "play-btn": "Start Simulation"
+    },
+    "home-description": {
+        "title": "Simulation and research for everyone",
+        "paragraph": "Asteroids simulation is here and it is a good opportunity to learn in an interactive way or travel in a unimaginable scenarios."
+    },
+    "home-items": {
+        "title-asteroid-types": "Asteroid types",
+        "span-asteroid-types": "+170 Asteroids...",
+        "paragraph-asteroid-types": "Asteroids like Carbonaceous, Stony, Metallic... Explore their diversity and impact magnitudes. View scenarios in 2D and 3D!",
+        "title-public": "Public",
+        "span-public": "From families to scientists",
+        "paragraph-public": "Our app turns science into an engaging, interactive, and exciting experience. We want everyone to be able to join in and learn about space in a fun and easy way.",
+        "title-api-nasa": "API NASA",
+        "span-api-nasa": "NASA Oficial API",
+        "paragraph-api-nasa": "a"
     },
     "challenge": {
         "title": "NASA Space Apps Challenge",

@@ -2,12 +2,12 @@
 let currentPath = Astro.url.pathname;
 ---
 
-<header id="navbar" class="h-20 w-full flex justify-center bg-primary-100 border-b border-borders-100">
+<header id="navbar" class="h-20 w-full flex justify-center bg-primary-100">
   <div class="max-w-6xl h-full w-full flex justify-between items-center gap-8 px-8">
     <img src="logo.png" class="h-full" />
 
     <!-- Botón para abrir el menú -->
-    <button id="openMenuBtn" class="bg-primary-200 rounded-full p-2 shadow-lg block md:hidden">
+    <button id="openMenuBtn" class="p-2 block md:hidden">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primarytext-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
@@ -53,9 +53,9 @@ let currentPath = Astro.url.pathname;
     </nav>
 
     <!-- Menú desplegable desde la derecha (solo en lg) -->
-    <div id="sideMenu" class="block md:hidden fixed top-0 right-0 h-full w-80 bg-primary-100 shadow-2xl border-l border-borders-100 z-40 transform translate-x-full transition-transform duration-300">
+    <div id="sideMenu" class="block md:hidden fixed top-0 right-0 h-full w-80 bg-primary-100 shadow-2xl z-40 transform translate-x-full transition-transform duration-300">
       <div class="flex flex-col h-full">
-        <button id="closeMenuBtn" class="self-end m-4 p-2 rounded-full bg-primary-200">
+        <button id="closeMenuBtn" class="self-end m-4 p-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primarytext-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
