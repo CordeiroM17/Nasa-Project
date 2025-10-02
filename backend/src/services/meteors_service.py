@@ -16,7 +16,12 @@ def fetch_meteors():
     """
     Se conecta a la API de NASA, procesa los asteroides y devuelve un DataFrame de meteoritos cercanos a la Tierra y el código HTTP.
     """
-    url = os.getenv("NASA_API_KEY")
+
+    api_key = os.getenv("NASA_API_KEY")
+    page = random.randint(0, 10)
+    url = f"https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={api_key}&page={page}"
+    print(f"consultando pagina nro {page}")
+    
     try:
         with urllib.request.urlopen(url) as response:
             data = json.loads(response.read().decode())
@@ -54,8 +59,7 @@ def fetch_meteors():
                 'orbited_planet': orbited_planet
             })
         df = pd.DataFrame(meteoritos_data)
-        df_tierra = df[df['orbited_planet'] == "Earth"]
-        return df_tierra, 200
+        return df, 200
     except Exception as e:
         return pd.DataFrame(), 500
     

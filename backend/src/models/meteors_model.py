@@ -25,7 +25,7 @@ def format_response(df, status_code, page, per_page):
 
         return {
             "status": "success",
-            "message": f"Toro Bravo {status_code}",
+            "message": f"Succes {status_code}",
             "code": status_code,
             "data": data_page,
             "pagination": {
@@ -38,7 +38,7 @@ def format_response(df, status_code, page, per_page):
     else:
         return {
             "status": "error",
-            "message": f"Pincho. Código {status_code}",
+            "message": f"Error. Código {status_code}",
             "code": status_code,
             "data": [],
             "pagination": {}

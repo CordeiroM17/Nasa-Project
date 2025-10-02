@@ -15,4 +15,14 @@ def meteors():
     return jsonify(result), status_code
 @meteors_bp.route('/api/simulate-impact', methods=['POST'])
 def impact():
-    pass
+    data = request.get_json()
+    size = data.get("size")  # tamaño en metros
+    speed = data.get("speed")  # velocidad en km/s
+    angle = data.get("angle")  # ángulo en grados
+    latitude = data.get("latitude")  # latitud del impacto
+    longitude = data.get("longitude")  # longitud del impacto
+
+    print("Datos recibidos en /api/simulate-impact:", data)
+    print(f"size={size}, speed={speed}, angle={angle}, latitude={latitude}, longitude={longitude}")
+    return "OK", 200
+
