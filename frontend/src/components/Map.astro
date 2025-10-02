@@ -2,8 +2,11 @@
 
 <script type="module">
 
+    export let selectedLat;
+    export let selectedLng;
+
     function initMap() {
-        const map = L.map('map').setView([51.505, -0.09], 13);
+        const map = L.map('map').setView([-27.46784, -58.8344], 10);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -13,19 +16,24 @@
         // Add marker onclick event and delete old markers  
         const markers = [];
         map.on('click', function(e) {
+            // Get latitude and longitude of the click
             const { lat, lng } = e.latlng;
+
+            // Store in global variables to use in postStartSimulation
+            selectedLat = e.latlng.lat;
+            selectedLng = e.latlng.lng;
+
             // Remove old markers
             markers.forEach(marker => map.removeLayer(marker));
+
             // Add new marker
             const newMarker = L.marker([lat, lng]).addTo(map)
                 .bindPopup(`Impact zone`)
                 .openPopup();
             markers.push(newMarker);
-
-            /* .bindPopup(`Marker at ${lat.toFixed(4)}, ${lng.toFixed(4)}`) */
         });
     }
 
-    document.addEventListener("DOMContentLoaded", initMap);
-    document.addEventListener("astro:after-swap", initMap);
+    document.addEventListener("DOMContentLoaded", initMap());
+    document.addEventListener("astro:after-swap", initMap());
 </script>
