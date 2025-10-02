@@ -26,7 +26,7 @@
         "span-asteroid-types": "+170 Asteroids...",
         "paragraph-asteroid-types": "Asteroids like Carbonaceous, Stony, Metallic... Explore their diversity and impact magnitudes. View scenarios in 2D and 3D!",
         "title-public": "Public",
-        "span-public": "From families to scientists",
+        "span-public": "Everyone can use it!",
         "paragraph-public": "Our app turns science into an engaging, interactive, and exciting experience. We want everyone to be able to join in and learn about space in a fun and easy way.",
         "title-api-nasa": "API NASA",
         "span-api-nasa": "NASA Oficial API",
@@ -42,8 +42,9 @@
         "paragraph": "Like the universe, our imagination has no limits!"
     },
     "challenge": {
-        "title": "NASA Space Apps Challenge",
-        "paragraph": "NASA Space Apps Challenge is a chaslmrfelwvj rwerverjk nfwerknkjfd vbdfgkvehrkjgn dgkdhgk."
+        "title": "NASA SPACE APPS CHALLENGE",
+        "paragraph": "NASA Space Apps Challenge is a chaslmrfelwvj rwerverjk nfwerknkjfd vbdfgkvehrkjgn dgkdhgk.",
+        "btn": "Learn more"
     },
     "team": {
         "title": "TEAM JJB",

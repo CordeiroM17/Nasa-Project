@@ -1,24 +1,57 @@
 {
     "navbar": {
         "home": "Inicio",
-        "challenge": "Reto",
+        "challenge": "Desafio",
         "team": "Equipo",
         "language-es": "Español",
-        "language-en": "Ingles",
+        "language-en": "Inglés",
         "language-ru": "Ruso"
     },
     "home": {
-        "title": "Simulación de Asteroides",
+        "title": "HACKATHON: NASA SPACE APP",
         "paragraph": "Explora la fascinante dinámica de los asteroides con nuestro simulador interactivo.",
-        "play-btn": "Comenzar la simulacion"
+        "play-btn": "Iniciar simulación"
+    },
+    "home-banner": {
+        "title": "Salva al mundo o descubre qué ocurriría en un escenario catastrófico",
+        "paragraph": "¡Como el universo, nuestra imaginación no tiene límites!",
+        "play-btn": "Iniciar simulación"
+    },
+    "home-description": {
+        "title": "Simulación e investigación para todos",
+        "paragraph": "La simulación de asteroides ya está aquí y es una buena oportunidad para aprender de forma interactiva o viajar a escenarios inimaginables."
+    },
+    "home-items": {
+        "title-asteroid-types": "Tipos de asteroides",
+        "span-asteroid-types": "+170 Asteroides...",
+        "paragraph-asteroid-types": "Asteroides como Carbonáceos, Pétreos, Metálicos... ¡Explora su diversidad y magnitud de impacto! ¡Visita escenarios en 2D y 3D!",
+        "title-public": "Público",
+        "span-public": "¡Todos pueden usarlo!",
+        "paragraph-public": "Nuestra app convierte la ciencia en una experiencia atractiva, interactiva y emocionante. Queremos que todos puedan participar y aprender sobre el espacio de una manera divertida y sencilla.",
+        "title-api-nasa": "API NASA",
+        "span-api-nasa": "API oficial de la NASA",
+        "paragraph-api-nasa": "Es un menú de servicios que una organización ofrece para que puedas usar su información. La NASA utiliza APIs abiertas para que cualquier persona (científicos, estudiantes, desarrolladores y cualquier persona interesada) pueda crear. Aplicaciones, visualizaciones o simulaciones con datos espaciales reales"
+    },
+    "home-challenge": {
+        "title": "Ponte a prueba con este desafío",
+        "paragraph": "La NASA comparte sus datos y desafíos con el mundo para que equipos o personas como tú puedan crear soluciones creativas. Atrévete a poner a prueba tus habilidades y sé parte de ello. Combinemos ciencia y tecnología para resolver problemas del mundo real. Ahora es tu turno de poner a prueba tu ingenio",
+        "btn": "Descubre más"
+    },
+    "home-banner-2": {
+        "title": "Junto con el equipo, buscamos que nuestra audiencia interiorice el espacio exterior y que las grandes cosas se crean a partir de la curiosidad.",
+        "paragraph": "¡Como el universo, nuestra imaginación no tiene límites!"
     },
     "challenge": {
         "title": "NASA Space Apps Challenge",
         "paragraph": "NASA Space Apps Challenge es un reto en españo,la skfrs nfwerknkjfd vbdfgkvehrkjgn dgkdhgk."
     },
     "team": {
-        "title": "Team JJBC",
-        "paragraph": "Somos un equipo conformado por alumnos de Ingeniería en Sistemas de Información, con el afán de ponernos desafíos para mejorar día a día en nuestras practicas como desarrolladores y fortalecer nuestros saberes como futuros profesionales en el área de la programación. Creemos en el trabajo en equipo, la perseverancia y la confianza en la lucha contra la adversidad."
+        "title": "EQUIPO JJBC",
+        "paragraph": "Somos el Equipo JJBC, un grupo de tres creadores apasionados por crear herramientas interactivas y simuladores que facilitan la exploración y comprensión de ideas complejas.",
+        "developer": "Desarrollador",
+        "dev1": "Cordeiro Mariano",
+        "dev2": "Blanco Facundo",
+        "dev3": "Medina Gabriel"
     },
     "footer": {
         "help": "Ayuda",
