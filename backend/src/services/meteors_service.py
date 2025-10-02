@@ -4,6 +4,13 @@ import json
 import math
 import random
 import os
+import time
+
+_cache = {
+    "data": None,
+    "timestamp": 0
+}
+CACHE_TTL = 30*60  # 30 minutos en segundos
 
 def fetch_meteors():
     """
@@ -51,3 +58,20 @@ def fetch_meteors():
         return df_tierra, 200
     except Exception as e:
         return pd.DataFrame(), 500
+    
+
+    
+def get_earth_meteors():
+    """
+    Devuelve los meteoritos cercanos a la Tierra.
+    Usa cache por 30 minutos para evitar llamar siempre a la API.
+    """
+    now = time.time()
+    if _cache["data"] is None or (now - _cache["timestamp"]) > CACHE_TTL:
+        print("[CACHE] Consultando la API de la NASA...")
+        df, status_code = fetch_meteors()
+        _cache["data"] = (df, status_code)
+        _cache["timestamp"] = now
+    else:
+        print("[CACHE] Usando datos en caché.")
+    return _cache["data"]
