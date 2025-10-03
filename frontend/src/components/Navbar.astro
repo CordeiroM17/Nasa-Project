@@ -124,7 +124,7 @@ let currentPath = Astro.url.pathname;
   }
 
   function initLanguageMenu() {
-  const savedLanguage = getSavedLanguage();
+    const savedLanguage = getSavedLanguage();
     applyTranslation(savedLanguage);
 
     const customSelects = document.querySelectorAll(".custom-select");

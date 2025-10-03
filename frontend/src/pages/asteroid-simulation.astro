@@ -12,7 +12,7 @@ async function getAsteroids() {
         
         if (res && asteroids.code === 200) {
             asteroid = asteroids.data;
-            console.log(asteroids.message)
+            console.log(asteroids.data)
             console.log("Asteroid data Loaded")
         } else {
             throw new Error(asteroids.message);
@@ -29,7 +29,7 @@ await getAsteroids();
     <section id="simulation" class="w-full flex items-start h-[80vh]">
 
         <!-- Menú lateral, abierto por defecto -->
-        <div id="sideMenuParameters" class="max-w-md fixed md:static w-full h-full flex flex-col justify-between text-center gap-8 p-8 border-r border-black bg-[#F7F4ED] top-0 left-0 z-50 transform translate-x-0 transition-transform duration-300">
+        <div id="sideMenuParameters" class="hidden max-w-md fixed md:static flex w-full h-full flex-col justify-between text-center gap-8 p-8 border-r border-black bg-[#F7F4ED] top-0 left-0 z-50 transform translate-x-0 transition-transform duration-300">
             <!-- AGREGAR SELECT DE ASTEROIDES -->
             <div class="flex gap-8">
                 <div id="closeMenuParametersBtn" class="p-2 block cursor-pointer top-4 z-50 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg">
@@ -37,15 +37,44 @@ await getAsteroids();
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>
-                <button class="border border-black">AGREGAR SELECT DE ASTEROIDES</button>
+                <button id="showAsteroidMenuBtn" class="bg-primary-100 w-full rounded-lg text-primary-200 font-bold hover:bg-primary-400 cursor-pointer uppercase">Asteroides</button>
             </div>
 
-        <!--  {asteroid.map((meteor) => (
-                <div>
-                    <h2>{meteor.name}</h2>
-                    <h2>{meteor.type}</h2>
+            <!-- Menú de selección de asteroides, oculto por defecto -->
+            <div id="asteroidMenu" class="hidden max-w-md absolute w-full h-full flex flex-col justify-between text-center gap-8 p-8 bg-[#F7F4ED] top-0 left-0 z-50">
+                <div id="closeAsteroidMenuBtn" class="p-2 w-[50px] h-[50px] block cursor-pointer top-4 z-50 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </div>
-            ))} -->
+
+                <div class="flex-1 overflow-y-auto h-[400px] border p-4 rounded-lg shadow-inner space-y-4">
+                    {asteroid.map((meteor) => (
+                    <button id=`ast-${meteor.id}` class="asteroid-btn p-3 border-b w-full hover:bg-gray-200 cursor-pointer rounded-lg transition">
+                        <h2 class="font-bold">{meteor.name}</h2>
+                        <p>{meteor.type}</p>
+                        <p>{meteor.diameter_avg_m}</p>
+                        <p>{meteor.density}</p>
+                        <p>{meteor.speed}</p>
+                    </button>
+                    ))}
+                </div>
+
+                <div class="flex justify-between items-center mt-4">
+                    <button 
+                    
+                    class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
+                    >
+                    ⬅ Anterior
+                    </button>
+                    <button 
+                     
+                    class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
+                    >
+                    Siguiente ➡
+                    </button>
+                </div>
+            </div>
             
             <!-- Title section -->
             <div class="rounded-lg border border-black flex flex-col gap-2 text-start p-2">
@@ -75,6 +104,15 @@ await getAsteroids();
                     </label>
                     <input type="range" id="asteroid-impact-angle" min="0" max="90" value="45" />
                 </div>
+
+                <div class="flex flex-col gap-2 text-start p-2">
+                    <label for="asteroid-density">Asteroid density: 
+                    <select class="asteroid-density">
+                        <option value="1500" data-section="" data-value="">Carbonaceous</option>
+                        <option value="2700" data-section="" data-value="">Stony</option>
+                        <option value="7800" data-section="" data-value="">Metallic</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Title section -->
@@ -85,7 +123,7 @@ await getAsteroids();
         </div>
 
         <button id="openMenuParametersBtn"
-            class="p-2 block cursor-pointer absolute top-1/2 left-0 z-20 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg"
+            class="p-2 block cursor-pointer absolute top-1/2 left-6 z-20 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg"
             style="transform: translateY(-50%) translateX(-50%);">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -99,7 +137,6 @@ await getAsteroids();
 </MainLayout>
 
 <script type="module">
-
     const API_URL = "http://127.0.0.1:5000/api";
 
     function initMenu() {
@@ -160,8 +197,10 @@ await getAsteroids();
         const sizeElem = document.getElementById("size-value");
         const speedElem = document.getElementById("speed-value");
         const angleElem = document.getElementById("angle-value");
+        const densitySelect = document.querySelector(".asteroid-density");
+        const densityValue = densitySelect ? Number(densitySelect.value) : null;
 
-        if (!sizeElem || !speedElem || !angleElem) {
+        if (!sizeElem || !speedElem || !angleElem || !densityValue) {
             // pop up
 
             return;
@@ -185,12 +224,11 @@ await getAsteroids();
             return;
         }
 
-        // Puedes agregar validaciones para los sliders si quieres
-
         const payload = {
             size: Number(sizeValue),
             speed: Number(speedValue),
             angle: Number(angleValue),
+            density: densityValue,
             latitude: lat,
             longitude: lng
         };
@@ -221,15 +259,86 @@ await getAsteroids();
         }
     }
 
+    function initAsteroidMenu() {
+        const btn = document.getElementById("showAsteroidMenuBtn");
+        const menu = document.getElementById("asteroidMenu");
+        const closeBtn = document.getElementById("closeAsteroidMenuBtn");
+
+        const asteroidBtn = document.querySelectorAll(".asteroid-btn");
+
+        asteroidBtn.forEach((button) => {
+            button.addEventListener("click", () => {
+                const type = button.children[1].innerText;    // tipo
+                const size = button.children[2].innerText;    // diámetro (m)
+                const density = button.children[3].innerText; // densidad (kg/m3)
+                const speed = button.children[4].innerText; // densidad (km/s)
+
+                console.log("Asteroide seleccionado:");
+                console.log("Tipo:", type);
+                console.log("Size:", size);
+                console.log("Densidad:", density);
+                console.log("Speed:", speed);
+
+                // ✅ Cerrar el menú
+                if (menu) {
+                    menu.classList.add("hidden");
+                }
+
+                // ✅ Actualizar el <select> de densidad
+                const densitySelect = document.querySelector(".asteroid-density");
+                if (densitySelect) {
+                    for (let option of densitySelect.options) {
+                        if (
+                            option.textContent.trim().toLowerCase() === type.toLowerCase() ||
+                            option.value === density
+                        ) {
+                            option.selected = true;
+                            break;
+                        }
+                    }
+                }
+
+                // ✅ Actualizar sliders
+                const sizeInput = document.getElementById("asteroid-size");
+                const speedInput = document.getElementById("asteroid-speed");
+
+                if (sizeInput) {
+                    // poner el diámetro real redondeado
+                    sizeInput.value = Math.round(size);
+                    document.getElementById("size-value").innerText = sizeInput.value;
+                }
+
+                if (speedInput) {
+                    // aquí aún no tenés velocidad en tus datos → lo dejamos fijo o calculable después
+                    speedInput.value = 20;
+                    document.getElementById("speed-value").innerText = speedInput.value;
+                }
+            });
+        });
+
+        if (btn && menu) {
+            btn.addEventListener("click", () => {
+                menu.classList.toggle("hidden");
+            });
+        }
+        if (closeBtn && menu) {
+            closeBtn.addEventListener("click", () => {
+                menu.classList.add("hidden");
+            });
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
         initMenu()
         initAsteroid2Dparams();
+        initAsteroidMenu();
         initStartSimulationButton();
     });   
 
     document.addEventListener("astro:after-swap", () => {
         initMenu()
         initAsteroid2Dparams();
+        initAsteroidMenu();
         initStartSimulationButton();
     });
 </script>
