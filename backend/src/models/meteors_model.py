@@ -21,7 +21,19 @@ def format_response(df, status_code, page, per_page):
         total_pages = math.ceil(total / per_page)
         start = (page - 1) * per_page
         end = start + per_page
-        data_page = df.iloc[start:end].to_dict(orient="records")
+        # Filtrar solo velocidad y los campos que se quieran mantener
+        filtered = []
+        for row in df.iloc[start:end].to_dict(orient="records"):
+            filtered_row = {
+                'id': row.get('id'),
+                'name': row.get('name'),
+                'type': row.get('type'),
+                'density': row.get('density'),
+                'orbited_planet': row.get('orbited_planet'),
+                'speed': row.get('speed') if 'speed' in row else None
+            }
+            filtered.append(filtered_row)
+        data_page = filtered
 
         return {
             "status": "success",

@@ -21,8 +21,8 @@ def impact():
     data = request.get_json()
     print("Datos recibidos en /api/simulate-impact:", data)
 
-    payload = {
-        "diameter_km": float(data.get("size", 0)) / 1000.0,
+    payload = {  
+        "diameter_m": float(data.get("size", 0)),
         "density_kg_m3": float(data.get("density", 3000.0)),
         "velocity_kms": float(data.get("speed", 0)),
         "impact_angle_deg": float(data.get("angle", 45)),

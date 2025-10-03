@@ -4,7 +4,7 @@ def format_impact_result(raw):
     """
     return {
         "input": {
-            "diameter_km": raw.get("diameter_km"),
+            "diameter_m": raw.get("diameter_m"),
             "density_kg_m3": raw.get("density_kg_m3"),
             "velocity_kms": raw.get("velocity_kms"),
             "impact_angle_deg": raw.get("impact_angle_deg"),
@@ -27,14 +27,13 @@ def format_impact_result(raw):
         },
         "crater": {
             "transient_diameter_m": raw.get("Dtc_m"),
-            "transient_diameter_km": raw.get("Dtc_km"),
-            "final_diameter_km": raw.get("Dfinal_km"),
+            "final_diameter_m": raw.get("Dfinal_m"),
             "transient_depth_m": raw.get("depth_trans_m"),
             "transient_volume_m3": raw.get("transient_vol_m3") or raw.get("transient_volume_m3"),
             "melt_volume_m3": raw.get("melt_vol_m3")
         },
         "fireball": {
-            "diameter_km": raw.get("fireball_diam_km") or raw.get("fireball_diameter_km"),
+            "diameter_m": raw.get("fireball_diameter_m"),
             "thermal_radii_m": raw.get("thermal_radii")
         },
         "shock_samples": raw.get("shock_list"),
