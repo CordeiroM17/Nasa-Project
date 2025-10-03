@@ -211,12 +211,6 @@ await getAsteroids();
         const lng = window.selectedLng;
 
         if (lat == null || lng == null) {
-            Swal.fire({
-                title: 'Error!',
-                text: 'Do you want to continue',
-                icon: 'error',
-                confirmButtonText: 'Cool'
-            });
             return;
         }
 
