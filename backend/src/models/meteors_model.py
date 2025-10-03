@@ -30,7 +30,8 @@ def format_response(df, status_code, page, per_page):
                 'type': row.get('type'),
                 'density': row.get('density'),
                 'orbited_planet': row.get('orbited_planet'),
-                'speed': row.get('speed') if 'speed' in row else None
+                'speed': row.get('speed') if 'speed' in row else None,
+                'diameter_avg_m': row.get('diameter_avg_m') if 'diameter_avg_m' in row else None
             }
             filtered.append(filtered_row)
         data_page = filtered
