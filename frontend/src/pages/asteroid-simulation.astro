@@ -26,19 +26,26 @@ await getAsteroids();
 ---
 
 <MainLayout title="Asteroid Simulation">
-    <section id="simulation" class="w-full h-full flex justify-between items-start">
-        <div class="max-w-xs w-full h-full flex flex-col justify-between text-center gap-8 py-8 px-8 border-r border-black bg-[#F7F4ED]">
+    <section id="simulation" class="w-full flex items-start h-[80vh]">
+
+        <!-- Menú lateral, abierto por defecto -->
+        <div id="sideMenuParameters" class="max-w-md fixed md:static w-full h-full flex flex-col justify-between text-center gap-8 p-8 border-r border-black bg-[#F7F4ED] top-0 left-0 z-50 transform translate-x-0 transition-transform duration-300">
             <!-- AGREGAR SELECT DE ASTEROIDES -->
-            <div class="rounded-lg border border-black">
-                <button>AGREGAR SELECT DE ASTEROIDES</button>
+            <div class="flex gap-8">
+                <div id="closeMenuParametersBtn" class="p-2 block cursor-pointer top-4 z-50 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </div>
+                <button class="border border-black">AGREGAR SELECT DE ASTEROIDES</button>
             </div>
 
-            {asteroid.map((meteor) => (
+        <!--  {asteroid.map((meteor) => (
                 <div>
                     <h2>{meteor.name}</h2>
                     <h2>{meteor.type}</h2>
                 </div>
-            ))}
+            ))} -->
             
             <!-- Title section -->
             <div class="rounded-lg border border-black flex flex-col gap-2 text-start p-2">
@@ -77,17 +84,48 @@ await getAsteroids();
             </div>
         </div>
 
-            
+        <button id="openMenuParametersBtn"
+            class="p-2 block cursor-pointer absolute top-1/2 left-0 z-20 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg"
+            style="transform: translateY(-50%) translateX(-50%);">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
         <div class="w-full h-full">
             <Map/>
         </div>
     </section>
-
 </MainLayout>
 
 <script type="module">
+
     const API_URL = "http://127.0.0.1:5000/api";
 
+    function initMenu() {
+        const openBtn = document.getElementById("openMenuParametersBtn");
+        const closeBtn = document.getElementById("closeMenuParametersBtn");
+        const sideMenu = document.getElementById("sideMenuParameters");
+
+        if (openBtn && closeBtn && sideMenu ) {
+            // Menú abierto por defecto
+            sideMenu.classList.remove("-translate-x-full");
+            sideMenu.classList.add("translate-x-0");
+           
+
+            openBtn.onclick = () => {
+                sideMenu.classList.remove("-translate-x-full");
+                sideMenu.classList.add("translate-x-0");
+                sideMenu.classList.remove("hidden");
+            };
+            closeBtn.onclick = () => {
+                sideMenu.classList.remove("translate-x-0");
+                sideMenu.classList.add("-translate-x-full");
+                sideMenu.classList.add("hidden");
+            };
+        }
+    }
+    
     function initAsteroid2Dparams() {
         const sizeInput = document.getElementById("asteroid-size");
         const speedInput = document.getElementById("asteroid-speed");
@@ -125,7 +163,7 @@ await getAsteroids();
 
         if (!sizeElem || !speedElem || !angleElem) {
             // pop up
-            alert("No se encontraron los parámetros de simulación.");
+
             return;
         }
 
@@ -138,7 +176,12 @@ await getAsteroids();
         const lng = window.selectedLng;
 
         if (lat == null || lng == null) {
-            alert("Por favor selecciona una ubicación en el mapa.");
+            Swal.fire({
+                title: 'Error!',
+                text: 'Do you want to continue',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            });
             return;
         }
 
@@ -179,11 +222,13 @@ await getAsteroids();
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+        initMenu()
         initAsteroid2Dparams();
         initStartSimulationButton();
     });   
 
     document.addEventListener("astro:after-swap", () => {
+        initMenu()
         initAsteroid2Dparams();
         initStartSimulationButton();
     });
