@@ -12,3 +12,17 @@ class MeteorsResource(Resource):
         df, status_code = get_earth_meteors()
         result = format_response(df, status_code, page=page, per_page=per_page)
         return result, status_code
+    
+class Simulation(Resource):
+    def post(self):
+        data = request.get_json()
+        size = data.get("size")  # tamaño en metros
+        speed = data.get("speed")  # velocidad en km/s
+        angle = data.get("angle")  # ángulo en grados
+        latitude = data.get("latitude")  # latitud del impacto
+        longitude = data.get("longitude")  # longitud del impacto
+
+        print("Datos recibidos en /api/simulate-impact:", data)
+        print(f"size={size}, speed={speed}, angle={angle}, latitude={latitude}, longitude={longitude}")
+        return "OK", 200
+

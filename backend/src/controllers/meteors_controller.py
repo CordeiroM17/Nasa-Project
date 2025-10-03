@@ -13,7 +13,7 @@ def meteors():
     df, status_code = get_earth_meteors()
     result = format_response(df, status_code, page=page, per_page=per_page)
     return jsonify(result), status_code
-@meteors_bp.route('/api/simulate-impact', methods=['POST'])
+@meteors_bp.route('/api/simulate-impact', methods=['POST' , "OPTIONS"])
 def impact():
     data = request.get_json()
     size = data.get("size")  # tamaño en metros
