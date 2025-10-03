@@ -2,17 +2,16 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Map from '../components/Map.astro';
 import { API_URL } from 'astro:env/server';
-/* import selectedLat from "../components/Map.astro"
-import selectedLng from "../components/Map.astro" */
-const apiUrl = API_URL;
-let data = [];
+
+let asteroid: any[] = [];
+
 async function getAsteroids() {
     try {
-        const res = await fetch(`${apiUrl}/meteors`);
+        const res = await fetch(`${API_URL}/meteors`);
         const asteroids = await res.json();
         
         if (res && asteroids.code === 200) {
-            data = asteroids.data;
+            asteroid = asteroids.data;
             console.log(asteroids.message)
             console.log("Asteroid data Loaded")
         } else {
@@ -30,16 +29,16 @@ await getAsteroids();
     <section id="simulation" class="w-full h-full flex justify-between items-start">
         <div class="max-w-xs w-full h-full flex flex-col justify-between text-center gap-8 py-8 px-8 border-r border-black bg-[#F7F4ED]">
             <!-- AGREGAR SELECT DE ASTEROIDES -->
-            <!-- <div class="rounded-lg border border-black">
-                <button onclick={() => openAsteroidMenu()}>AGREGAR SELECT DE ASTEROIDES</button>
+            <div class="rounded-lg border border-black">
+                <button>AGREGAR SELECT DE ASTEROIDES</button>
             </div>
 
-            {data.map((meteor) => (
-                <div key={meteor.id}>
+            {asteroid.map((meteor) => (
+                <div>
                     <h2>{meteor.name}</h2>
                     <h2>{meteor.type}</h2>
-                </div>+
-            ))} -->
+                </div>
+            ))}
             
             <!-- Title section -->
             <div class="rounded-lg border border-black flex flex-col gap-2 text-start p-2">
@@ -88,7 +87,7 @@ await getAsteroids();
 
 <script type="module">
     const API_URL = "http://127.0.0.1:5000/api";
-    console.log(API_URL)
+
     function initAsteroid2Dparams() {
         const sizeInput = document.getElementById("asteroid-size");
         const speedInput = document.getElementById("asteroid-speed");
@@ -99,16 +98,20 @@ await getAsteroids();
         const angleValue = document.getElementById("angle-value");
 
         if (sizeInput && sizeValue) {
+            // Sincroniza valor inicial
+            sizeValue.textContent = sizeInput.value;
             sizeInput.addEventListener("input", () => {
                 sizeValue.textContent = sizeInput.value;
             });
         }
         if (speedInput && speedValue) {
+            speedValue.textContent = speedInput.value;
             speedInput.addEventListener("input", () => {
                 speedValue.textContent = speedInput.value;
             });
         }
         if (angleInput && angleValue) {
+            angleValue.textContent = angleInput.value;
             angleInput.addEventListener("input", () => {
                 angleValue.textContent = angleInput.value;
             });
@@ -176,16 +179,12 @@ await getAsteroids();
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-            initAsteroid2Dparams();
-            initStartSimulationButton();
-        }, 0);
-    });
+        initAsteroid2Dparams();
+        initStartSimulationButton();
+    });   
 
     document.addEventListener("astro:after-swap", () => {
-        setTimeout(() => {
-            initAsteroid2Dparams();
-            initStartSimulationButton();
-        }, 0);
+        initAsteroid2Dparams();
+        initStartSimulationButton();
     });
 </script>
