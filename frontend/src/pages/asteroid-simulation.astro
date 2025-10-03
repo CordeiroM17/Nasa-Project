@@ -306,7 +306,7 @@ await getAsteroids();
 
                 if (speedInput) {
                     // aquí aún no tenés velocidad en tus datos → lo dejamos fijo o calculable después
-                    speedInput.value = 20;
+                    speedInput.value = Math.round(speed);
                     document.getElementById("speed-value").innerText = speedInput.value;
                 }
             });
