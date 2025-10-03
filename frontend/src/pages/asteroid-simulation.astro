@@ -31,13 +31,14 @@ await getAsteroids();
         <!-- Menú lateral, abierto por defecto -->
         <div id="sideMenuParameters" class="hidden max-w-md fixed md:static flex w-full h-full flex-col justify-between text-center gap-8 p-8 border-r border-black bg-[#F7F4ED] top-0 left-0 z-50 transform translate-x-0 transition-transform duration-300">
             <!-- AGREGAR SELECT DE ASTEROIDES -->
-            <div class="flex gap-8">
-                <div id="closeMenuParametersBtn" class="p-2 block cursor-pointer top-4 z-50 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg">
+            <div class="flex gap-4 items-center">
+                <div id="closeMenuParametersBtn" class="h-full flex items-center p-2 block cursor-pointer top-4 z-50 bg-[#F7F4ED] border border-black rounded-lg shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>
-                <button id="showAsteroidMenuBtn" class="bg-primary-100 w-full rounded-lg text-primary-200 font-bold hover:bg-primary-400 cursor-pointer uppercase">Asteroides</button>
+                <button id="showAsteroidMenuBtn" class="bg-primary-100 w-full h-full rounded-lg text-primary-200 font-bold hover:bg-primary-400 cursor-pointer uppercase">Asteroids</button>
+                <a href="/asteroid-simulation-3d" class=" h-full bg-primary-200 border border-black rounded-lg p-4">3D</a>
             </div>
 
             <!-- Menú de selección de asteroides, oculto por defecto -->
@@ -74,12 +75,6 @@ await getAsteroids();
                     Siguiente ➡
                     </button>
                 </div>
-            </div>
-            
-            <!-- Title section -->
-            <div class="rounded-lg border border-black flex flex-col gap-2 text-start p-2">
-                <h1 class="font-bold text-lg">Simulation Parameters</h1>
-                <p class="text-sm text-[#75818B] font-bold">Adjust the parameters below to customize the asteroid simulation.</p>
             </div>
 
             <!-- Asteroid parameters -->
@@ -131,6 +126,7 @@ await getAsteroids();
         </button>
 
         <div class="w-full h-full">
+            <a href="/asteroid-simulation-3d" class="absolute right-5 top-24 z-30 bg-primary-200 border border-black rounded-lg p-4">3D</a>
             <Map/>
         </div>
     </section>
