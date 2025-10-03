@@ -4,11 +4,11 @@ import Map from '../components/Map.astro';
 import { API_URL } from 'astro:env/server';
 /* import selectedLat from "../components/Map.astro"
 import selectedLng from "../components/Map.astro" */
-
+const apiUrl = API_URL;
 let data = [];
 async function getAsteroids() {
     try {
-        const res = await fetch(`${API_URL}/meteors`);
+        const res = await fetch(`${apiUrl}/meteors`);
         const asteroids = await res.json();
         
         if (res && asteroids.code === 200) {
@@ -87,7 +87,8 @@ await getAsteroids();
 </MainLayout>
 
 <script type="module">
-
+    const API_URL = "http://127.0.0.1:5000/api";
+    console.log(API_URL)
     function initAsteroid2Dparams() {
         const sizeInput = document.getElementById("asteroid-size");
         const speedInput = document.getElementById("asteroid-speed");
@@ -149,6 +150,7 @@ await getAsteroids();
         };
 
         try {
+            console.log("Iniciando simulación con payload:", payload);
             const res = await fetch(`${API_URL}/simulate-impact`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
