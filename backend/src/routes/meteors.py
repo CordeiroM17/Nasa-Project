@@ -1,7 +1,9 @@
 from flask_restful import Resource
 from flask import request
-from src.services.meteors_service import fetch_meteors, get_earth_meteors
+from src.services.meteors_service import  get_earth_meteors
 from src.models.meteors_model import format_response
+from src.services.impact_service import calculate_full_impact
+from src.models.impact_model import format_impact_result
 
 class MeteorsResource(Resource):
     def get(self):
@@ -16,13 +18,19 @@ class MeteorsResource(Resource):
 class Simulation(Resource):
     def post(self):
         data = request.get_json()
-        size = data.get("size")  # tamaño en metros
-        speed = data.get("speed")  # velocidad en km/s
-        angle = data.get("angle")  # ángulo en grados
-        latitude = data.get("latitude")  # latitud del impacto
-        longitude = data.get("longitude")  # longitud del impacto
-
         print("Datos recibidos en /api/simulate-impact:", data)
-        print(f"size={size}, speed={speed}, angle={angle}, latitude={latitude}, longitude={longitude}")
-        return "OK", 200
+
+        payload = {
+            "diameter_km": float(data.get("size", 0)) / 1000.0,  # convertir metros a km
+            "density_kg_m3": float(data.get("density", 3000.0)),
+            "velocity_kms": float(data.get("speed", 0)),
+            "impact_angle_deg": float(data.get("angle", 45)),
+            "latitude": float(data.get("latitude", 0)),
+            "longitude": float(data.get("longitude", 0)),
+            "target_type": "auto"
+        }
+
+        raw_result = calculate_full_impact(payload)
+        formatted = format_impact_result(raw_result)
+        return formatted, 200
 
