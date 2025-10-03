@@ -56,13 +56,23 @@ def fetch_meteors():
             densidad_asumida = densities[tipo]
             orbited_planet = close_approach_list[0].get("orbiting_body", None)
 
+            d_min = asteroid.get("estimated_diameter", {}).get("meters", {}).get("estimated_diameter_min")
+            d_max = asteroid.get("estimated_diameter", {}).get("meters", {}).get("estimated_diameter_max")
+            diameter_avg_m = None
+            if d_min is not None and d_max is not None:
+                try:
+                    diameter_avg_m = (float(d_min) + float(d_max)) / 2
+                except:
+                    diameter_avg_m = None
+
             meteoritos_data.append({
                 "id": asteroid.get("id"),
                 "name": asteroid.get("name"),
                 "type": tipo,
                 "density": densidad_asumida,
                 "orbited_planet": orbited_planet,
-                "speed": velocidad_max
+                "speed": velocidad_max,
+                "diameter_avg_m": diameter_avg_m
             })
 
         df = pd.DataFrame(meteoritos_data)
