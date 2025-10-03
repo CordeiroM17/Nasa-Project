@@ -7,7 +7,7 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 api = Api(app)
-CORS(app, resources={r"/api/*": {"origins": r"http://localhost*"}})
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 api.add_resource(MeteorsResource, '/api/meteors')
 api.add_resource(Simulation, '/api/simulate-impact')

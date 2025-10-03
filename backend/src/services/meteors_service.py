@@ -9,6 +9,7 @@ import time
 _cache = {
     "data": None,
     "timestamp": 0
+
 }
 CACHE_TTL = 30*60  # 30 minutos en segundos
 
@@ -16,7 +17,6 @@ def fetch_meteors():
     """
     Se conecta a la API de NASA, procesa los asteroides y devuelve un DataFrame de meteoritos cercanos a la Tierra y el código HTTP.
     """
-
     api_key = os.getenv("NASA_API_KEY")
     page = random.randint(0, 10)
     url = f"https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={api_key}&page={page}"
@@ -54,7 +54,7 @@ def fetch_meteors():
                 'diameter_avg_m': d_avg,
                 'volume_m3': volume,
                 'type': tipo,
-                'estimated_density_kg_m3': densidad_asumida,
+                'density': densidad_asumida,
                 'mass_kg': mass_est,
                 'orbited_planet': orbited_planet
             })
@@ -63,7 +63,6 @@ def fetch_meteors():
     except Exception as e:
         return pd.DataFrame(), 500
     
-
     
 def get_earth_meteors():
     """
@@ -79,3 +78,4 @@ def get_earth_meteors():
     else:
         print("[CACHE] Usando datos en caché.")
     return _cache["data"]
+
