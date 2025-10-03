@@ -18,13 +18,13 @@ let currentPath = Astro.url.pathname;
         <a href="/" class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-borders-100 ${currentPath === `/` ? "border-b-2" : "hover:border-b-2"}`}>
           <li class="text-primarytext-100" data-section="navbar" data-value="home">Home</li>
         </a>
-        <a href="/challenge" class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-borders-100 ${currentPath === `/challenge` ? "border-b-2" : "hover:border-b-2"}`}>
+        <a href="https://www.spaceappschallenge.org/" target="_blank" class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-borders-100 ${currentPath === `/challenge` ? "border-b-2" : "hover:border-b-2"}`}>
           <li class="text-primarytext-100" data-section="navbar" data-value="challenge">Challenge</li>
         </a>
         <a href="/team" class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-borders-100 ${currentPath === `/team` ? "border-b-2" : "hover:border-b-2"}`}>
           <li class="text-primarytext-100" data-section="navbar" data-value="team">Team</li>
         </a>
-        <div class="relative w-30 border rounded-lg bg-primary-200 border-borders-100">
+        <div class="relative w-30 border rounded-lg bg-primary-200 border-borders-100 z-20">
           <select class="language hidden">
             <option value="en" data-section="navbar" data-value="language-en">English</option>
             <option value="es" data-section="navbar" data-value="language-es">Spanish</option>
@@ -53,7 +53,7 @@ let currentPath = Astro.url.pathname;
     </nav>
 
     <!-- Menú desplegable desde la derecha (solo en lg) -->
-    <div id="sideMenu" class="block md:hidden fixed top-0 right-0 h-full w-80 bg-primary-100 shadow-2xl z-40 transform translate-x-full transition-transform duration-300">
+    <div id="sideMenu" class="block md:hidden fixed top-0 right-0 h-full w-80 bg-primary-100 shadow-2xl z-50 transform translate-x-full transition-transform duration-300">
       <div class="flex flex-col h-full">
         <button id="closeMenuBtn" class="self-end m-4 p-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primarytext-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,13 +64,13 @@ let currentPath = Astro.url.pathname;
           <a href="/" class={`px-2 py-2 h-8 w-full flex justify-start items-center border-borders-100 ${currentPath === `/` ? "border-b-2" : "hover:border-b-2"}`}>
             <li class="text-primarytext-100" data-section="navbar" data-value="home">Home</li>
           </a>
-          <a href="/challenge" class={`px-2 py-2 h-8 w-full flex justify-start items-center border-borders-100 ${currentPath === `/challenge` ? "border-b-2" : "hover:border-b-2"}`}>
+          <a href="https://www.spaceappschallenge.org/" target="_blank" class=`px-2 py-2 h-8 w-full flex justify-start items-center border-borders-100`>
             <li class="text-primarytext-100" data-section="navbar" data-value="challenge">Challenge</li>
           </a>
           <a href="/team" class={`px-2 py-2 h-8 w-full flex justify-start items-center border-borders-100 ${currentPath === `/team` ? "border-b-2" : "hover:border-b-2"}`}>
             <li class="text-primarytext-100" data-section="navbar" data-value="team">Team</li>
           </a>
-          <div class="relative w-full border rounded-lg bg-primary-200 border-borders-100">
+          <div class="relative w-full border rounded-lg bg-primary-200 border-borders-100 z-40">
             <select class="language hidden">
               <option value="en" data-section="navbar" data-value="language-en">English</option>
               <option value="es" data-section="navbar" data-value="language-es">Spanish</option>

@@ -24,10 +24,6 @@ async function getAsteroids() {
 }
 
 await getAsteroids();
-
-function openAsteroidMenu() {
-    
-}
 ---
 
 <MainLayout title="Asteroid Simulation">
@@ -178,12 +174,16 @@ function openAsteroidMenu() {
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        initAsteroid2Dparams();
-        initStartSimulationButton();
+        setTimeout(() => {
+            initAsteroid2Dparams();
+            initStartSimulationButton();
+        }, 0);
     });
 
     document.addEventListener("astro:after-swap", () => {
-        initAsteroid2Dparams();
-        initStartSimulationButton();
+        setTimeout(() => {
+            initAsteroid2Dparams();
+            initStartSimulationButton();
+        }, 0);
     });
 </script>
