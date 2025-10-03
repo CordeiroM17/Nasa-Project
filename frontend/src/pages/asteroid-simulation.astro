@@ -2,8 +2,8 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Map from '../components/Map.astro';
 import { API_URL } from 'astro:env/server';
-import selectedLat from '../components/Map.astro';
-import selectedLng from '../components/Map.astro';
+/* import selectedLat from "../components/Map.astro"
+import selectedLng from "../components/Map.astro" */
 
 let data = [];
 async function getAsteroids() {
@@ -20,56 +20,6 @@ async function getAsteroids() {
         }
     } catch (error) {
         console.error("Error fetching asteroid data:", error);
-    }
-}
-
-async function postStartSimulation() {
-    const sizeElem = document.getElementById("size-value");
-    const speedElem = document.getElementById("speed-value");
-    const angleElem = document.getElementById("angle-value");
-
-    if (!sizeElem || !speedElem || !angleElem) {
-        // pop up
-        alert("No se encontraron los parámetros de simulación.");
-        return;
-    }
-
-    const sizeValue = sizeElem.innerText;
-    const speedValue = speedElem.innerText;
-    const angleValue = angleElem.innerText;
-
-    // Obtener lat/lon seleccionados en el mapa
-    const lat = selectedLat;
-    const lng = selectedLng;
-
-    if (lat == null || lng == null) {
-        alert("Por favor selecciona una ubicación en el mapa.");
-        return;
-    }
-
-    // Puedes agregar validaciones para los sliders si quieres
-
-    const payload = {
-        size: Number(sizeValue),
-        speed: Number(speedValue),
-        angle: Number(angleValue),
-        latitude: lat,
-        longitude: lng
-    };
-
-    try {
-        const res = await fetch(`${API_URL}/simulate-impact`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        const result = await res.json();
-        // Maneja la respuesta aquí (mostrar resultado, alerta, etc.)
-        console.log(result);
-    } catch (error) {
-        alert("Error al iniciar la simulación");
-        console.error(error);
     }
 }
 
@@ -127,7 +77,7 @@ function openAsteroidMenu() {
 
             <!-- Title section -->
             <div class="flex flex-col gap-2">
-                <button class="w-full rounded-lg border border-black" onclick="postStartSimulation()">Start Simulation</button>
+                <button class="w-full rounded-lg border border-black" id="start-simulation-btn">Start Simulation</button>
                 <button class="w-full rounded-lg border border-black">Reset</button>
             </div>
         </div>
@@ -141,6 +91,7 @@ function openAsteroidMenu() {
 </MainLayout>
 
 <script type="module">
+
     function initAsteroid2Dparams() {
         const sizeInput = document.getElementById("asteroid-size");
         const speedInput = document.getElementById("asteroid-speed");
@@ -167,10 +118,72 @@ function openAsteroidMenu() {
         }
     }
 
+    async function postStartSimulation() {
+        const sizeElem = document.getElementById("size-value");
+        const speedElem = document.getElementById("speed-value");
+        const angleElem = document.getElementById("angle-value");
+
+        if (!sizeElem || !speedElem || !angleElem) {
+            // pop up
+            alert("No se encontraron los parámetros de simulación.");
+            return;
+        }
+
+        const sizeValue = sizeElem.innerText;
+        const speedValue = speedElem.innerText;
+        const angleValue = angleElem.innerText;
+
+        // Obtener lat/lon seleccionados en el mapa
+        const lat = window.selectedLat;
+        const lng = window.selectedLng;
+
+        if (lat == null || lng == null) {
+            alert("Por favor selecciona una ubicación en el mapa.");
+            return;
+        }
+
+        // Puedes agregar validaciones para los sliders si quieres
+
+        const payload = {
+            size: Number(sizeValue),
+            speed: Number(speedValue),
+            angle: Number(angleValue),
+            latitude: lat,
+            longitude: lng
+        };
+
+        try {
+            const res = await fetch(`${API_URL}/simulate-impact`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await res.json();
+            // Maneja la respuesta aquí (mostrar resultado, alerta, etc.)
+            console.log(result);
+        } catch (error) {
+            alert("Error al iniciar la simulación");
+            console.error(error);
+        }
+}
+
+    function initStartSimulationButton() {
+        const startBtn = document.getElementById("start-simulation-btn");
+        if (startBtn) {
+            startBtn.addEventListener("click", () => {
+                postStartSimulation();
+            });
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
         initAsteroid2Dparams();
+        initStartSimulationButton();
     });
+
     document.addEventListener("astro:after-swap", () => {
         initAsteroid2Dparams();
+        initStartSimulationButton();
     });
 </script>
