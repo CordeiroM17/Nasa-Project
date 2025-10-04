@@ -102,8 +102,8 @@ let currentPath = Astro.url.pathname;
 </header>
 
 
-<script type="module">
-  import { applyTranslation, getSavedLanguage } from '../src/utils/languages.js';
+<script defer type="module">
+  import { applyTranslation, getSavedLanguage } from '/utils/languages.js';
 
   // Mostrar menú
   function initMenu() {
@@ -164,6 +164,7 @@ let currentPath = Astro.url.pathname;
 
       // Listener para abrir/cerrar el menú de idiomas
       customSelect.addEventListener("click", () => {
+      customSelect.addEventListener("click", () => {
         options.classList.toggle("hidden");
       })
 
@@ -183,6 +184,7 @@ let currentPath = Astro.url.pathname;
           applyTranslation(lang);
         })
       });
+  });
     });
   }
 
@@ -191,8 +193,10 @@ let currentPath = Astro.url.pathname;
     initMenu();
     initLanguageMenu();
   });
+  
   document.addEventListener("astro:after-swap", () => {
     initMenu();
     initLanguageMenu();
   });
+  
 </script>

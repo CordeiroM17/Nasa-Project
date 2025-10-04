@@ -133,7 +133,7 @@ await getAsteroids();
 </MainLayout>
 
 <script type="module">
-    import  { API_URL } from "astro:env/client"
+    import { API_URL } from 'astro:env/client';
 
     function initMenu() {
         const openBtn = document.getElementById("openMenuParametersBtn");
@@ -307,6 +307,7 @@ await getAsteroids();
                 menu.classList.toggle("hidden");
             });
         }
+        
         if (closeBtn && menu) {
             closeBtn.addEventListener("click", () => {
                 menu.classList.add("hidden");
