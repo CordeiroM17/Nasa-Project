@@ -5,11 +5,13 @@ from src.services.meteors_service import get_earth_meteors
 from src.models.impact_model import format_impact_result
 from src.services.impact_service import calculate_full_impact
 
-meteors_bp = Blueprint('meteors', __name__)
+meteors_bp = Blueprint('meteors', __name__, url_prefix='/api')
+
 @meteors_bp.route("/")
 def ok():
     return("ok")
-@meteors_bp.route('/api/meteors', methods=['GET'])
+
+@meteors_bp.route('/meteors', methods=['GET'])
 def meteors():
     # Leer query params
     page = int(request.args.get("page", 1))       # si no pasa page → 1
@@ -18,7 +20,8 @@ def meteors():
     df, status_code = get_earth_meteors()
     result = format_response(df, status_code, page=page, per_page=per_page)
     return jsonify(result), status_code
-@meteors_bp.route('/api/simulate-impact', methods=['POST', 'OPTIONS'])
+
+@meteors_bp.route('/simulate-impact', methods=['POST', 'OPTIONS'])
 def impact():
     data = request.get_json()
     print("Datos recibidos en /api/simulate-impact:", data)
