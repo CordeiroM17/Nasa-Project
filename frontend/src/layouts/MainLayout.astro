@@ -52,34 +52,115 @@ const { title } = Astro.props;
       </main>
       <Footer />
     </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const loader = document.getElementById('loader');
-        if (!loader) return;
+<script type="module">
+function initSidebarsAndLoader() {
+    const attachListeners = () => {
+        // === PARAMETERS SIDEBAR ===
+        const openParamsBtn = document.getElementById("openMenuParametersBtn");
+        const closeParamsBtn = document.getElementById("closeMenuParametersBtn");
+        const paramsSidebar = document.getElementById("sideMenuParameters");
 
-        const spinner = loader.querySelector('svg'); 
-        if (!spinner) return;
+        if (openParamsBtn && closeParamsBtn && paramsSidebar) {
+            openParamsBtn.addEventListener("click", () => {
+                paramsSidebar.classList.remove("-translate-x-full");
+                paramsSidebar.classList.add("translate-x-0");
+            });
 
+            closeParamsBtn.addEventListener("click", () => {
+                paramsSidebar.classList.remove("translate-x-0");
+                paramsSidebar.classList.add("-translate-x-full");
+            });
+        }
+
+        // === ASTEROID MENU ===
+        const showAsteroidMenuBtn = document.getElementById("showAsteroidMenuBtn");
+        const asteroidMenu = document.getElementById("asteroidMenu");
+        const closeAsteroidMenuBtn = document.getElementById("closeAsteroidMenuBtn");
+
+        if (showAsteroidMenuBtn && asteroidMenu) {
+            showAsteroidMenuBtn.addEventListener("click", () => {
+                asteroidMenu.classList.toggle("hidden");
+            });
+        }
+
+        if (closeAsteroidMenuBtn && asteroidMenu) {
+            closeAsteroidMenuBtn.addEventListener("click", () => {
+                asteroidMenu.classList.add("hidden");
+            });
+        }
+
+        // === ASTEROID BUTTONS ===
+        const asteroidBtns = document.querySelectorAll(".asteroid-btn");
+        asteroidBtns.forEach((button) => {
+            button.addEventListener("click", () => {
+                const type = button.children[1]?.innerText || "";
+                const size = button.children[2]?.innerText || "";
+                const density = button.children[3]?.innerText || "";
+                const speed = button.children[4]?.innerText || "";
+
+                console.log("Asteroid selected:", { type, size, density, speed });
+
+                // Update sliders
+                const sizeInput = document.getElementById("asteroid-size");
+                const speedInput = document.getElementById("asteroid-speed");
+                const densitySelect = document.querySelector(".asteroid-density");
+
+                if (sizeInput) sizeInput.value = Math.round(size);
+                if (speedInput) speedInput.value = Math.round(speed);
+                if (densitySelect) {
+                    for (let option of densitySelect.options) {
+                        if (option.textContent.trim().toLowerCase() === type.toLowerCase() ||
+                            option.value === density) {
+                            option.selected = true;
+                            break;
+                        }
+                    }
+                }
+
+                // Close asteroid menu
+                if (asteroidMenu) asteroidMenu.classList.add("hidden");
+            });
+        });
+
+        // === LOADER SPINNER FOR NAVIGATION LINKS ===
+        const loader = document.getElementById("loader");
+        const spinner = loader?.querySelector("svg");
         const links = document.querySelectorAll('a[href]');
 
-        links.forEach((link) => {
-          link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('/') && !href.startsWith('//')) {
-              loader.classList.remove('opacity-0', 'pointer-events-none');
-              spinner.classList.remove('scale-75');
-              spinner.classList.add('scale-100');
-            }
-          });
-        });
+        if (loader && spinner) {
+            links.forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    const href = link.getAttribute("href");
+                    if (href && href.startsWith("/") && !href.startsWith("//")) {
+                        loader.classList.remove("opacity-0", "pointer-events-none");
+                        spinner.classList.remove("scale-75");
+                        spinner.classList.add("scale-100");
+                    }
+                });
+            });
 
-        document.addEventListener('astro:page-load', () => {
-          loader.classList.add('opacity-0', 'pointer-events-none');
-          spinner.classList.remove('scale-100');
-          spinner.classList.add('scale-75');
-        });
-      });
-    </script>
+            document.addEventListener("astro:page-load", () => {
+                loader.classList.add("opacity-0", "pointer-events-none");
+                spinner.classList.remove("scale-100");
+                spinner.classList.add("scale-75");
+            });
+        }
+    };
+
+    // Run after DOM is ready
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", attachListeners);
+    } else {
+        attachListeners();
+    }
+}
+
+// Initialize on first load
+initSidebarsAndLoader();
+
+// Re-initialize on Astro client-side navigation
+document.addEventListener("astro:page-load", initSidebarsAndLoader);
+</script>
   </body>
 </html>
 
