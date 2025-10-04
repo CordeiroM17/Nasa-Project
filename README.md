@@ -12,7 +12,7 @@ Recordar que las urls pueden variar dependiendo si se encuentra en develoment o 
 Proceder a instalar las dependencias e iniciar el frontend
 
 ```.cmd
-cd front end
+cd frontend
 npm install
 npm run dev
 ```
@@ -32,7 +32,9 @@ Recordar que las urls pueden variar dependiendo si se encuentra en develoment o 
 Proceder a instalar las dependencias e iniciar el frontend
 
 ```.cmd
-cd front end
-npm install
-npm run dev
+cd backend
+python -m venv venv
+./venv/scripts/activate
+pip install -r requirements.txt
+python main.py
 ```
