@@ -102,7 +102,7 @@ let currentPath = Astro.url.pathname;
 </header>
 
 
-<script defer type="module">
+<script type="module">
   import { applyTranslation, getSavedLanguage } from '/utils/languages.js';
 
   // Mostrar menú
@@ -164,7 +164,6 @@ let currentPath = Astro.url.pathname;
 
       // Listener para abrir/cerrar el menú de idiomas
       customSelect.addEventListener("click", () => {
-      customSelect.addEventListener("click", () => {
         options.classList.toggle("hidden");
       })
 
@@ -184,7 +183,6 @@ let currentPath = Astro.url.pathname;
           applyTranslation(lang);
         })
       });
-  });
     });
   }
 
