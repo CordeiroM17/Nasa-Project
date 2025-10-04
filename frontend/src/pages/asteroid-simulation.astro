@@ -7,7 +7,7 @@ let asteroid: any[] = [];
 
 async function getAsteroids() {
     try {
-        const res = await fetch(`${API_URL}/meteors`);
+        const res = await fetch(`${API_URL}/api/meteors`);
         const asteroids = await res.json();
         
         if (res && asteroids.code === 200) {
@@ -29,7 +29,7 @@ await getAsteroids();
     <section id="simulation" class="w-full flex items-start h-[80vh]">
 
         <!-- Menú lateral, abierto por defecto -->
-        <div id="sideMenuParameters" class="hidden max-w-md fixed md:static flex w-full h-full flex-col justify-between text-center gap-8 p-8 border-r border-black bg-[#F7F4ED] top-0 left-0 z-50 transform translate-x-0 transition-transform duration-300">
+        <div id="sideMenuParameters" class="max-w-md fixed flex w-full h-full flex-col justify-between text-center gap-8 p-8 border-r border-black bg-[#F7F4ED] top-0 left-0 z-50 transform -translate-x-full transition-transform duration-300">
             <!-- AGREGAR SELECT DE ASTEROIDES -->
             <div class="flex gap-4 items-center">
                 <div id="closeMenuParametersBtn" class="h-full flex items-center p-2 block cursor-pointer top-4 z-50 bg-[#F7F4ED] border border-black rounded-lg shadow-lg">
@@ -140,6 +140,7 @@ await getAsteroids();
         const closeBtn = document.getElementById("closeMenuParametersBtn");
         const sideMenu = document.getElementById("sideMenuParameters");
 
+<<<<<<< HEAD
         if (openBtn && closeBtn && sideMenu ) {
             // Menú abierto por defecto
             sideMenu.classList.remove("-translate-x-full");
@@ -157,6 +158,17 @@ await getAsteroids();
                 sideMenu.classList.add("hidden");
             })
 
+=======
+        if (openBtn && closeBtn && sideMenu) {
+            openBtn.onclick = () => {
+                sideMenu.classList.remove("-translate-x-full");
+                sideMenu.classList.add("translate-x-0");
+            };
+            closeBtn.onclick = () => {
+                sideMenu.classList.remove("translate-x-0");
+                sideMenu.classList.add("-translate-x-full");
+            };
+>>>>>>> 107bf79f71ba3c3dce3237abd5f3917bc206ff41
         }
     }
     
@@ -189,6 +201,7 @@ await getAsteroids();
             });
         }
     }
+
 
     async function postStartSimulation() {
         const sizeElem = document.getElementById("size-value");
@@ -320,17 +333,16 @@ await getAsteroids();
         }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        initMenu()
+    function initializePage() {
+        initMenu();
         initAsteroid2Dparams();
         initAsteroidMenu();
         initStartSimulationButton();
+<<<<<<< HEAD
     });
+=======
+    }
+>>>>>>> 107bf79f71ba3c3dce3237abd5f3917bc206ff41
 
-    document.addEventListener("astro:after-swap", () => {
-        initMenu()
-        initAsteroid2Dparams();
-        initAsteroidMenu();
-        initStartSimulationButton();
-    });
+    document.addEventListener("astro:page-load", initializePage);
 </script>
