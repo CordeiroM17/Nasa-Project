@@ -140,7 +140,6 @@ await getAsteroids();
         const closeBtn = document.getElementById("closeMenuParametersBtn");
         const sideMenu = document.getElementById("sideMenuParameters");
 
-<<<<<<< HEAD
         if (openBtn && closeBtn && sideMenu ) {
             // Menú abierto por defecto
             sideMenu.classList.remove("-translate-x-full");
@@ -158,17 +157,6 @@ await getAsteroids();
                 sideMenu.classList.add("hidden");
             })
 
-=======
-        if (openBtn && closeBtn && sideMenu) {
-            openBtn.onclick = () => {
-                sideMenu.classList.remove("-translate-x-full");
-                sideMenu.classList.add("translate-x-0");
-            };
-            closeBtn.onclick = () => {
-                sideMenu.classList.remove("translate-x-0");
-                sideMenu.classList.add("-translate-x-full");
-            };
->>>>>>> 107bf79f71ba3c3dce3237abd5f3917bc206ff41
         }
     }
     
@@ -338,11 +326,7 @@ await getAsteroids();
         initAsteroid2Dparams();
         initAsteroidMenu();
         initStartSimulationButton();
-<<<<<<< HEAD
-    });
-=======
     }
->>>>>>> 107bf79f71ba3c3dce3237abd5f3917bc206ff41
 
     document.addEventListener("astro:page-load", initializePage);
 </script>

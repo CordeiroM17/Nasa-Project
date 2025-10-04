@@ -10,56 +10,6 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-<<<<<<< HEAD
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/logo2.png" />
-		<!-- Leaflet -->
-		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-		<!-- Make sure you put this AFTER Leaflet's CSS -->
-		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-		 <title>{title}</title>
-		<ClientRouter />
-		<script type="module">
-			const lang = localStorage.getItem('selectedLanguage') || 'en';
-			// Oculta el body hasta que se aplique la traducción
-			document.documentElement.style.visibility = 'hidden';
-			fetch(`/languages/${lang}.json`).then(res => res.json()).then(data => {
-				document.querySelectorAll('[data-section]').forEach(element => {
-					const el = element instanceof HTMLElement ? element : null;
-					if (!el) return;
-					const section = el.dataset.section;
-					const value = el.dataset.value;
-					if (section && value && data[section] && data[section][value]) {
-						el.innerHTML = data[section][value];
-					}
-				});
-				document.documentElement.style.visibility = '';
-			}).catch(() => {
-				document.documentElement.style.visibility = '';
-			});
-		</script>
-	</head>
-	<body class="flex justify-center min-h-screen">
-		<div class="mx-auto px-4 py-8 w-full flex flex-col justify-center">
-			<Navbar />
-			<main class="bg-primary-200 flex flex-col items-center h-full">
-				<slot/>
-			</main>
-			<Footer />
-		</div>
-	</body>
-</html>
-
-<style>
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
-</style>
-=======
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -145,4 +95,3 @@ const { title } = Astro.props;
 		background-size: cover;
 	} */
 </style>
->>>>>>> 107bf79f71ba3c3dce3237abd5f3917bc206ff41
