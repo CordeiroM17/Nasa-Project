@@ -145,17 +145,18 @@ await getAsteroids();
             sideMenu.classList.remove("-translate-x-full");
             sideMenu.classList.add("translate-x-0");
            
-
-            openBtn.onclick = () => {
+            openBtn.addEventListener("click", () => {
                 sideMenu.classList.remove("-translate-x-full");
                 sideMenu.classList.add("translate-x-0");
                 sideMenu.classList.remove("hidden");
-            };
-            closeBtn.onclick = () => {
+            })
+
+            closeBtn.addEventListener("click", () => {
                 sideMenu.classList.remove("translate-x-0");
                 sideMenu.classList.add("-translate-x-full");
                 sideMenu.classList.add("hidden");
-            };
+            })
+
         }
     }
     

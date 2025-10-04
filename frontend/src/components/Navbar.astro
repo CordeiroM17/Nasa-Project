@@ -112,14 +112,16 @@ let currentPath = Astro.url.pathname;
     const sideMenu = document.getElementById("sideMenu");
 
     if (openBtn && closeBtn && sideMenu) {
-      openBtn.onclick = () => {
+
+      openBtn.addEventListener("click", () => {
         sideMenu.classList.remove("translate-x-full");
         sideMenu.classList.add("translate-x-0");
-      };
-      closeBtn.onclick = () => {
+      });
+
+      closeBtn.addEventListener("click", () => {
         sideMenu.classList.remove("translate-x-0");
         sideMenu.classList.add("translate-x-full");
-      };
+      });
     }
   }
 
@@ -161,13 +163,13 @@ let currentPath = Astro.url.pathname;
       }
 
       // Listener para abrir/cerrar el menú de idiomas
-      customSelect.onclick = () => {
+      customSelect.addEventListener("click", () => {
         options.classList.toggle("hidden");
-      };
+      });
 
       // Listener para cada opción de idioma
       options.querySelectorAll(".option").forEach(opt => {
-        opt.onclick = () => {
+        opt.addEventListener("click", () => {
           const lang = opt.dataset.value;
           const span = opt.querySelector("span");
           const flag = opt.querySelector("img").src;
@@ -179,7 +181,7 @@ let currentPath = Astro.url.pathname;
           options.classList.add("hidden");
           localStorage.setItem('selectedLanguage', lang);
           applyTranslation(lang);
-        };
+        });
       });
     });
   }

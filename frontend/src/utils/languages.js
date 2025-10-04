@@ -26,11 +26,11 @@ export function restoreLanguage() {
 function setupLanguageListeners() {
   const langButtons = document.querySelectorAll('[data-language]');
   langButtons.forEach((button) => {
-    button.onclick = () => {
+    button.addEventListener('click', () => {
       const selectedLang = button.dataset.language;
       localStorage.setItem('selectedLanguage', selectedLang);
       applyTranslation(selectedLang);
-    };
+    });
   });
 }
 
