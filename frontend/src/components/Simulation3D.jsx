@@ -3,9 +3,9 @@ import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-const EARTH_COLOR_MAP = "/textures/earthmap10k.jpg";
-const EARTH_BUMP_MAP = "/textures/earthbump10k.jpg";
-const EARTH_SPEC_MAP = "/textures/earthspec10k.jpg";
+const EARTH_COLOR_MAP = "/textures/earthmap4k.jpg";
+const EARTH_BUMP_MAP = "/textures/earthbump4k.jpg";
+const EARTH_SPEC_MAP = "/textures/earthspec4k.jpg";
 const CRATER_TEXTURE_URL = "/textures/crater.png";
 const SKYBOX_TEXTURE_URL = "/textures/skybox.jpg";
 
@@ -74,6 +74,7 @@ export default function Simulation3D({ latitude, longitude }) {
   const latRef = useRef(null);
   const lonRef = useRef(null);
   const lastCoords = useRef({ lat: null, lon: null });
+  const shootMeteorRef = useRef(null);
 
   useEffect(() => {
     const meteors = [];
@@ -155,9 +156,14 @@ export default function Simulation3D({ latitude, longitude }) {
     const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 1.2 });
     const starVertices = [];
     for (let i = 0; i < starCount; i++) {
-      const x = (Math.random() - 0.5) * 1800;
-      const y = (Math.random() - 0.5) * 1800;
-      const z = (Math.random() - 0.5) * 1800;
+      let x, y, z, dist;
+      const minStarDist = 120;
+      do {
+        x = (Math.random() - 0.5) * 1800;
+        y = (Math.random() - 0.5) * 1800;
+        z = (Math.random() - 0.5) * 1800;
+        dist = Math.sqrt(x*x + y*y + z*z);
+      } while (dist < minStarDist);
       starVertices.push(x, y, z);
     }
     starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
@@ -274,14 +280,28 @@ export default function Simulation3D({ latitude, longitude }) {
       }
     }
 
-    function shootMeteor() {
-      const x = (Math.random() - 0.5) * 50;
-      const y = 50;
-      const z = (Math.random() - 0.5) * 50;
-      const mass = Math.random() * 5000 + 1000;
-      const type = Math.random() > 0.5 ? "rock" : "metal";
-      meteors.push(new MeteorScientific(new THREE.Vector3(x, y, z), mass, type));
+  function shootMeteor() {
+    const spawnRadius = PLANET_RADIUS_VISUAL + 50; // lejos del planeta
+    const theta = Math.random() * 2 * Math.PI;
+    const phi = Math.acos(2 * Math.random() - 1);
+
+    const x = spawnRadius * Math.sin(phi) * Math.cos(theta);
+    const y = spawnRadius * Math.cos(phi);
+    const z = spawnRadius * Math.sin(phi) * Math.sin(theta);
+
+    const mass = Math.random() * 5000 + 1000;
+    const type = Math.random() > 0.5 ? "rock" : "metal";
+    const meteor = new MeteorScientific(new THREE.Vector3(x, y, z), mass, type);
+
+    // Dirección hacia el centro de la Tierra
+    const dir = planet.position.clone().sub(meteor.mesh.position).normalize();
+    meteor.velocity = dir.multiplyScalar(meteor.getImpactVelocityVisual());
+
+    meteors.push(meteor);
     }
+
+    // Store shootMeteor in ref for external access
+    shootMeteorRef.current = shootMeteor;
 
     function latLonToVector3(lat, lon, radius) {
       const phi = (90 - lat) * (Math.PI / 180);
@@ -364,63 +384,99 @@ export default function Simulation3D({ latitude, longitude }) {
     };
   }, []);
 
+  function handleRandomMeteorite() {
+    // Dispara un meteorito aleatorio usando la ref
+    if (shootMeteorRef.current) {
+      shootMeteorRef.current();
+    }
+  }
+
   return (
-    <div style={{ width: "100vw", height: "80vh", position: "relative" }}>
-      <button
-        style={{
-          position: "absolute",
-          top: 24,
-          right: 32,
-          zIndex: 20,
-          background: "var(--color-primary-200, #efefef)",
-          color: "var(--color-primary-400, #0a3143)",
-          border: "2px solid var(--color-primary-100, #276e90)",
-          borderRadius: 12,
-          padding: "12px 24px",
-          fontWeight: 700,
-          fontSize: 16,
-          boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-          cursor: "pointer",
-        }}
-        onClick={() => { window.location.href = "/asteroid-simulation"; }}
-      >
-        2D
-      </button>
-      <div id="ui" style={styles.panel}>
-        <button id="shootMeteor" style={styles.button}>
-          Disparar meteorito aleatorio
+    <div style={{ width: "100vw", height: "80vh", position: "relative", margin: 0, padding: 0, boxSizing: 'border-box' }}>
+      <div style={{ position: "absolute", top: 24, right: 32, zIndex: 20, display: "flex", gap: 12 }}>
+        <button
+          style={{
+            background: "var(--color-primary-200, #efefef)",
+            color: "var(--color-primary-400, #0a3143)",
+            border: "2px solid var(--color-primary-100, #276e90)",
+            borderRadius: 12,
+            padding: "12px 24px",
+            fontWeight: 700,
+            fontSize: 16,
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+            cursor: "pointer",
+          }}
+          onClick={() => { window.location.href = "/kepler-orbit"; }}>
+          Kepler
         </button>
-        <label htmlFor="latInput" style={styles.label}>
-          Latitud:
-        </label>
+        <button
+          style={{
+            background: "var(--color-primary-200, #efefef)",
+            color: "var(--color-primary-400, #0a3143)",
+            border: "2px solid var(--color-primary-100, #276e90)",
+            borderRadius: 12,
+            padding: "12px 24px",
+            fontWeight: 700,
+            fontSize: 16,
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+            cursor: "pointer",
+          }}
+          onClick={() => { window.location.href = "/asteroid-simulation"; }}>
+          2D
+        </button>
+      </div>
+          
+      <div
+        id="ui"
+        style={{
+          position: 'absolute',
+          top: 24,
+          left: 24,
+          background: 'rgba(30, 41, 59, 0.92)',
+          color: 'white',
+          padding: '24px 28px',
+          borderRadius: 16,
+          zIndex: 10,
+          boxShadow: '0 2px 16px rgba(0,0,0,0.12)',
+          minWidth: 320,
+          maxWidth: 380,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 18,
+        }}
+      >
+        <label style={{ fontWeight: 700, marginBottom: 4 }}>Latitud:</label>
         <input
           ref={latRef}
           id="latInput"
           type="number"
           placeholder="Ej: 40.71"
           step="0.01"
-          style={styles.input}
+          style={{ width: '100%', marginBottom: 8, borderRadius: 8, border: 'none', padding: '8px', fontSize: 16 }}
         />
-        <label htmlFor="lonInput" style={styles.label}>
-          Longitud:
-        </label>
+        <label style={{ fontWeight: 700, marginBottom: 4 }}>Longitud:</label>
         <input
           ref={lonRef}
           id="lonInput"
           type="number"
           placeholder="Ej: -74.00"
           step="0.01"
-          style={styles.input}
+          style={{ width: '100%', marginBottom: 8, borderRadius: 8, border: 'none', padding: '8px', fontSize: 16 }}
         />
-        <button id="shootMeteorCoords" style={styles.button}>
-          Disparar a coordenadas
-        </button>
-        <div ref={infoRef} id="impactInfo" style={styles.info}></div>
+        <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
+          <button style={{ flex: 1, background: '#2563eb', color: 'white', borderRadius: 8, padding: '10px 0', fontWeight: 700, fontSize: 16, border: 'none', cursor: 'pointer' }} onClick={handleRandomMeteorite}>
+            Disparar meteorito aleatorio
+          </button>
+          <button id="shootMeteorCoords" style={{ flex: 1, background: '#2563eb', color: 'white', borderRadius: 8, padding: '10px 0', fontWeight: 700, fontSize: 16, border: 'none', cursor: 'pointer' }}>
+            Disparar a coordenadas
+          </button>
+        </div>
+        <div ref={infoRef} id="impactInfo" style={{ marginTop: 12, background: 'rgba(255,255,255,0.08)', color: 'white', borderRadius: 8, padding: 10, fontSize: 15, fontWeight: 500, minHeight: 40 }}></div>
       </div>
       <canvas
         ref={canvasRef}
         id="three-canvas"
-        style={{ position: "absolute", top: 0, left: 0, width: "100vw", height: "80vh", zIndex: 0, display: "block" }}
+        style={{ position: "absolute", top: 0, left: 0, width: "100vw", height: "80vh", zIndex: 0, display: "block", margin: 0, padding: 0, boxSizing: 'border-box' }}
       ></canvas>
     </div>
   );
