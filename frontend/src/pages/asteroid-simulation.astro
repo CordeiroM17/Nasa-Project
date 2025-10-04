@@ -312,6 +312,7 @@ await getAsteroids();
                 menu.classList.toggle("hidden");
             });
         }
+        
         if (closeBtn && menu) {
             closeBtn.addEventListener("click", () => {
                 menu.classList.add("hidden");
@@ -324,7 +325,7 @@ await getAsteroids();
         initAsteroid2Dparams();
         initAsteroidMenu();
         initStartSimulationButton();
-    });   
+    });
 
     document.addEventListener("astro:after-swap", () => {
         initMenu()
