@@ -6,7 +6,9 @@ from src.models.impact_model import format_impact_result
 from src.services.impact_service import calculate_full_impact
 
 meteors_bp = Blueprint('meteors', __name__)
-
+@meteors_bp.route("/")
+def ok():
+    return("ok")
 @meteors_bp.route('/api/meteors', methods=['GET'])
 def meteors():
     # Leer query params
