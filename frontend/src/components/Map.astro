@@ -1,46 +1,41 @@
 <div id="map" class="w-full h-[80vh] z-10"></div>
 
 <script type="module">
+    let mapInstance = null;
 
     function initMap() {
-        // Initialize the mapconst mapDiv = document.getElementById('map');
         const mapDiv = document.getElementById('map');
-        if (!mapDiv) return; // No inicializar si no existe el div
+        if (!mapDiv) return;
 
-        // Evita inicializar dos veces el mapa en el mismo div
-        if (mapDiv._leaflet_id) return;
-        
+        // If a map instance already exists, remove it before creating a new one
+        if (mapInstance) {
+            mapInstance.remove();
+            mapInstance = null;
+        }
 
-        const map = L.map('map').setView([-27.46784, -58.8344], 10);
+        mapInstance = L.map('map').setView([-27.46784, -58.8344], 10);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        }).addTo(mapInstance);
 
-        // Add marker onclick event and delete old markers  
         const markers = [];
-        map.on('click', function(e) {
-            // Get latitude and longitude of the click
+        mapInstance.on('click', function(e) {
             const { lat, lng } = e.latlng;
 
-            // Store in global variables to use in postStartSimulation
             window.selectedLat = e.latlng.lat;
             window.selectedLng = e.latlng.lng;
 
-            // Remove old markers
-            markers.forEach(marker => map.removeLayer(marker));
+            markers.forEach(marker => mapInstance.removeLayer(marker));
 
-            // Add new marker
-            const newMarker = L.marker([lat, lng]).addTo(map)
+            const newMarker = L.marker([lat, lng]).addTo(mapInstance)
                 .bindPopup(`Impact zone`)
                 .openPopup();
             markers.push(newMarker);
         });
     }
 
-    document.addEventListener("DOMContentLoaded", initMap);
-    document.addEventListener("astro:after-swap", () => {
-        setTimeout(initMap, 0);
-    });
+    // astro:page-load runs on initial page load and after every client-side navigation
+    document.addEventListener("astro:page-load", initMap);
 </script>

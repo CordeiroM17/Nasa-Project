@@ -312,17 +312,12 @@ await getAsteroids();
         }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        initMenu()
+    function initializePage() {
+        initMenu();
         initAsteroid2Dparams();
         initAsteroidMenu();
         initStartSimulationButton();
-    });   
+    }
 
-    document.addEventListener("astro:after-swap", () => {
-        initMenu()
-        initAsteroid2Dparams();
-        initAsteroidMenu();
-        initStartSimulationButton();
-    });
+    document.addEventListener("astro:page-load", initializePage);
 </script>
