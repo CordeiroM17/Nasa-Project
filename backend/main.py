@@ -8,7 +8,8 @@ import os
 
 app = Flask(__name__)
 api = Api(app)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+frontend_url = os.getenv("FRONT_URL")
+CORS(app, resources={r"/api/*": {"origins": frontend_url}})
 
 api.add_resource(MeteorsResource, '/api/meteors')
 api.add_resource(Simulation, '/api/simulate-impact')

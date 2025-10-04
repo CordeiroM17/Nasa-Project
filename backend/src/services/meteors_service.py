@@ -39,7 +39,7 @@ def fetch_meteors():
             for ca in close_approach_list:
                 rel_vel = ca.get("relative_velocity", {})
                 vel_str = rel_vel.get("kilometers_per_second")
-                print(f"[DEBUG] vel_str: {vel_str}")
+                
                 if vel_str is not None:
                     try:
                         v = float(vel_str)
