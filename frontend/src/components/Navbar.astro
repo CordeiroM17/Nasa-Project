@@ -19,7 +19,7 @@ let currentPath = Astro.url.pathname;
         <a href="/" class={`px-2 py-2 h-8 flex items-center ${currentPath === "/" ? "border-b-2 border-white" : "hover:border-b-2 hover:border-white"}`}>
           <span data-section="navbar" data-value="home">Home</span>
         </a>
-        <a href="/simulator" class={`px-2 py-2 h-8 flex items-center ${currentPath === "/simulator" ? "border-b-2 border-white" : "hover:border-b-2 hover:border-white"}`}>
+        <a href="/asteroid-simulation" class={`px-2 py-2 h-8 flex items-center ${currentPath === "/simulator" ? "border-b-2 border-white" : "hover:border-b-2 hover:border-white"}`}>
           <span data-section="navbar" data-value="challenge">Challenge</span>
         </a>
         <a href="/team" class={`px-2 py-2 h-8 flex items-center ${currentPath === "/team" ? "border-b-2 border-white" : "hover:border-b-2 hover:border-white"}`}>
@@ -30,7 +30,6 @@ let currentPath = Astro.url.pathname;
           <select class="language hidden">
             <option value="en" data-section="navbar" data-value="language-en">EN</option>
             <option value="es" data-section="navbar" data-value="language-es">ES</option>
-            <option value="ru" data-section="navbar" data-value="language-ru">RU</option>
           </select>
 
           <div class="custom-select flex items-center justify-center gap-2 cursor-pointer rounded-full p-1 bg-transparent border border-white">
@@ -46,10 +45,6 @@ let currentPath = Astro.url.pathname;
             <button class="option w-full flex items-center justify-center gap-2 p-2 hover:bg-[#1E2939] cursor-pointer" data-value="es">
               <img src="https://flagsapi.com/ES/flat/24.png" alt="Spanish Flag" class="w-5 h-5 rounded-full object-cover">
               <span data-section="navbar" data-value="language-es">ES</span>
-            </button>
-            <button class="option w-full flex items-center justify-center gap-2 p-2 hover:bg-[#1E2939] cursor-pointer" data-value="ru">
-              <img src="https://flagsapi.com/RU/flat/24.png" alt="Russian Flag" class="w-5 h-5 rounded-full object-cover">
-              <span data-section="navbar" data-value="language-ru">RU</span>
             </button>
           </div>
         </div>
@@ -82,7 +77,6 @@ let currentPath = Astro.url.pathname;
           <select class="language hidden">
             <option value="en" data-section="navbar" data-value="language-en">EN</option>
             <option value="es" data-section="navbar" data-value="language-es">ES</option>
-            <option value="ru" data-section="navbar" data-value="language-ru">RU</option>
           </select>
 
           <div class="custom-select flex items-center justify-center gap-2 cursor-pointer rounded-full p-1 bg-transparent border border-white">
@@ -98,10 +92,6 @@ let currentPath = Astro.url.pathname;
             <button class="option w-full flex items-center justify-center gap-2 p-2 hover:bg-[#1E2939] cursor-pointer" data-value="es">
               <img src="https://flagsapi.com/ES/flat/24.png" alt="Spanish Flag" class="w-5 h-5 rounded-full object-cover">
               <span data-section="navbar" data-value="language-es">ES</span>
-            </button>
-            <button class="option w-full flex items-center justify-center gap-2 p-2 hover:bg-[#1E2939] cursor-pointer" data-value="ru">
-              <img src="https://flagsapi.com/RU/flat/24.png" alt="Russian Flag" class="w-5 h-5 rounded-full object-cover">
-              <span data-section="navbar" data-value="language-ru">RU</span>
             </button>
           </div>
         </div>

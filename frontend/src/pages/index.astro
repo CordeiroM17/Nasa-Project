@@ -6,25 +6,25 @@ import '../styles/global.css';
 
 <MainLayout title="Home">
 	
-	<section id="home" class="mt-16 max-w-6xl w-full h-full flex flex-col justify-center items-center md:justify-between md:flex-row md:min-h-[80vh]">
+	<section id="home" class="mt-16 max-w-6xl w-full h-full flex flex-col justify-center items-center md:justify-between md:flex-row">
 		<div class="text-primary-100 max-w-xl flex flex-col text-center justify-center gap-8 px-8 md:text-start md:justify-start" transition:name="title-section">
-			<h1 class="font-bold text-4xl xs:text-5xl md:text-6xl" data-section="home" data-value="title">What if an asteroid were heading our way?</h1>
+			<h1 class="mt-8 font-bold text-4xl xs:text-5xl md:text-6xl" data-section="home" data-value="title">What if an asteroid were heading our way?</h1>
 			<p class="text-md xs:text-lg" data-section="home" data-value="paragraph">Explore asteroid impacts on Earth with real NASA and USGS data with an interactive simulator. Start with Impactor-2025 or try your own scenario.</p>
-<a href="/asteroid-simulation" 
-   class="text-primarytext-100 font-bold text-[20px] px-12 py-6 self-center text-center rounded-lg bg-primary-button hover:bg-primary-600 cursor-pointer md:self-start" 
-   data-section="home" 
-   data-value="play-btn">
-  Explore Impact Scenarios
-</a>
+			<a href="/asteroid-simulation" 
+			class="text-primarytext-100 font-bold text-[20px] px-12 py-6 self-center text-center rounded-lg bg-primary-button hover:bg-primary-600 cursor-pointer md:self-start" 
+			data-section="home" 
+			data-value="play-btn">
+			Explore Impact Scenarios
+			</a>
 		</div>
 		<img src="asteroid.png" alt="Asteroid" class="md:overflow-hidden md:max-w-[600px]"/>
 	</section>
 
 	<section id="home-banner" class="max-w-6xl w-full h-full flex justify-start items-center">
-		<div class="text-primary-100 flex flex-col text-center justify-center gap-8 p-8">
+		<div class="text-primary-100 flex flex-col text-center justify-center gap-8 p-8 w-full">
 			<h2 class="font-bold text-xl xs:text-2xl md:text-4xl" data-section="home-banner" data-value="title">Save the world or see what would happen in a catastrophic scenario</h2>
 			<p class="text-md xs:text-lg" data-section="home-banner" data-value="paragraph">Like the universe, our imagination has no limits!</p>
-			<a href="/asteroid-simulation" class="text-primarytext-100 px-2 py-2 w-56 self-center text-center rounded-lg bg-[#0C1421] hover:bg-[#1E2939] cursor-pointer" data-section="home-banner" data-value="play-btn">Start Simulation</a>
+			<a href="/asteroid-simulation" class="text-primarytext-100 px-2 py-2 w-56 self-center text-center rounded-lg bg-[#21C5F4] hover:bg-[#1AAED8] cursor-pointer" data-section="home-banner" data-value="play-btn">Start Simulation</a>
 		</div>
 	</section>
 
@@ -38,24 +38,24 @@ import '../styles/global.css';
 	<section id="home-items" class="max-w-6xl w-full h-full flex flex-col justify-start items-center md:flex-row md:mt-16 md:p-8">
 		<div class="flex flex-col text-start justify-center gap-8 border-t h-full m-8 border-primary-100 md:border-t-0 md:border-l md:m-0 md:px-8 md:justify-start md:w-1/3">
 			<h2 class="text-primary-100 font-bold text-xl pt-8 xs:text-2xl md:text-4xl md:pt-0" data-section="home-items" data-value="title-asteroid-types">Asteroid types</h2>
-			<span class="font-bold" data-section="home-items" data-value="span-asteroid-types">+170 Asteroids...</span>
-			<p class="text-md xs:text-lg" data-section="home-items" data-value="paragraph-asteroid-types">Asteroids like Carbonaceous, Stony, Metallic... Explore their diversity and impact magnitudes. View scenarios in 2D and 3D!</p>
+			<span class="font-bold text-primary-300" data-section="home-items" data-value="span-asteroid-types">+170 Asteroids...</span>
+			<p class="text-md xs:text-lg text-primary-100" data-section="home-items" data-value="paragraph-asteroid-types">Asteroids like Carbonaceous, Stony, Metallic... Explore their diversity and impact magnitudes. View scenarios in 2D and 3D!</p>
 		</div>
 
 		<div class="flex flex-col text-start justify-center gap-8 border-t h-full m-8 border-primary-100 md:border-t-0 md:border-l md:m-0 md:px-8 md:justify-start md:w-1/3">
 			<h2 class="text-primary-100 font-bold text-xl pt-8 xs:text-2xl md:text-4xl md:pt-0" data-section="home-items" data-value="title-public">Public</h2>
-			<span class="font-bold" data-section="home-items" data-value="span-public">Everyone can use it!</span>
-			<p class="text-md xs:text-lg" data-section="home-items" data-value="paragraph-public">Our app turns science into an engaging, interactive, and exciting experience. We want everyone to be able to join in and learn about space in a fun and easy way.</p>
+			<span class="font-bold text-primary-300" data-section="home-items" data-value="span-public">Everyone can use it!</span>
+			<p class="text-md xs:text-lg text-primary-100" data-section="home-items" data-value="paragraph-public">Our app turns science into an engaging, interactive, and exciting experience. We want everyone to be able to join in and learn about space in a fun and easy way.</p>
 		</div>
 		<div class="flex flex-col text-start justify-center gap-8 border-t h-full m-8 border-primary-100 md:border-t-0 md:border-l md:m-0 md:px-8 md:justify-start md:w-1/3">
 			<h2 class="text-primary-100 font-bold text-xl pt-8 xs:text-2xl md:text-4xl md:pt-0" data-section="home-items" data-value="title-api-nasa">API NASA</h2>
-			<span class="font-bold" data-section="home-items" data-value="span-api-nasa">NASA Oficial API</span>
-			<p class="text-md xs:text-lg" data-section="home-items" data-value="paragraph-api-nasa">It's a menu of services that an organization provides so you can use its information. NASA uses open APIs so anyone (scientists, students, developers, and just anyone interested) can create apps, visualizations, or simulations with real-world space data.</p>
+			<span class="font-bold text-primary-300" data-section="home-items" data-value="span-api-nasa">NASA Oficial API</span>
+			<p class="text-md xs:text-lg text-primary-100" data-section="home-items" data-value="paragraph-api-nasa">It's a menu of services that an organization provides so you can use its information. NASA uses open APIs so anyone (scientists, students, developers, and just anyone interested) can create apps, visualizations, or simulations with real-world space data.</p>
 		</div>
 	</section>
 
 	<section id="home-challenge" class="max-w-6xl w-full h-full flex flex-col justify-center items-center gap-8 md:justify-between lg:flex-row md:mt-16 md:px-8">
-		<div class="text-primary-200 lg:max-w-xl flex flex-col text-start justify-center gap-8 p-8 border-t bg-primary-100 md:border-t-0 md:border-l md:pl-8 md:rounded-lg">
+		<div class="text-primary-100 lg:max-w-xl flex flex-col text-start justify-center gap-8 p-8 bg-primary-100/10 md:pl-8 md:rounded-lg">
 			<h2 class="font-bold text-xl xs:text-2xl md:text-4xl md:pt-0" data-section="home-challenge" data-value="title">Test yourself with this challenge</h2>
 			<p class="text-md xs:text-lg" data-section="home-challenge" data-value="paragraph">For the desire to learn and improve your skills, We give you the website of the organization spaceappschallenge.org to research and find challenges to complete!</p>
 			<a href="https://www.spaceappschallenge.org/" target="_blank" class="px-2 py-2 self-center text-center rounded-lg bg-primary-button hover:bg-primary-600 cursor-pointer w-full md:self-start" data-section="home-challenge" data-value="btn">Learn more</a>
