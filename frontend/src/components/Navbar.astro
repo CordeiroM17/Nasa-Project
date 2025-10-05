@@ -24,7 +24,7 @@ let currentPath = Astro.url.pathname;
         <a href="/team" class={`px-2 py-2 h-8 w-24 flex justify-center items-center border-borders-100 ${currentPath === `/team` ? "border-b-2" : "hover:border-b-2"}`}>
           <li class="text-primarytext-100" data-section="navbar" data-value="team">Team</li>
         </a>
-        <div class="relative w-30 border rounded-lg bg-primary-200 border-borders-100 z-20">
+        <div class="relative w-30 border rounded-lg bg-primary-200 border-borders-100 z-30">
           <select class="language hidden">
             <option value="en" data-section="navbar" data-value="language-en">English</option>
             <option value="es" data-section="navbar" data-value="language-es">Spanish</option>
