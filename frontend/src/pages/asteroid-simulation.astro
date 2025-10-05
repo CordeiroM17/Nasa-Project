@@ -29,7 +29,7 @@ await getAsteroids();
     <section id="simulation" class="w-full flex items-start h-[80vh]">
 
         <!-- Menú lateral, abierto por defecto -->
-        <div id="sideMenuParameters" class="max-w-md fixed flex w-full h-full flex-col justify-between text-center gap-8 p-8 border-r border-black bg-primary-600 top-0 left-0 z-50 transform -translate-x-full transition-transform duration-300">
+        <div id="sideMenuParameters" class="max-w-md fixed flex w-full h-full flex-col justify-between text-center gap-8 p-8 border-r border-black bg-primary-600 top-0 left-0 z-50 transform -translate-x-full transition-transform duration-300 text-primary-100">
             <!-- AGREGAR SELECT DE ASTEROIDES -->
             <div class="flex gap-4 items-center">
                 <div id="closeMenuParametersBtn" class="h-full flex items-center p-2 block cursor-pointer top-4 z-50 bg-primary-600 border border-black rounded-lg shadow-lg">
@@ -65,8 +65,8 @@ await getAsteroids();
             </div>
 
             <!-- Asteroid parameters -->
-            <div class="rounded-lg border border-black h-full font-bold text-primary-100">
-                <div class="flex flex-col gap-2 text-start p-2">
+            <div class="rounded-lg border border-black h-full font-bold text-gray-100">
+                <div class="flex flex-col gap-2 text-start p-2 text-gray-100">
                     <label for="asteroid-size">
                         <span data-section="simulation-params" data-value="asteroid-size">Asteroid Size:</span> 
                         <span id="size-value">50</span> m
@@ -74,7 +74,7 @@ await getAsteroids();
                     <input type="range" id="asteroid-size" min="1" max="15000" value="50" />
                 </div>
 
-                <div class="flex flex-col gap-2 text-start p-2">
+                <div class="flex flex-col gap-2 text-start p-2 text-gray-100">
                     <label for="asteroid-speed"> 
                         <span data-section="simulation-params" data-value="asteroid-speed">Asteroid Speed:</span>
                         <span id="speed-value">10</span> km/s
@@ -82,7 +82,7 @@ await getAsteroids();
                     <input type="range" id="asteroid-speed" min="1" max="80" value="10" />
                 </div>
 
-                <div class="flex flex-col gap-2 text-start p-2">
+                <div class="flex flex-col gap-2 text-start p-2 text-gray-100">
                     <label for="asteroid-impact-angle">
                         <span data-section="simulation-params" data-value="asteroid-angle">Asteroid Impact Angle:</span> 
                         <span id="angle-value">45</span>°
@@ -92,23 +92,25 @@ await getAsteroids();
 
                 <div class="flex flex-col gap-2 text-start p-2">
                     <label for="asteroid-density">
-                    <span  data-section="simulation-params" data-value="asteroid-density">Asteroid density:</span>
-                    <select class="asteroid-density">
+                        <span data-section="simulation-params" data-value="asteroid-density">Asteroid Density:</span>
+                    </label>
+                    <select class="asteroid-density bg-primary-600 text-gray-100">
                         <option class="bg-primary-600" value="1500" data-section="simulation-params" data-value="carbonaceous">Carbonaceous</option>
                         <option class="bg-primary-600" value="2700" data-section="simulation-params" data-value="stony">Stony</option>
                         <option class="bg-primary-600" value="7800" data-section="simulation-params" data-value="metallic">Metallic</option>
                     </select>
                 </div>
             </div>
-            <div id="simulation-results" class="hidden p-4 rounded-lg border border-black shadow-lg text-left">
+            <div id="simulation-results" class="hidden p-4 rounded-lg border border-black shadow-lg text-left text-gray-100">
                 <h3 class="font-bold text-lg">Impact Simulation Results</h3>
                 <div id="results-content"></div>
             </div>
 
-            <div id="mitigation-measures" class="hidden p-4 rounded-lg border border-black shadow-lg mt-4 max-h-[300px] overflow-y-auto text-left">
+            <div id="mitigation-measures" class="hidden p-4 rounded-lg border border-black shadow-lg mt-4 max-h-[300px] overflow-y-auto text-left text-gray-100">
                 <h3 class="font-bold text-lg">Mitigation Measures</h3>
                 <div id="mitigation-content"></div>
             </div>
+
 
 
 
