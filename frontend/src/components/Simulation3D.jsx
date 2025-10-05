@@ -170,68 +170,95 @@ export default function Simulation3D({ latitude, longitude }) {
     const stars = new THREE.Points(starGeometry, starMaterial);
     scene.add(stars);
 
-    // Meteorito
-    class MeteorScientific {
-      constructor(position, mass, type) {
-        this.mass = mass;
-        this.type = type;
-        this.mesh = new THREE.Mesh(
-          new THREE.SphereGeometry(this.getRadiusVisual(), 16, 16),
-          new THREE.MeshPhongMaterial({ color: this.getColor() })
-        );
-        this.mesh.position.copy(position);
-        scene.add(this.mesh);
+  // Meteorito
+  class MeteorScientific {
+    constructor(position, mass, type) {
+      this.mass = mass;
+      this.type = type;
+      this.mesh = new THREE.Mesh(
+        new THREE.SphereGeometry(this.getRadiusVisual(), 16, 16),
+        new THREE.MeshPhongMaterial({ color: this.getColor() })
+      );
+      this.mesh.position.copy(position);
+      scene.add(this.mesh);
 
-        this.trailPositions = [];
-        this.trailGeometry = new THREE.BufferGeometry();
-        this.trailMaterial = new THREE.PointsMaterial({ color: 0xff6600, size: 0.3 });
-        this.trail = new THREE.Points(this.trailGeometry, this.trailMaterial);
-        scene.add(this.trail);
+      this.trailPositions = [];
+      this.trailGeometry = new THREE.BufferGeometry();
+      this.trailMaterial = new THREE.PointsMaterial({ color: 0xff6600, size: 0.3 });
+      this.trail = new THREE.Points(this.trailGeometry, this.trailMaterial);
+      scene.add(this.trail);
 
-        this.velocity = new THREE.Vector3(0, -this.getImpactVelocityVisual(), 0);
-      }
-      getRadiusVisual() {
-        const density = this.type === "rock" ? 3000 : 7800;
-        const r = Math.cbrt((3 * this.mass) / (4 * Math.PI * density));
-        return r * SCALE_VISUAL;
-      }
-      getColor() {
-        return this.type === "rock" ? 0x888888 : 0xaaaaaa;
-      }
-      getImpactVelocityVisual() {
-        const g = 9.81;
-        const h = 100000;
-        const v0 = 11000;
-        return Math.sqrt(v0 * v0 + 2 * g * h) * SCALE_VISUAL;
-      }
-      update(delta) {
-        this.mesh.position.add(this.velocity.clone().multiplyScalar(delta));
-        this.trailPositions.push(this.mesh.position.clone());
-        if (this.trailPositions.length > 30) this.trailPositions.shift();
-        const positions = [];
-        this.trailPositions.forEach((p) => positions.push(p.x, p.y, p.z));
-        this.trail.geometry.setAttribute(
-          "position",
-          new THREE.Float32BufferAttribute(positions, 3)
-        );
-        this.trail.geometry.needsUpdate = true;
-      }
-      checkImpact() {
-        const distance = this.mesh.position.distanceTo(planet.position);
-        return distance <= PLANET_RADIUS_VISUAL;
-      }
-      calculateImpact() {
-        const v_mag = this.velocity.length() * (PLANET_RADIUS_REAL / PLANET_RADIUS_VISUAL);
-        const E = 0.5 * this.mass * Math.pow(v_mag, 2);
-        const craterDiameterReal = 1.3 * Math.cbrt(this.mass / 2500) * Math.pow(v_mag, 0.44);
-        const craterDiameterVisual = craterDiameterReal * SCALE_VISUAL;
-        return { energy: E, craterDiameterReal, craterDiameterVisual };
-      }
-      destroy() {
-        scene.remove(this.mesh);
-        scene.remove(this.trail);
-      }
+      this.velocity = new THREE.Vector3(0, -this.getImpactVelocityVisual(), 0);
     }
+    getRadiusVisual() {
+      const density = this.type === "rock" ? 3000 : 7800;
+      const r = Math.cbrt((3 * this.mass) / (4 * Math.PI * density));
+      return r * SCALE_VISUAL;
+    }
+    getColor() {
+      return this.type === "rock" ? 0x888888 : 0xaaaaaa;
+    }
+    getImpactVelocityVisual() {
+      const g = 9.81;
+      const h = 100000;
+      const v0 = 11000;
+      return Math.sqrt(v0 * v0 + 2 * g * h) * SCALE_VISUAL;
+    }
+    update(delta) {
+      this.mesh.position.add(this.velocity.clone().multiplyScalar(delta));
+      this.trailPositions.push(this.mesh.position.clone());
+      if (this.trailPositions.length > 30) this.trailPositions.shift();
+      const positions = [];
+      this.trailPositions.forEach((p) => positions.push(p.x, p.y, p.z));
+      this.trail.geometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(positions, 3)
+      );
+      this.trail.geometry.needsUpdate = true;
+    }
+    checkImpact() {
+      const distance = this.mesh.position.distanceTo(planet.position);
+      return distance <= PLANET_RADIUS_VISUAL;
+    }
+    calculateImpact() {
+      const v_mag = this.velocity.length() * (PLANET_RADIUS_REAL / PLANET_RADIUS_VISUAL);
+      const E = 0.5 * this.mass * Math.pow(v_mag, 2);
+      const craterDiameterReal = 1.3 * Math.cbrt(this.mass / 2500) * Math.pow(v_mag, 0.44);
+      const craterDiameterVisual = craterDiameterReal * SCALE_VISUAL;
+      return { energy: E, craterDiameterReal, craterDiameterVisual };
+    }
+    destroy() {
+      scene.remove(this.mesh);
+      scene.remove(this.trail);
+    }
+  }
+
+  // Helper: Convert 3D point on sphere to lat/lon
+  function vector3ToLatLon(vec, radius) {
+    const x = vec.x, y = vec.y, z = vec.z;
+    const lat = 90 - (Math.acos(y / radius) * 180 / Math.PI);
+  const lon = -Math.atan2(z, x) * 180 / Math.PI;
+  return { lat, lon };
+  }
+
+  // Click event: set lat/lon inputs when clicking on planet
+  function handleCanvasClick(event) {
+    const rect = canvas.getBoundingClientRect();
+    const mouse = new THREE.Vector2(
+      ((event.clientX - rect.left) / rect.width) * 2 - 1,
+      -((event.clientY - rect.top) / rect.height) * 2 + 1
+    );
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObject(planet);
+    if (intersects.length > 0) {
+      const point = intersects[0].point;
+      const coords = vector3ToLatLon(point, PLANET_RADIUS_VISUAL);
+      if (latRef.current) latRef.current.value = coords.lat.toFixed(4);
+      if (lonRef.current) lonRef.current.value = coords.lon.toFixed(4);
+    }
+  }
+// ...existing code...
 
     function applyGravity(meteor, delta) {
       const dir = planet.position.clone().sub(meteor.mesh.position).normalize();
@@ -378,8 +405,10 @@ export default function Simulation3D({ latitude, longitude }) {
       renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
     }
     window.addEventListener("resize", handleResize);
+    canvas.addEventListener("click", handleCanvasClick);
     return () => {
       window.removeEventListener("resize", handleResize);
+      canvas.removeEventListener("click", handleCanvasClick);
       renderer.dispose();
     };
   }, []);
