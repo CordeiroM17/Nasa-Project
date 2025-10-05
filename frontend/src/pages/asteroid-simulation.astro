@@ -7,7 +7,7 @@ let asteroid: any[] = [];
 
 async function getAsteroids() {
     try {
-        const res = await fetch(`${API_URL}/meteors`);
+        const res = await fetch(`${API_URL}/api/meteors`);
         const asteroids = await res.json();
         
         if (res && asteroids.code === 200) {
@@ -29,21 +29,21 @@ await getAsteroids();
     <section id="simulation" class="w-full flex items-start h-[80vh]">
 
         <!-- Menú lateral, abierto por defecto -->
-        <div id="sideMenuParameters" class="hidden max-w-md fixed md:static flex w-full h-full flex-col justify-between text-center gap-8 p-8 border-r border-black bg-[#F7F4ED] top-0 left-0 z-50 transform translate-x-0 transition-transform duration-300">
+        <div id="sideMenuParameters" class="max-w-md fixed flex w-full h-full flex-col justify-between text-center gap-8 p-8 border-r border-black bg-primary-600 top-0 left-0 z-50 transform -translate-x-full transition-transform duration-300 text-primary-100">
             <!-- AGREGAR SELECT DE ASTEROIDES -->
             <div class="flex gap-4 items-center">
-                <div id="closeMenuParametersBtn" class="h-full flex items-center p-2 block cursor-pointer top-4 z-50 bg-[#F7F4ED] border border-black rounded-lg shadow-lg">
+                <div id="closeMenuParametersBtn" class="h-full flex items-center p-2 block cursor-pointer top-4 z-50 bg-primary-600 border border-black rounded-lg shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>
-                <button id="showAsteroidMenuBtn" class="bg-primary-100 w-full h-full rounded-lg text-primary-200 font-bold hover:bg-primary-400 cursor-pointer uppercase">Asteroids</button>
+                <button id="showAsteroidMenuBtn" class="bg-primary-200 w-full h-full rounded-lg text-primary-100 font-bold hover:bg-primary-400 cursor-pointer uppercase" data-section="simulation-params" data-value="asteroid-btn">Asteroids</button>
                 <a href="/asteroid-simulation-3d" class=" h-full bg-primary-200 border border-black rounded-lg p-4">3D</a>
             </div>
 
             <!-- Menú de selección de asteroides, oculto por defecto -->
-            <div id="asteroidMenu" class="hidden max-w-md absolute w-full h-full flex flex-col justify-between text-center gap-8 p-8 bg-[#F7F4ED] top-0 left-0 z-50">
-                <div id="closeAsteroidMenuBtn" class="p-2 w-[50px] h-[50px] block cursor-pointer top-4 z-50 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg">
+            <div id="asteroidMenu" class="hidden max-w-md absolute w-full h-full flex flex-col justify-between text-center gap-8 p-8 bg-primary-600 top-0 left-0 z-50">
+                <div id="closeAsteroidMenuBtn" class="p-2 w-[50px] h-[50px] block cursor-pointer top-4 z-50 bg-primary-600 border border-black rounded-r-lg shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -61,64 +61,68 @@ await getAsteroids();
                     ))}
                 </div>
 
-                <div class="flex justify-between items-center mt-4">
-                    <button 
-                    
-                    class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
-                    >
-                    ⬅ Anterior
-                    </button>
-                    <button 
-                     
-                    class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
-                    >
-                    Siguiente ➡
-                    </button>
-                </div>
+
             </div>
 
             <!-- Asteroid parameters -->
-            <div class="rounded-lg border border-black h-full font-bold">
-                <div class="flex flex-col gap-2 text-start p-2">
-                    <label for="asteroid-size">Asteroid Size: 
-                    <span id="size-value">50</span> m
+            <div class="rounded-lg border border-black h-full font-bold text-gray-100">
+                <div class="flex flex-col gap-2 text-start p-2 text-gray-100">
+                    <label for="asteroid-size">
+                        <span data-section="simulation-params" data-value="asteroid-size">Asteroid Size:</span> 
+                        <span id="size-value">50</span> m
                     </label>
                     <input type="range" id="asteroid-size" min="1" max="15000" value="50" />
                 </div>
 
-                <div class="flex flex-col gap-2 text-start p-2">
-                    <label for="asteroid-speed">Asteroid Speed: 
-                    <span id="speed-value">10</span> km/s
+                <div class="flex flex-col gap-2 text-start p-2 text-gray-100">
+                    <label for="asteroid-speed"> 
+                        <span data-section="simulation-params" data-value="asteroid-speed">Asteroid Speed:</span>
+                        <span id="speed-value">10</span> km/s
                     </label>
                     <input type="range" id="asteroid-speed" min="1" max="80" value="10" />
                 </div>
 
-                <div class="flex flex-col gap-2 text-start p-2">
-                    <label for="asteroid-impact-angle">Asteroid Impact Angle: 
-                    <span id="angle-value">45</span>°
+                <div class="flex flex-col gap-2 text-start p-2 text-gray-100">
+                    <label for="asteroid-impact-angle">
+                        <span data-section="simulation-params" data-value="asteroid-angle">Asteroid Impact Angle:</span> 
+                        <span id="angle-value">45</span>°
                     </label>
                     <input type="range" id="asteroid-impact-angle" min="0" max="90" value="45" />
                 </div>
 
                 <div class="flex flex-col gap-2 text-start p-2">
-                    <label for="asteroid-density">Asteroid density: 
-                    <select class="asteroid-density">
-                        <option value="1500" data-section="" data-value="">Carbonaceous</option>
-                        <option value="2700" data-section="" data-value="">Stony</option>
-                        <option value="7800" data-section="" data-value="">Metallic</option>
+                    <label for="asteroid-density">
+                        <span data-section="simulation-params" data-value="asteroid-density">Asteroid Density:</span>
+                    </label>
+                    <select class="asteroid-density bg-primary-600 text-gray-100">
+                        <option class="bg-primary-600" value="1500" data-section="simulation-params" data-value="carbonaceous">Carbonaceous</option>
+                        <option class="bg-primary-600" value="2700" data-section="simulation-params" data-value="stony">Stony</option>
+                        <option class="bg-primary-600" value="7800" data-section="simulation-params" data-value="metallic">Metallic</option>
                     </select>
                 </div>
             </div>
+            <div id="simulation-results" class="hidden p-4 rounded-lg border border-black shadow-lg text-left text-gray-100">
+                <h3 class="font-bold text-lg">Impact Simulation Results</h3>
+                <div id="results-content"></div>
+            </div>
+
+            <div id="mitigation-measures" class="hidden p-4 rounded-lg border border-black shadow-lg mt-4 max-h-[300px] overflow-y-auto text-left text-gray-100">
+                <h3 class="font-bold text-lg">Mitigation Measures</h3>
+                <div id="mitigation-content"></div>
+            </div>
+
+
+
 
             <!-- Title section -->
             <div class="flex flex-col gap-2">
-                <button class="w-full rounded-lg border border-black" id="start-simulation-btn">Start Simulation</button>
-                <button class="w-full rounded-lg border border-black">Reset</button>
+                <button class="w-full rounded-lg bg-primary-200 text-primary-100" id="start-simulation-btn" data-section="simulation-params" data-value="start-btn">Start Simulation</button>
+                <button class="w-full rounded-lg bg-primary-100" data-section="simulation-params" data-value="reset-btn">Reset</button>
             </div>
         </div>
 
         <button id="openMenuParametersBtn"
-            class="p-2 block cursor-pointer absolute top-1/2 left-6 z-20 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg"
+            class="p-2 block cursor-pointer absolute top-1/2 left-6 z-20 bg-primary-600 border border-black rounded-r-lg shadow-lg"
             style="transform: translateY(-50%) translateX(-50%);">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -126,7 +130,7 @@ await getAsteroids();
         </button>
 
         <div class="w-full h-full">
-            <a href="/asteroid-simulation-3d" class="absolute right-5 top-24 z-30 bg-primary-200 border border-black rounded-lg p-4">3D</a>
+            <a href="/asteroid-simulation-3d" class="absolute right-5 top-24 z-20 bg-primary-200 border border-black rounded-lg p-4">3D</a>
             <Map/>
         </div>
     </section>
@@ -140,22 +144,17 @@ await getAsteroids();
         const closeBtn = document.getElementById("closeMenuParametersBtn");
         const sideMenu = document.getElementById("sideMenuParameters");
 
-        if (openBtn && closeBtn && sideMenu ) {
-            // Menú abierto por defecto
-            sideMenu.classList.remove("-translate-x-full");
-            sideMenu.classList.add("translate-x-0");
-           
-
-            openBtn.onclick = () => {
+        if (openBtn && closeBtn && sideMenu) {
+            openBtn.addEventListener("click", () => {
                 sideMenu.classList.remove("-translate-x-full");
                 sideMenu.classList.add("translate-x-0");
-                sideMenu.classList.remove("hidden");
-            };
-            closeBtn.onclick = () => {
+            })
+
+            closeBtn.addEventListener("click", () => {
                 sideMenu.classList.remove("translate-x-0");
                 sideMenu.classList.add("-translate-x-full");
-                sideMenu.classList.add("hidden");
-            };
+            })
+
         }
     }
     
@@ -189,56 +188,90 @@ await getAsteroids();
         }
     }
 
-    async function postStartSimulation() {
-        const sizeElem = document.getElementById("size-value");
-        const speedElem = document.getElementById("speed-value");
-        const angleElem = document.getElementById("angle-value");
-        const densitySelect = document.querySelector(".asteroid-density");
-        const densityValue = densitySelect ? Number(densitySelect.value) : null;
 
-        if (!sizeElem || !speedElem || !angleElem || !densityValue) {
-            // pop up
+async function postStartSimulation() {
+    const sizeElem = document.getElementById("size-value");
+    const speedElem = document.getElementById("speed-value");
+    const angleElem = document.getElementById("angle-value");
+    const densitySelect = document.querySelector(".asteroid-density");
+    const densityValue = densitySelect ? Number(densitySelect.value) : null;
 
-            return;
+    if (!sizeElem || !speedElem || !angleElem || !densityValue) return;
+
+    const payload = {
+        size: Number(sizeElem.innerText),
+        speed: Number(speedElem.innerText),
+        angle: Number(angleElem.innerText),
+        density: densityValue,
+        latitude: window.selectedLat,
+        longitude: window.selectedLng
+    };
+
+    try {
+        const res = await fetch(`${API_URL}/simulate-impact`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        const result = await res.json(); // <-- result is defined here
+
+        if (!res.ok) throw new Error(result.message || "Simulation failed");
+
+        // Update simulation results
+
+        const resultsDiv = document.getElementById("simulation-results");
+        const resultsContent = document.getElementById("results-content");
+        const mitigationDiv = document.getElementById("mitigation-measures");
+        const mitigationContent = document.getElementById("mitigation-content");
+
+        if (resultsDiv && resultsContent) {
+            resultsContent.innerHTML = `
+                <p><strong>Crater Final Diameter:</strong> ${result.crater.final_diameter_m.toFixed(2)} meters</p>
+                <p><strong>Energy Released:</strong> ${result.energy.megatons_tnt.toFixed(2)} Megatons</p>
+                <p><strong>Richter Scale Magnitude:</strong> ${result.earthquake.magnitude.toFixed(2)}</p>
+            `;
+            resultsDiv.classList.remove("hidden");
         }
 
-        const sizeValue = sizeElem.innerText;
-        const speedValue = speedElem.innerText;
-        const angleValue = angleElem.innerText;
+        // Draw impact circle
+        window.drawCircle(result.input.latitude, result.input.longitude, result.crater.transient_diameter_m);
 
-        // Obtener lat/lon seleccionados en el mapa
-        const lat = window.selectedLat;
-        const lng = window.selectedLng;
+        // Show mitigation measures
 
-        if (lat == null || lng == null) {
-            return;
-        }
+        if (mitigationDiv && mitigationContent && result.mitigation_measures) {
+            mitigationContent.innerHTML = ""; // clear previous content
 
-        const payload = {
-            size: Number(sizeValue),
-            speed: Number(speedValue),
-            angle: Number(angleValue),
-            density: densityValue,
-            latitude: lat,
-            longitude: lng
-        };
+            result.mitigation_measures.forEach((phase) => {
+                const phaseDiv = document.createElement("div");
+                phaseDiv.classList.add("mitigation-phase", "mb-4");
 
-        try {
-            console.log("Iniciando simulación con payload:", payload);
-            const res = await fetch(`${API_URL}/simulate-impact`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
+                const phaseTitle = document.createElement("h4");
+                phaseTitle.classList.add("font-semibold", "text-md");
+                phaseTitle.innerText = phase.phase;
+                phaseDiv.appendChild(phaseTitle);
+
+                const ul = document.createElement("ul");
+                ul.classList.add("list-disc", "pl-6", "mt-2");
+                phase.actions.forEach((action) => {
+                    const li = document.createElement("li");
+                    li.innerText = action;
+                    ul.appendChild(li);
+                });
+
+                phaseDiv.appendChild(ul);
+                mitigationContent.appendChild(phaseDiv);
             });
 
-            const result = await res.json();
-            // Maneja la respuesta aquí (mostrar resultado, alerta, etc.)
-            console.log(result);
-        } catch (error) {
-            alert("Error al iniciar la simulación");
-            console.error(error);
+            mitigationDiv.classList.remove("hidden");
         }
+
+    } catch (error) {
+        alert(`Error al iniciar la simulación: ${error.message}`);
+        console.error(error);
+    }
 }
+
 
     function initStartSimulationButton() {
         const startBtn = document.getElementById("start-simulation-btn");
@@ -308,9 +341,11 @@ await getAsteroids();
 
         if (btn && menu) {
             btn.addEventListener("click", () => {
+                console.log("hi")
                 menu.classList.toggle("hidden");
             });
         }
+        
         if (closeBtn && menu) {
             closeBtn.addEventListener("click", () => {
                 menu.classList.add("hidden");
@@ -318,17 +353,12 @@ await getAsteroids();
         }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        initMenu()
+    function initializePage() {
+        initMenu();
         initAsteroid2Dparams();
         initAsteroidMenu();
         initStartSimulationButton();
-    });   
+    }
 
-    document.addEventListener("astro:after-swap", () => {
-        initMenu()
-        initAsteroid2Dparams();
-        initAsteroidMenu();
-        initStartSimulationButton();
-    });
+    document.addEventListener("astro:page-load", initializePage);
 </script>
