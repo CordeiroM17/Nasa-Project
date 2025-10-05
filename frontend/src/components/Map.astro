@@ -33,18 +33,26 @@
                 .bindPopup(`Impact zone`)
                 .openPopup();
             markers.push(newMarker);
+
         });
     }
 
-    function drawCircle(latitude, longitude, diameter_m) {
-        const map = document.getElementById('map')
+    function drawCircle(latitude, longitude, radius_m) {
+        if (!mapInstance) return;
 
-        let circle = L.circle([latitude, longitude], {
+        if (window.impactCircle) {
+            mapInstance.removeLayer(window.impactCircle);
+        }
+
+        const circle = L.circle([latitude, longitude], {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
-            radius: diameter_m
-        }).addTo(map);
+            radius: radius_m
+        }).addTo(mapInstance);
+
+        // Guardar la referencia global si quieres eliminarlo más tarde
+        window.impactCircle = circle;
     }
 
     // astro:page-load runs on initial page load and after every client-side navigation
