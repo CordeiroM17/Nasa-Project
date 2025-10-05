@@ -124,7 +124,8 @@ await getAsteroids();
 </MainLayout>
 
 <script type="module">
-    import { API_URL } from 'astro:env/client';
+
+     const API_URL = "http://127.0.0.1:5000/api";
 
     function initMenu() {
         const openBtn = document.getElementById("openMenuParametersBtn");
@@ -219,13 +220,15 @@ await getAsteroids();
             });
 
             const result = await res.json();
+
+            window.drawCircle(result.input.latitude, result.input.longitude, result.crater.transient_diameter_m)
             // Maneja la respuesta aquí (mostrar resultado, alerta, etc.)
             console.log(result);
         } catch (error) {
             alert("Error al iniciar la simulación");
             console.error(error);
         }
-}
+    }
 
     function initStartSimulationButton() {
         const startBtn = document.getElementById("start-simulation-btn");

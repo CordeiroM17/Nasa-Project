@@ -37,22 +37,20 @@
         });
     }
 
-    function drawCircle(latitude, longitude, radius_m) {
+    window.drawCircle = function (latitude, longitude, radius_m) {
         if (!mapInstance) return;
 
         if (window.impactCircle) {
             mapInstance.removeLayer(window.impactCircle);
         }
 
-        const circle = L.circle([latitude, longitude], {
+        window.impactCircle = L.circle([latitude, longitude], {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
-            radius: radius_m
+            radius: radius_m // en metros
         }).addTo(mapInstance);
-
-        window.impactCircle = circle;
-    }
+    };
 
     // astro:page-load runs on initial page load and after every client-side navigation
     document.addEventListener("astro:page-load", initMap);
