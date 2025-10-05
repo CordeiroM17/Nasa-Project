@@ -37,7 +37,7 @@ await getAsteroids();
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>
-                <button id="showAsteroidMenuBtn" class="bg-primary-100 w-full h-full rounded-lg text-primary-200 font-bold hover:bg-primary-400 cursor-pointer uppercase">Asteroids</button>
+                <button id="showAsteroidMenuBtn" class="bg-primary-100 w-full h-full rounded-lg text-primary-200 font-bold hover:bg-primary-400 cursor-pointer uppercase" data-section="simulation-params" data-value="asteroid-btn">Asteroids</button>
                 <a href="/asteroid-simulation-3d" class=" h-full bg-primary-200 border border-black rounded-lg p-4">3D</a>
             </div>
 
@@ -67,40 +67,44 @@ await getAsteroids();
             <!-- Asteroid parameters -->
             <div class="rounded-lg border border-black h-full font-bold">
                 <div class="flex flex-col gap-2 text-start p-2">
-                    <label for="asteroid-size">Asteroid Size: 
-                    <span id="size-value">50</span> m
+                    <label for="asteroid-size">
+                        <span data-section="simulation-params" data-value="asteroid-size">Asteroid Size:</span> 
+                        <span id="size-value">50</span> m
                     </label>
                     <input type="range" id="asteroid-size" min="1" max="15000" value="50" />
                 </div>
 
                 <div class="flex flex-col gap-2 text-start p-2">
-                    <label for="asteroid-speed">Asteroid Speed: 
-                    <span id="speed-value">10</span> km/s
+                    <label for="asteroid-speed"> 
+                        <span data-section="simulation-params" data-value="asteroid-speed">Asteroid Speed:</span>
+                        <span id="speed-value">10</span> km/s
                     </label>
                     <input type="range" id="asteroid-speed" min="1" max="80" value="10" />
                 </div>
 
                 <div class="flex flex-col gap-2 text-start p-2">
-                    <label for="asteroid-impact-angle">Asteroid Impact Angle: 
-                    <span id="angle-value">45</span>°
+                    <label for="asteroid-impact-angle">
+                        <span data-section="simulation-params" data-value="asteroid-angle">Asteroid Impact Angle:</span> 
+                        <span id="angle-value">45</span>°
                     </label>
                     <input type="range" id="asteroid-impact-angle" min="0" max="90" value="45" />
                 </div>
 
                 <div class="flex flex-col gap-2 text-start p-2">
-                    <label for="asteroid-density">Asteroid density: 
+                    <label for="asteroid-density">
+                    <span  data-section="simulation-params" data-value="asteroid-density">Asteroid density:</span>
                     <select class="asteroid-density">
-                        <option value="1500" data-section="" data-value="">Carbonaceous</option>
-                        <option value="2700" data-section="" data-value="">Stony</option>
-                        <option value="7800" data-section="" data-value="">Metallic</option>
+                        <option value="1500" data-section="simulation-params" data-value="carbonaceous">Carbonaceous</option>
+                        <option value="2700" data-section="simulation-params" data-value="stony">Stony</option>
+                        <option value="7800" data-section="simulation-params" data-value="metallic">Metallic</option>
                     </select>
                 </div>
             </div>
 
             <!-- Title section -->
             <div class="flex flex-col gap-2">
-                <button class="w-full rounded-lg border border-black" id="start-simulation-btn">Start Simulation</button>
-                <button class="w-full rounded-lg border border-black">Reset</button>
+                <button class="w-full rounded-lg border border-black" id="start-simulation-btn" data-section="simulation-params" data-value="start-btn">Start Simulation</button>
+                <button class="w-full rounded-lg border border-black" data-section="simulation-params" data-value="reset-btn">Reset</button>
             </div>
         </div>
 

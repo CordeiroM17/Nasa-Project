@@ -4,8 +4,7 @@
         "challenge": "Desafio",
         "team": "Equipo",
         "language-es": "Español",
-        "language-en": "Inglés",
-        "language-ru": "Ruso"
+        "language-en": "Inglés"
     },
     "home": {
         "title": "HACKATHON: NASA SPACE APP",
@@ -48,6 +47,18 @@
         "dev1": "Cordeiro Mariano",
         "dev2": "Blanco Facundo",
         "dev3": "Medina Gabriel"
+    },
+    "simulation-params": {
+        "asteroid-btn": "Asteroides",
+        "asteroid-size": "Asteroide Diámetro:",
+        "asteroid-speed": "Asteroide Velocidad:",
+        "asteroid-angle": "Asteroide Angulo De Impacto:",
+        "asteroid-density": "Asteroide Densidad:",
+        "carbonaceous": "Carbonáceos",
+        "stony": "Rocosos",
+        "metallic": "Metálicos",
+        "start-btn": "Empezar Simulación",
+        "reset-btn": "Reiniciar"
     },
     "footer": {
         "help": "Ayuda",
