@@ -144,8 +144,10 @@ def calculate_full_impact(payload):
     target_type = payload.get("target_type", "auto")
     bathy = payload.get("bathymetry_file", None)
     E_j, mass_kg = kinetic_energy_j(diameter_km, density_kg_m3, velocity_kms)
-    E_gt = energy_to_gigatons(E_j)
-    E_megatons = E_j / 4.184e15
+    efficiency_factor = 0.2  # 20% de eficiencia energética
+    E_j_effective = E_j * efficiency_factor
+    E_gt = energy_to_gigatons(E_j_effective)
+    E_megatons = E_j_effective / 4.184e15
     airburst, burst_alt_m = estimate_breakup_altitude(diameter_km, density_kg_m3, velocity_kms, strength_pa=1e7)
     if target_type == "land":
         is_ocean = False
