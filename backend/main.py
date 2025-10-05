@@ -9,7 +9,7 @@ import os
 
 app = Flask(__name__)
 api = Api(app)
-frontend_url = os.getenv("FRONT_URL")
+frontend_url = ("https://nasa-project-front-gold.vercel.app")
 CORS(app, resources={r"/api/*": {"origins": frontend_url}})
 
 app.register_blueprint(meteors_bp)
