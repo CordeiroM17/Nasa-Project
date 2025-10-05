@@ -2,7 +2,7 @@
 let currentPath = Astro.url.pathname;
 ---
 
-<header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-[#0A0E17]/0 backdrop-blur-none shadow-none">
+<header id="navbar" class=`fixed top-0 w-full z-50 transition-all duration-300 bg-[#0A0E17]/0 backdrop-blur-none shadow-none ${currentPath === "/asteroid-simulation" ? "bg-primary-600" : ""}`>
   <div class="max-w-6xl h-20 mx-auto flex justify-between items-center gap-8 px-8">
 
     <img src="/logo2.png" alt="Logo" class="h-full" />
@@ -19,8 +19,8 @@ let currentPath = Astro.url.pathname;
         <a href="/" class={`px-2 py-2 h-8 flex items-center ${currentPath === "/" ? "border-b-2 border-white" : "hover:border-b-2 hover:border-white"}`}>
           <span data-section="navbar" data-value="home">Home</span>
         </a>
-        <a href="/asteroid-simulation" class={`px-2 py-2 h-8 flex items-center ${currentPath === "/simulator" ? "border-b-2 border-white" : "hover:border-b-2 hover:border-white"}`}>
-          <span data-section="navbar" data-value="challenge">Challenge</span>
+        <a href="/asteroid-simulation" class={`px-2 py-2 h-8 flex items-center ${currentPath === "/asteroid-simulation" ? "border-b-2 border-white" : "hover:border-b-2 hover:border-white"}`}>
+          <span data-section="navbar" data-value="simulator">Simulator</span>
         </a>
         <a href="/team" class={`px-2 py-2 h-8 flex items-center ${currentPath === "/team" ? "border-b-2 border-white" : "hover:border-b-2 hover:border-white"}`}>
           <span data-section="navbar" data-value="team">Team</span>

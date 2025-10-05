@@ -29,21 +29,21 @@ await getAsteroids();
     <section id="simulation" class="w-full flex items-start h-[80vh]">
 
         <!-- Menú lateral, abierto por defecto -->
-        <div id="sideMenuParameters" class="max-w-md fixed flex w-full h-full flex-col justify-between text-center gap-8 p-8 border-r border-black bg-[#F7F4ED] top-0 left-0 z-50 transform -translate-x-full transition-transform duration-300">
+        <div id="sideMenuParameters" class="max-w-md fixed flex w-full h-full flex-col justify-between text-center gap-8 p-8 border-r border-black bg-primary-600 top-0 left-0 z-50 transform -translate-x-full transition-transform duration-300">
             <!-- AGREGAR SELECT DE ASTEROIDES -->
             <div class="flex gap-4 items-center">
-                <div id="closeMenuParametersBtn" class="h-full flex items-center p-2 block cursor-pointer top-4 z-50 bg-[#F7F4ED] border border-black rounded-lg shadow-lg">
+                <div id="closeMenuParametersBtn" class="h-full flex items-center p-2 block cursor-pointer top-4 z-50 bg-primary-600 border border-black rounded-lg shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>
-                <button id="showAsteroidMenuBtn" class="bg-primary-100 w-full h-full rounded-lg text-primary-200 font-bold hover:bg-primary-400 cursor-pointer uppercase" data-section="simulation-params" data-value="asteroid-btn">Asteroids</button>
+                <button id="showAsteroidMenuBtn" class="bg-primary-200 w-full h-full rounded-lg text-primary-100 font-bold hover:bg-primary-400 cursor-pointer uppercase" data-section="simulation-params" data-value="asteroid-btn">Asteroids</button>
                 <a href="/asteroid-simulation-3d" class=" h-full bg-primary-200 border border-black rounded-lg p-4">3D</a>
             </div>
 
             <!-- Menú de selección de asteroides, oculto por defecto -->
-            <div id="asteroidMenu" class="hidden max-w-md absolute w-full h-full flex flex-col justify-between text-center gap-8 p-8 bg-[#F7F4ED] top-0 left-0 z-50">
-                <div id="closeAsteroidMenuBtn" class="p-2 w-[50px] h-[50px] block cursor-pointer top-4 z-50 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg">
+            <div id="asteroidMenu" class="hidden max-w-md absolute w-full h-full flex flex-col justify-between text-center gap-8 p-8 bg-primary-600 top-0 left-0 z-50">
+                <div id="closeAsteroidMenuBtn" class="p-2 w-[50px] h-[50px] block cursor-pointer top-4 z-50 bg-primary-600 border border-black rounded-r-lg shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -65,7 +65,7 @@ await getAsteroids();
             </div>
 
             <!-- Asteroid parameters -->
-            <div class="rounded-lg border border-black h-full font-bold">
+            <div class="rounded-lg border border-black h-full font-bold text-primary-100">
                 <div class="flex flex-col gap-2 text-start p-2">
                     <label for="asteroid-size">
                         <span data-section="simulation-params" data-value="asteroid-size">Asteroid Size:</span> 
@@ -94,22 +94,22 @@ await getAsteroids();
                     <label for="asteroid-density">
                     <span  data-section="simulation-params" data-value="asteroid-density">Asteroid density:</span>
                     <select class="asteroid-density">
-                        <option value="1500" data-section="simulation-params" data-value="carbonaceous">Carbonaceous</option>
-                        <option value="2700" data-section="simulation-params" data-value="stony">Stony</option>
-                        <option value="7800" data-section="simulation-params" data-value="metallic">Metallic</option>
+                        <option class="bg-primary-600" value="1500" data-section="simulation-params" data-value="carbonaceous">Carbonaceous</option>
+                        <option class="bg-primary-600" value="2700" data-section="simulation-params" data-value="stony">Stony</option>
+                        <option class="bg-primary-600" value="7800" data-section="simulation-params" data-value="metallic">Metallic</option>
                     </select>
                 </div>
             </div>
 
             <!-- Title section -->
             <div class="flex flex-col gap-2">
-                <button class="w-full rounded-lg border border-black" id="start-simulation-btn" data-section="simulation-params" data-value="start-btn">Start Simulation</button>
-                <button class="w-full rounded-lg border border-black" data-section="simulation-params" data-value="reset-btn">Reset</button>
+                <button class="w-full rounded-lg bg-primary-200 text-primary-100" id="start-simulation-btn" data-section="simulation-params" data-value="start-btn">Start Simulation</button>
+                <button class="w-full rounded-lg bg-primary-100" data-section="simulation-params" data-value="reset-btn">Reset</button>
             </div>
         </div>
 
         <button id="openMenuParametersBtn"
-            class="p-2 block cursor-pointer absolute top-1/2 left-6 z-20 bg-[#F7F4ED] border border-black rounded-r-lg shadow-lg"
+            class="p-2 block cursor-pointer absolute top-1/2 left-6 z-20 bg-primary-600 border border-black rounded-r-lg shadow-lg"
             style="transform: translateY(-50%) translateX(-50%);">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
