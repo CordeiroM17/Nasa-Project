@@ -27,7 +27,7 @@ def format_impact_result(raw):
         },
         "crater": {
             "transient_diameter_m": raw.get("Dtc_m"),
-            "final_diameter_m": raw.get("Dfinal_m"),
+            "final_diameter_m": raw.get("Dfinal_km", 0) * 1000,
             "transient_depth_m": raw.get("depth_trans_m"),
             "transient_volume_m3": raw.get("transient_vol_m3") or raw.get("transient_volume_m3"),
             "melt_volume_m3": raw.get("melt_vol_m3")

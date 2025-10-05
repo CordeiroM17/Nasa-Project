@@ -100,6 +100,10 @@ await getAsteroids();
                     </select>
                 </div>
             </div>
+            <div id="simulation-results" class="hidden p-4 rounded-lg border border-black shadow-lg">
+                <h3 class="font-bold text-lg">Impact Simulation Results</h3>
+                <div id="results-content"></div>
+            </div>
 
             <!-- Title section -->
             <div class="flex flex-col gap-2">
@@ -221,11 +225,29 @@ await getAsteroids();
 
             const result = await res.json();
 
+            if (!res.ok) {
+                throw new Error(result.message || "Simulation failed");
+            }
+
+            if (result) {
+                const resultsDiv = document.getElementById("simulation-results");
+                const resultsContent = document.getElementById("results-content");
+
+                if (resultsDiv && resultsContent) {
+                    resultsContent.innerHTML = `
+                        <p><strong>Crater Final Diameter:</strong> ${result.crater.final_diameter_m.toFixed(2)} meters</p>
+                        <p><strong>Energy Released:</strong> ${result.energy.megatons_tnt.toFixed(2)} Megatons</p>
+                        <p><strong>Richter Scale Magnitude:</strong> ${result.earthquake.magnitude.toFixed(2)}</p>
+                    `;
+                    resultsDiv.classList.remove("hidden");
+                }
+            }
+
             window.drawCircle(result.input.latitude, result.input.longitude, result.crater.transient_diameter_m)
             // Maneja la respuesta aquí (mostrar resultado, alerta, etc.)
             console.log(result);
         } catch (error) {
-            alert("Error al iniciar la simulación");
+            alert(`Error al iniciar la simulación: ${error.message}`);
             console.error(error);
         }
     }
