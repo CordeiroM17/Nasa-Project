@@ -36,6 +36,17 @@
         });
     }
 
+    function drawCircle(latitude, longitude, diameter_m) {
+        const map = document.getElementById('map')
+
+        let circle = L.circle([latitude, longitude], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: diameter_m
+        }).addTo(map);
+    }
+
     // astro:page-load runs on initial page load and after every client-side navigation
     document.addEventListener("astro:page-load", initMap);
 </script>
