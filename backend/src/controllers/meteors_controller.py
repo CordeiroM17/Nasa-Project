@@ -4,6 +4,7 @@ from src.models.meteors_model import format_response
 from src.services.meteors_service import get_earth_meteors
 from src.models.impact_model import format_impact_result
 from src.services.impact_service import calculate_full_impact
+import traceback
 
 meteors_bp = Blueprint('meteors', __name__, url_prefix='/api')
 
@@ -26,22 +27,26 @@ def meteors():
     
     return jsonify(result), status_code
 
-@meteors_bp.route('/simulate-impact', methods=['POST', 'OPTIONS'])
+@meteors_bp.route('/simulate-impact', methods=['POST'])
 def impact():
-    data = request.get_json()
-    print("Datos recibidos en /api/simulate-impact:", data)
+    try:
+        data = request.get_json()
+        print("Datos recibidos en /api/simulate-impact:", data)
 
-    payload = {  
-        "diameter_m": float(data.get("size", 0)),
-        "density_kg_m3": float(data.get("density", 3000.0)),
-        "velocity_kms": float(data.get("speed", 0)),
-        "impact_angle_deg": float(data.get("angle", 45)),
-        "latitude": float(data.get("latitude", 0)),
-        "longitude": float(data.get("longitude", 0)),
-        "target_type": "auto"
-    }
+        payload = {  
+            "diameter_km": float(data.get("size", 0)) / 1000.0,
+            "density_kg_m3": float(data.get("density", 3000.0)),
+            "velocity_kms": float(data.get("speed", 0)),
+            "impact_angle_deg": float(data.get("angle", 45)),
+            "latitude": float(data.get("latitude", 0)),
+            "longitude": float(data.get("longitude", 0)),
+            "target_type": "auto"
+        }
 
-    raw_result = calculate_full_impact(payload)
-    formatted = format_impact_result(raw_result)
-    return jsonify(formatted), 200
-
+        raw_result = calculate_full_impact(payload)
+        formatted = format_impact_result(raw_result)
+        return jsonify(formatted), 200
+    except Exception as e:
+        print("Error in /api/simulate-impact:", e)
+        traceback.print_exc()
+        return jsonify({"error": str(e), "message": "An error occurred during the simulation."}), 500
