@@ -263,7 +263,7 @@ export default function KeplerSimulation() {
         id="ui"
         style={{
           position: 'absolute',
-          top: 24,
+          top: 112,
           left: 24,
           background: 'rgba(30, 41, 59, 0.92)',
           color: 'white',

@@ -421,8 +421,18 @@ export default function Simulation3D({ latitude, longitude }) {
   }
 
   return (
-    <div style={{ width: "100vw", height: "80vh", position: "relative", margin: 0, padding: 0, boxSizing: 'border-box' }}>
-      <div style={{ position: "absolute", top: 24, right: 32, zIndex: 20, display: "flex", gap: 12 }}>
+  <div style={{ width: "100vw", height: "100vh", position: "relative", margin: 0, padding: 0, boxSizing: 'border-box' }}>
+      <div
+        style={{
+          position: "absolute",
+          top: 112,
+          right: 32,
+          zIndex: 20,
+          display: "flex",
+          gap: 12,
+          flexWrap: "wrap",
+        }}
+      >
         <button
           style={{
             background: "var(--color-primary-200, #efefef)",
@@ -431,11 +441,15 @@ export default function Simulation3D({ latitude, longitude }) {
             borderRadius: 12,
             padding: "12px 24px",
             fontWeight: 700,
-            fontSize: 16,
+            fontSize: "clamp(14px, 2vw, 16px)",
             boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
             cursor: "pointer",
+            minWidth: 100,
+            width: "clamp(100px, 40vw, 160px)",
+            marginBottom: 8,
           }}
-          onClick={() => { window.location.href = "/kepler-orbit"; }}>
+          onClick={() => { window.location.href = "/kepler-orbit"; }}
+        >
           Kepler
         </button>
         <button
@@ -446,11 +460,15 @@ export default function Simulation3D({ latitude, longitude }) {
             borderRadius: 12,
             padding: "12px 24px",
             fontWeight: 700,
-            fontSize: 16,
+            fontSize: "clamp(14px, 2vw, 16px)",
             boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
             cursor: "pointer",
+            minWidth: 100,
+            width: "clamp(100px, 40vw, 160px)",
+            marginBottom: 8,
           }}
-          onClick={() => { window.location.href = "/asteroid-simulation"; }}>
+          onClick={() => { window.location.href = "/asteroid-simulation"; }}
+        >
           2D
         </button>
       </div>
@@ -459,7 +477,7 @@ export default function Simulation3D({ latitude, longitude }) {
         id="ui"
         style={{
           position: 'absolute',
-          top: 24,
+          top: 112,
           left: 24,
           background: 'rgba(30, 41, 59, 0.92)',
           color: 'white',
@@ -505,7 +523,7 @@ export default function Simulation3D({ latitude, longitude }) {
       <canvas
         ref={canvasRef}
         id="three-canvas"
-        style={{ position: "absolute", top: 0, left: 0, width: "100vw", height: "80vh", zIndex: 0, display: "block", margin: 0, padding: 0, boxSizing: 'border-box' }}
+        style={{ position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 0, display: "block", margin: 0, padding: 0, boxSizing: 'border-box' }}
       ></canvas>
     </div>
   );
