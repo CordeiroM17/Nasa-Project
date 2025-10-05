@@ -7,13 +7,6 @@ A web-based interactive simulation tool to explore **asteroid impacts on Earth**
 
 ## 🌍 Main Goal
 
-<<<<<<< HEAD
-```.cmd
-cd frontend
-npm install
-npm run dev
-```
-=======
 The main goal of this project is to provide an **educational and research-friendly platform** for exploring the potential effects of asteroid impacts and ways to mitigate the damage. Users can interactively select asteroids, adjust physical parameters, and simulate impacts to observe their potential consequences.
 
 ----------
@@ -90,7 +83,6 @@ The main goal of this project is to provide an **educational and research-friend
 -   **HTML / CSS** – Layout and responsive design.
     
 -   **API Integration** – Fetches asteroid data and sends impact simulations.
->>>>>>> home-styles
 
 
 ## 📈 Future Improvements
@@ -104,15 +96,3 @@ The main goal of this project is to provide an **educational and research-friend
 -   Integration with real NASA asteroid datasets.
 
 
-<<<<<<< HEAD
-Proceder a instalar las dependencias e iniciar el frontend
-
-```.cmd
-cd backend
-python -m venv venv
-./venv/scripts/activate
-pip install -r requirements.txt
-python main.py
-```
-=======
->>>>>>> home-styles
