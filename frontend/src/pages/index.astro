@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import '../styles/global.css';
 
 ---
 
@@ -7,9 +8,14 @@ import MainLayout from '../layouts/MainLayout.astro';
 	
 	<section id="home" class="mt-16 max-w-6xl w-full h-full flex flex-col justify-center items-center md:justify-between md:flex-row md:min-h-[80vh]">
 		<div class="text-primary-100 max-w-xl flex flex-col text-center justify-center gap-8 px-8 md:text-start md:justify-start" transition:name="title-section">
-			<h1 class="font-bold text-4xl xs:text-5xl md:text-6xl" data-section="home" data-value="title">HACKATHON: NASA SPACE APP</h1>
-			<p class="text-md xs:text-lg" data-section="home" data-value="paragraph">Explore the fascinating dynamics of asteroids with our interactive simulator.</p>
-			<a href="/asteroid-simulation" class="text-primarytext-100 px-2 py-2 w-56 self-center text-center rounded-lg bg-primary-500 hover:bg-primary-600 cursor-pointer md:self-start" data-section="home" data-value="play-btn">Start Simulation</a>
+			<h1 class="font-bold text-4xl xs:text-5xl md:text-6xl" data-section="home" data-value="title">What if an asteroid were heading our way?</h1>
+			<p class="text-md xs:text-lg" data-section="home" data-value="paragraph">Explore asteroid impacts on Earth with real NASA and USGS data with an interactive simulator. Start with Impactor-2025 or try your own scenario.</p>
+<a href="/asteroid-simulation" 
+   class="text-primarytext-100 font-bold text-[20px] px-12 py-6 self-center text-center rounded-lg bg-primary-button hover:bg-primary-600 cursor-pointer md:self-start" 
+   data-section="home" 
+   data-value="play-btn">
+  Explore Impact Scenarios
+</a>
 		</div>
 		<img src="asteroid.png" alt="Asteroid" class="md:overflow-hidden md:max-w-[600px]"/>
 	</section>
@@ -25,7 +31,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 	<section id="home-description" class="max-w-6xl w-full h-full flex justify-start items-center md:mt-16">
 		<div class="text-primary-100 flex flex-col text-start  gap-8 p-8 md:flex-row md:items-center">
 			<h2 class="font-bold text-xl xs:text-2xl md:text-4xl" data-section="home-description" data-value="title">Simulation and research for everyone</h2>
-			<p class="text-primary-500 text-md xs:text-lg md:text-end" data-section="home-description" data-value="paragraph">Asteroids simulation is here and it is a good opportunity to learn in an interactive way or travel in a unimaginable scenarios.</p>
+			<p class="text-primary-button text-md xs:text-lg md:text-end" data-section="home-description" data-value="paragraph">Asteroids simulation is here and it is a good opportunity to learn in an interactive way or travel in a unimaginable scenarios.</p>
 		</div>
 	</section>
 
@@ -52,7 +58,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 		<div class="text-primary-200 lg:max-w-xl flex flex-col text-start justify-center gap-8 p-8 border-t bg-primary-100 md:border-t-0 md:border-l md:pl-8 md:rounded-lg">
 			<h2 class="font-bold text-xl xs:text-2xl md:text-4xl md:pt-0" data-section="home-challenge" data-value="title">Test yourself with this challenge</h2>
 			<p class="text-md xs:text-lg" data-section="home-challenge" data-value="paragraph">For the desire to learn and improve your skills, We give you the website of the organization spaceappschallenge.org to research and find challenges to complete!</p>
-			<a href="https://www.spaceappschallenge.org/" target="_blank" class="px-2 py-2 self-center text-center rounded-lg bg-primary-500 hover:bg-primary-600 cursor-pointer w-full md:self-start" data-section="home-challenge" data-value="btn">Learn more</a>
+			<a href="https://www.spaceappschallenge.org/" target="_blank" class="px-2 py-2 self-center text-center rounded-lg bg-primary-button hover:bg-primary-600 cursor-pointer w-full md:self-start" data-section="home-challenge" data-value="btn">Learn more</a>
 		</div>
 		<img src="nasa_logo.png" alt="Asteroid" class="md:overflow-hidden"/>
 	</section>

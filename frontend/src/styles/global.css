@@ -1,13 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
-
 @import 'leaflet/dist/leaflet.css';
 
+:root {
+  --font-epilogue: 'Epilogue', sans-serif;
+  --font-clash: 'Clash Display', sans-serif;
+}
+
+
 @theme {
-  --color-primary-100: #276e90;
-  --color-primary-200: #efefef;
-  --color-primary-300: #cecfc9;
+  --color-centro-bg: #0A0E17;    
+  --color-centro-border: #05070D; 
+
+  --color-primary-100: #ffffff;
+  --color-primary-200: #21C5F4;
+  --color-primary-300: #FF5C38;
   --color-primary-400: #0a3143;
-  --color-primary-500: #0c1421;
+  --color-primary-button: #FF5C38; /*primary button*/
   --color-primary-600: #1e2939;
 
   --color-borders-100: #f7f4ed;
@@ -15,4 +24,37 @@
   --color-primarytext-200: #75818b;
 
   --breakpoint-xs: 425px;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay/ClashDisplay-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay/ClashDisplay-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body {
+  background-color: #0A0E17 !important; /* azul oscuro casi negro */
+  min-height: 100vh;
+  margin: 0;
+    font-family: var(--font-epilogue);
+}
+
+#navbar, h1, h2, h3 {
+  font-family: var(--font-clash);
+  font-weight: 500;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-clash);
+  font-weight: 600;
 }
