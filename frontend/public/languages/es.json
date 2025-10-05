@@ -1,53 +1,64 @@
 {
     "navbar": {
         "home": "Inicio",
-        "challenge": "Desafio",
+        "simulator": "Simulador",
         "team": "Equipo",
-        "language-es": "Español",
-        "language-en": "Inglés",
-        "language-ru": "Ruso"
+        "language-es": "Es",
+        "language-en": "En"
     },
     "home": {
-        "title": "HACKATHON: NASA SPACE APP",
-        "paragraph": "Explora la fascinante dinámica de los asteroides con nuestro simulador interactivo.",
-        "play-btn": "Iniciar simulación"
+        "title": "¿Y si un asteroide se dirigiera hacia nosotros?",
+        "paragraph": "Explora los impactos de asteroides en la Tierra con datos reales de la NASA y USGS mediante un simulador interactivo. Comienza con Impactor-2025 o prueba tu propio escenario.",
+        "play-btn": "Explorar Escenarios de Impacto"
     },
     "home-banner": {
-        "title": "Salva al mundo o descubre qué ocurriría en un escenario catastrófico",
-        "paragraph": "¡Como el universo, nuestra imaginación no tiene límites!",
-        "play-btn": "Iniciar simulación"
+        "title": "Comprende la amenaza. Toma decisiones que importan.",
+        "paragraph": "Simula impactos de asteroides en cualquier lugar de la Tierra, visualiza los daños potenciales y explora estrategias de mitigación.",
+        "play-btn": "Iniciar Simulación"
     },
     "home-description": {
         "title": "Simulación e investigación para todos",
-        "paragraph": "La simulación de asteroides ya está aquí y es una buena oportunidad para aprender de forma interactiva o viajar a escenarios inimaginables."
+        "paragraph": "La simulación de asteroides está aquí y es una excelente oportunidad para aprender de manera interactiva o explorar escenarios inimaginables."
     },
     "home-items": {
-        "title-asteroid-types": "Tipos de asteroides",
+        "title-asteroid-types": "Tipos de Asteroides",
         "span-asteroid-types": "+170 Asteroides...",
-        "paragraph-asteroid-types": "Asteroides como Carbonáceos, Pétreos, Metálicos... ¡Explora su diversidad y magnitud de impacto! ¡Visita escenarios en 2D y 3D!",
+        "paragraph-asteroid-types": "Elige entre una base de 170 asteroides reales identificados por la NASA: Carbonáceos, Rocosos, Metálicos… Personaliza sus características y visualiza los escenarios en 2D y 3D.",
         "title-public": "Público",
         "span-public": "¡Todos pueden usarlo!",
-        "paragraph-public": "Nuestra app convierte la ciencia en una experiencia atractiva, interactiva y emocionante. Queremos que todos puedan participar y aprender sobre el espacio de una manera divertida y sencilla.",
-        "title-api-nasa": "API NASA",
-        "span-api-nasa": "API oficial de la NASA",
-        "paragraph-api-nasa": "Es un menú de servicios que una organización ofrece para que puedas usar su información. La NASA utiliza APIs abiertas para que cualquier persona (científicos, estudiantes, desarrolladores y cualquier persona interesada) pueda crear. Aplicaciones, visualizaciones o simulaciones con datos espaciales reales"
+        "paragraph-public": "Convierte los datos en conocimiento. Simula impactos de asteroides, evalúa opciones de mitigación y comprende las consecuencias. Empoderando a todos para aprender, planificar y actuar responsablemente.",
+        "title-api-nasa": "DATOS NASA",
+        "span-api-nasa": "API Oficial de la NASA",
+        "paragraph-api-nasa": "El simulador funciona con datos espaciales del mundo real. Obtenemos la información de la API oficial de la NASA; un menú abierto de servicios que ofrecen."
     },
     "home-challenge": {
         "title": "Ponte a prueba con este desafío",
-        "paragraph": "La NASA comparte sus datos y desafíos con el mundo para que equipos o personas como tú puedan crear soluciones creativas. Atrévete a poner a prueba tus habilidades y sé parte de ello. Combinemos ciencia y tecnología para resolver problemas del mundo real. Ahora es tu turno de poner a prueba tu ingenio",
-        "btn": "Descubre más"
+        "paragraph": "La NASA comparte sus datos y desafíos con el mundo para que equipos o personas como tú puedan crear soluciones creativas. Atrévete a poner a prueba tus habilidades y sé parte de ello. Combinemos ciencia y tecnología para resolver problemas del mundo real. Ahora es tu turno de poner a prueba tu ingenio.",
+        "btn": "Aprender más"
     },
     "home-banner-2": {
-        "title": "Junto con el equipo, buscamos que nuestra audiencia interiorice el espacio exterior y que las grandes cosas se crean a partir de la curiosidad.",
-        "paragraph": "¡Como el universo, nuestra imaginación no tiene límites!"
+        "title": "Junto con el equipo, buscamos que nuestra audiencia internalice el área del espacio exterior y que se creen grandes cosas a partir de la curiosidad.",
+        "paragraph": "¡Al igual que el universo, nuestra imaginación no tiene límites!"
     },
     "team": {
-        "title": "EQUIPO JJBC",
-        "paragraph": "Somos el Equipo JJBC, un grupo de tres creadores apasionados por crear herramientas interactivas y simuladores que facilitan la exploración y comprensión de ideas complejas.",
+        "title": "EQUIPO JJB",
+        "paragraph": "Somos el Equipo JJBC — un grupo de tres creadores apasionados por construir herramientas y simuladores interactivos que facilitan explorar y comprender ideas complejas.",
         "developer": "Desarrollador",
         "dev1": "Cordeiro Mariano",
         "dev2": "Blanco Facundo",
         "dev3": "Medina Gabriel"
+    },
+    "simulation-params": {
+        "asteroid-btn": "Asteroides",
+        "asteroid-size": "Tamaño del Asteroide:",
+        "asteroid-speed": "Velocidad del Asteroide:",
+        "asteroid-angle": "Ángulo de Impacto del Asteroide:",
+        "asteroid-density": "Densidad del Asteroide:",
+        "carbonaceous": "Carbonáceo",
+        "stony": "Rocoso",
+        "metallic": "Metálico",
+        "start-btn": "Iniciar Simulación",
+        "reset-btn": "Reiniciar"
     },
     "footer": {
         "help": "Ayuda",
@@ -56,6 +67,6 @@
         "blog": "Blog",
         "privacity": "Privacidad",
         "rules": "Reglas",
-        "terms": "Terminos"
+        "terms": "Términos"
     }
 }

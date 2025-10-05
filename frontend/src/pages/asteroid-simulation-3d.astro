@@ -1,41 +1,10 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Simulation3D from "../components/Simulation3D.jsx";
 ---
 
-<MainLayout title="Asteroid Simulation">
-    <section id="simulation-3d" class="w-full flex items-center justify-center h-[80vh]">
-
-        <h1 class="font-bold text-4xl xs:text-5xl md:text-6xl ">STILL WORKING</h1>
-    </section>
+<MainLayout title="Asteroid Simulation 3D">
+        <section id="simulation-3d" class="w-full flex items-center justify-center h-[80vh] overflow-hidden relative">
+            <Simulation3D client:only="react" />
+        </section>
 </MainLayout>
-
-<style>
-    #simulation-3d {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 80vh;
-    }
-
-    /* DIV pseudo para imagen de fondo y overlay */
-    #simulation-3d::before {
-        content: "";
-        position: absolute;
-        inset: 0; /* top:0; right:0; bottom:0; left:0 */
-        background: url("argentina_sun.png") center/cover no-repeat;
-        /* overlay semitransparente blanca encima de la imagen */
-        background-blend-mode: lighten;
-        background-color: rgba(255,255,255,0.5);
-        z-index: 1;
-    }
-
-    /* Contenido encima */
-    #simulation-3d h1 {
-        position: relative;
-        z-index: 2;
-        font-weight: bold;
-        font-size: 4rem; /* ajusta según tus breakpoints */
-        text-align: center;
-    }
-</style>

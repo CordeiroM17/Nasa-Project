@@ -1,63 +1,177 @@
 ---
-import { ClientRouter } from "astro:transitions";
-import Navbar from "../components/Navbar.astro";
-import Footer from "../components/Footer.astro";
-import "../styles/global.css";
+import { ClientRouter } from 'astro:transitions';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import Loader from '../components/Loader.astro';
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/logo.png" />
-		<!-- Leaflet -->
-		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-		<!-- Make sure you put this AFTER Leaflet's CSS -->
-		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-		 <title>{title}</title>
-		<ClientRouter />
-		<script>
-			const lang = localStorage.getItem('selectedLanguage') || 'en';
-			// Oculta el body hasta que se aplique la traducción
-			document.documentElement.style.visibility = 'hidden';
-			fetch(`/languages/${lang}.json`).then(res => res.json()).then(data => {
-				document.querySelectorAll('[data-section]').forEach(element => {
-					const el = element instanceof HTMLElement ? element : null;
-					if (!el) return;
-					const section = el.dataset.section;
-					const value = el.dataset.value;
-					if (section && value && data[section] && data[section][value]) {
-						el.innerHTML = data[section][value];
-					}
-				});
-				document.documentElement.style.visibility = '';
-			}).catch(() => {
-				document.documentElement.style.visibility = '';
-			});
-		</script>
-	</head>
-	<body class="flex justify-center min-h-screen">
-		<div class="mx-auto px-4 py-8 w-full flex flex-col justify-center">
-			<Navbar />
-			<main class="bg-primary-200 flex flex-col items-center h-full">
-				<slot/>
-			</main>
-			<Footer />
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <title>{title}</title>
+    <ClientRouter />
+    <script>
+      const lang = localStorage.getItem('selectedLanguage') || 'en';
+      // Oculta el body hasta que se aplique la traducción
+      document.documentElement.style.visibility = 'hidden';
+      fetch(`/languages/${lang}.json`)
+        .then((res) => res.json())
+        .then((data) => {
+          document.querySelectorAll('[data-section]').forEach((element) => {
+            const el = element instanceof HTMLElement ? element : null;
+            if (!el) return;
+            const section = el.dataset.section;
+            const value = el.dataset.value;
+            if (section && value && data[section] && data[section][value]) {
+              el.innerHTML = data[section][value];
+            }
+          });
+          document.documentElement.style.visibility = '';
+        })
+        .catch(() => {
+          document.documentElement.style.visibility = '';
+        });
+    </script>
+  </head>
+  <body class="flex justify-center min-h-screen">
+    <Loader />
+  <div class="mx-auto px-4 w-full min-h-screen flex flex-col">
+      <Navbar />
+  <main class="flex flex-col items-center flex-1">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+<script type="module">
+function initSidebarsAndLoader() {
+    const attachListeners = () => {
+        // === PARAMETERS SIDEBAR ===
+        const openParamsBtn = document.getElementById("openMenuParametersBtn");
+        const closeParamsBtn = document.getElementById("closeMenuParametersBtn");
+        const paramsSidebar = document.getElementById("sideMenuParameters");
+
+        if (openParamsBtn && closeParamsBtn && paramsSidebar) {
+            openParamsBtn.addEventListener("click", () => {
+                paramsSidebar.classList.remove("-translate-x-full");
+                paramsSidebar.classList.add("translate-x-0");
+            });
+
+            closeParamsBtn.addEventListener("click", () => {
+                paramsSidebar.classList.remove("translate-x-0");
+                paramsSidebar.classList.add("-translate-x-full");
+            });
+        }
+
+        // === ASTEROID MENU ===
+        const showAsteroidMenuBtn = document.getElementById("showAsteroidMenuBtn");
+        const asteroidMenu = document.getElementById("asteroidMenu");
+        const closeAsteroidMenuBtn = document.getElementById("closeAsteroidMenuBtn");
+
+        if (showAsteroidMenuBtn && asteroidMenu) {
+            showAsteroidMenuBtn.addEventListener("click", () => {
+                asteroidMenu.classList.toggle("hidden");
+            });
+        }
+
+        if (closeAsteroidMenuBtn && asteroidMenu) {
+            closeAsteroidMenuBtn.addEventListener("click", () => {
+                asteroidMenu.classList.add("hidden");
+            });
+        }
+
+        // === ASTEROID BUTTONS ===
+        const asteroidBtns = document.querySelectorAll(".asteroid-btn");
+        asteroidBtns.forEach((button) => {
+            button.addEventListener("click", () => {
+                const type = button.children[1]?.innerText || "";
+                const size = button.children[2]?.innerText || "";
+                const density = button.children[3]?.innerText || "";
+                const speed = button.children[4]?.innerText || "";
+
+                console.log("Asteroid selected:", { type, size, density, speed });
+
+                // Update sliders
+                const sizeInput = document.getElementById("asteroid-size");
+                const speedInput = document.getElementById("asteroid-speed");
+                const densitySelect = document.querySelector(".asteroid-density");
+
+                if (sizeInput) sizeInput.value = Math.round(size);
+                if (speedInput) speedInput.value = Math.round(speed);
+                if (densitySelect) {
+                    for (let option of densitySelect.options) {
+                        if (option.textContent.trim().toLowerCase() === type.toLowerCase() ||
+                            option.value === density) {
+                            option.selected = true;
+                            break;
+                        }
+                    }
+                }
+
+                // Close asteroid menu
+                if (asteroidMenu) asteroidMenu.classList.add("hidden");
+            });
+        });
+
+        // === LOADER SPINNER FOR NAVIGATION LINKS ===
+        const loader = document.getElementById("loader");
+        const spinner = loader?.querySelector("svg");
+        const links = document.querySelectorAll('a[href]');
+
+        if (loader && spinner) {
+            links.forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    const href = link.getAttribute("href");
+                    if (href && href.startsWith("/") && !href.startsWith("//")) {
+                        loader.classList.remove("opacity-0", "pointer-events-none");
+                        spinner.classList.remove("scale-75");
+                        spinner.classList.add("scale-100");
+                    }
+                });
+            });
+
+            document.addEventListener("astro:page-load", () => {
+                loader.classList.add("opacity-0", "pointer-events-none");
+                spinner.classList.remove("scale-100");
+                spinner.classList.add("scale-75");
+            });
+        }
+    };
+
+    // Run after DOM is ready
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", attachListeners);
+    } else {
+        attachListeners();
+    }
+}
+
+// Initialize on first load
+initSidebarsAndLoader();
+
+// Re-initialize on Astro client-side navigation
+document.addEventListener("astro:page-load", initSidebarsAndLoader);
+</script>
+  </body>
 </html>
 
 <style>
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
-	
-	/* main {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* main {
 		background: url("background1.svg") no-repeat center center;
 		background-size: cover;
 	} */

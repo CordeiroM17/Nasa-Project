@@ -8,7 +8,7 @@ from src.models.impact_model import format_impact_result
 class MeteorsResource(Resource):
     def get(self):
         page = int(request.args.get("page", 1))
-        per_page = int(request.args.get("per_page", 5))
+        per_page = int(request.args.get("per_page", 20))
 
 
         df, status_code = get_earth_meteors()

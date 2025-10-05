@@ -1,20 +1,19 @@
 {
     "navbar": {
         "home": "Home",
-        "challenge": "Challenge",
+        "simulator": "Simulator",
         "team": "Team",
         "language-es": "Spanish",
-        "language-en": "English",
-        "language-ru": "Russian"
+        "language-en": "English"
     },
     "home": {
-        "title": "HACKATHON: NASA SPACE APP",
-        "paragraph": "Explore the fascinating dynamics of asteroids with our interactive simulator.",
-        "play-btn": "Start Simulation"
+        "title": "What if an asteroid were heading our way?",
+        "paragraph": "Explore asteroid impacts on Earth with real NASA and USGS data with an interactive simulator. Start with Impactor-2025 or try your own scenario.",
+        "play-btn": "Explore Impact Scenarios"
     },
     "home-banner": {
-        "title": "Save the world or see what would happen in a catastrophic scenario",
-        "paragraph": "Like the universe, our imagination has no limits!",
+        "title": "Understand the threat. Make decisions that matter.",
+        "paragraph": "Simulate asteroid impacts anywhere on Earth, visualize potential damage, and explore mitigation strategies.",
         "play-btn": "Start Simulation"
     },
     "home-description": {
@@ -24,13 +23,13 @@
     "home-items": {
         "title-asteroid-types": "Asteroid types",
         "span-asteroid-types": "+170 Asteroids...",
-        "paragraph-asteroid-types": "Asteroids like Carbonaceous, Stony, Metallic... Explore their diversity and impact magnitudes. View scenarios in 2D and 3D!",
+        "paragraph-asteroid-types": "Choose from a base of 170 real asteroids identified by NASA: Carbonaceous, Stony, Metallic… Custom their characteristics and view scenarios in 2D and 3D!",
         "title-public": "Public",
         "span-public": "Everyone can use it!",
-        "paragraph-public": "Our app turns science into an engaging, interactive, and exciting experience. We want everyone to be able to join in and learn about space in a fun and easy way.",
-        "title-api-nasa": "API NASA",
-        "span-api-nasa": "NASA Oficial API",
-        "paragraph-api-nasa": "It's a menu of services that an organization provides so you can use its information. NASA uses open APIs so anyone (scientists, students, developers, and just anyone interested) can create apps, visualizations, or simulations with real-world space data."
+        "paragraph-public": "Turn data into insight. Simulate asteroid impacts, evaluate mitigation options, and understand the consequences. Empowering everyone to learn, plan, and act responsibly.",
+        "title-api-nasa": "NASA DATA",
+        "span-api-nasa": "NASA Official API",
+        "paragraph-api-nasa": "The simulator works with real-world space data. We retrieve the information from NASA’s official API; an open menu of services they provide."
     },
     "home-challenge": {
         "title": "Test yourself with this challenge",
@@ -48,6 +47,18 @@
         "dev1": "Cordeiro Mariano",
         "dev2": "Blanco Facundo",
         "dev3": "Medina Gabriel"
+    },
+    "simulation-params": {
+        "asteroid-btn": "Asteroids",
+        "asteroid-size": "Asteroid Size:",
+        "asteroid-speed": "Asteroid Speed:",
+        "asteroid-angle": "Asteroid Impact Angle:",
+        "asteroid-density": "Asteroid Density:",
+        "carbonaceous": "Carbonaceous",
+        "stony": "Stony",
+        "metallic": "Metallic",
+        "start-btn": "Start Simulation",
+        "reset-btn": "Reset"
     },
     "footer": {
         "help": "Help",
